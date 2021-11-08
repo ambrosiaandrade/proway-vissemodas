@@ -1,5 +1,8 @@
 package br.com.capgemini.visseModas.luana.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class ClientePJ extends Cliente{
 
     private String cnpj;

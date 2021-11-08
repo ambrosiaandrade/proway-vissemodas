@@ -1,10 +1,20 @@
 package br.com.capgemini.visseModas.luana.model;
 
+import javax.persistence.*;
+
+@Entity
 public class ItensPedido {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Produto produto;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Pedido pedido;
+
     private Integer quantidade;
     private Double valorTotal;
 

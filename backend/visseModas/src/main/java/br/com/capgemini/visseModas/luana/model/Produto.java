@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+//@Table(name = "produtos")
 public class Produto {
 
     @Id
@@ -13,6 +14,7 @@ public class Produto {
     private Integer id;
     private String descricao;
     private String tamanho;
+    //@Column(name = "valor_unitario")
     private Double valorUnitario;
     private Boolean status;
 

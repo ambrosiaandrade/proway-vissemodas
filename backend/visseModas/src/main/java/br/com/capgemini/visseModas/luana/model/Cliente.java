@@ -11,6 +11,8 @@ public abstract class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
     protected String nome;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     protected List<Endereco> listaEnderecos;
 
     public Integer getId() {

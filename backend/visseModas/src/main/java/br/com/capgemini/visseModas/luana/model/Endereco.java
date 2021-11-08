@@ -1,19 +1,20 @@
 package br.com.capgemini.visseModas.luana.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Endereco {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String cep;
     private String cidade;
     private String bairro;
     private String rua;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Cliente cliente;
 
     public Integer getId() {
         return id;

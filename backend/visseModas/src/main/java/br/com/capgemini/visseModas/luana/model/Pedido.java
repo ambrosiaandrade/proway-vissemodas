@@ -2,6 +2,8 @@ package br.com.capgemini.visseModas.luana.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Pedido {
@@ -14,10 +16,15 @@ public class Pedido {
     @ManyToOne(fetch = FetchType.LAZY) // eager ou lazy --> lazy - não vai carregar todos os pedidos para um cliente de imediato, só se precisar
     private Cliente cliente;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     private Endereco endereco;
-    
+
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private List<ItensPedido> itensPedidos = new ArrayList<>();
+
+    @Enumerated(EnumType.STRING)
     private Situacao situacao;
+
     private Double valorTotal;
     private Integer quantidadeTotal;
     private Double percentualDesconto;
