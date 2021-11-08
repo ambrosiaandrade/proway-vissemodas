@@ -1,9 +1,6 @@
 package br.com.capgemini.visseModas.rebeca.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Endereco {
@@ -15,6 +12,9 @@ public class Endereco {
     private String cidade;
     private String bairro;
     private String rua;
+
+    @ManyToOne
+    private Cliente cliente;
 
     public Integer getId() {
         return id;
@@ -54,6 +54,14 @@ public class Endereco {
 
     public void setRua(String rua) {
         this.rua = rua;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override

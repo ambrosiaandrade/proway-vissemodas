@@ -12,6 +12,7 @@ public abstract class Cliente {
     protected Integer id;
     protected String nome;
 
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     protected List<Endereco> listaEnderecos;
 
     public Integer getId() {
