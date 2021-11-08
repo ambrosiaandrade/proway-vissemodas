@@ -1,10 +1,10 @@
-package br.com.capgemini.visseModas.rebeca.model;
+package br.com.capgemini.visseModas.valquiria.model;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Cliente {
 
     @Id
@@ -39,12 +39,4 @@ public abstract class Cliente {
         this.listaEnderecos = listaEnderecos;
     }
 
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", listaEnderecos=" + listaEnderecos +
-                '}';
-    }
 }

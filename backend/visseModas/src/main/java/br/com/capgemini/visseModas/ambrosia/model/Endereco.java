@@ -1,4 +1,4 @@
-package br.com.capgemini.visseModas.rebeca.model;
+package br.com.capgemini.visseModas.valquiria.model;
 
 import javax.persistence.*;
 
@@ -13,7 +13,7 @@ public class Endereco {
     private String bairro;
     private String rua;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cliente cliente;
 
     public Integer getId() {
@@ -54,14 +54,6 @@ public class Endereco {
 
     public void setRua(String rua) {
         this.rua = rua;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     @Override
