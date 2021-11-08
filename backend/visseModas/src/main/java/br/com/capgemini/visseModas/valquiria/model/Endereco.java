@@ -1,12 +1,22 @@
 package br.com.capgemini.visseModas.valquiria.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Endereco {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String cep;
     private String cidade;
     private String bairro;
     private String rua;
+
+    //private Cliente cliente;
 
     public Integer getId() {
         return id;

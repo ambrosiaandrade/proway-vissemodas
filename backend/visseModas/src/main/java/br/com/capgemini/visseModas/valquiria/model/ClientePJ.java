@@ -1,5 +1,8 @@
 package br.com.capgemini.visseModas.valquiria.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class ClientePJ extends Cliente{
 
     private String cnpj;

@@ -1,11 +1,18 @@
 package br.com.capgemini.visseModas.valquiria.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Cliente {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
     protected String nome;
+
+    @OneToMany(mappedBy = "endereco", cascade = CascadeType.ALL)
     protected List<Endereco> listaEnderecos;
 
     public Integer getId() {
