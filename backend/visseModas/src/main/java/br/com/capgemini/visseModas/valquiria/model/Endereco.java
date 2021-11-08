@@ -1,9 +1,6 @@
 package br.com.capgemini.visseModas.valquiria.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Endereco {
@@ -16,7 +13,8 @@ public class Endereco {
     private String bairro;
     private String rua;
 
-    //private Cliente cliente;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Cliente cliente;
 
     public Integer getId() {
         return id;
