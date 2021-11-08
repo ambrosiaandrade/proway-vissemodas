@@ -1,10 +1,20 @@
 package br.com.capgemini.visseModas.rebeca.model;
 
-public class ItensPedido {
+import javax.persistence.*;
 
+@Entity
+public class ItemPedido {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Produto produto;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Pedido pedido;
+
     private Integer quantidade;
     private Double valorTotal;
 

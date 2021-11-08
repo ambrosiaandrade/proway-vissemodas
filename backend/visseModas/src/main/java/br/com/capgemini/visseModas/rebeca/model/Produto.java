@@ -1,9 +1,17 @@
 package br.com.capgemini.visseModas.rebeca.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity // anotação para dizer que essa classe é uma table do Banco de Dados
 public class Produto {
 
+    @Id // anotação para dizer que esse atributo é o ID da table
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // anotação para dizer que o id é o Primary Key na table Produto
     private Integer id;
-    private String codigoProduto;
+    private String descricao;
     private String tamanho;
     private Double valorUnitario;
     private Boolean status;
@@ -16,12 +24,12 @@ public class Produto {
         this.id = id;
     }
 
-    public String getCodigoProduto() {
-        return codigoProduto;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setCodigoProduto(String codigoProduto) {
-        this.codigoProduto = codigoProduto;
+    public void setCodigoProduto(String descricao) {
+        this.descricao = descricao;
     }
 
     public String getTamanho() {
@@ -52,7 +60,7 @@ public class Produto {
     public String toString() {
         return "Produto{" +
                 "id=" + id +
-                ", codigoProduto='" + codigoProduto + '\'' +
+                ", codigoProduto='" + descricao + '\'' +
                 ", tamanho='" + tamanho + '\'' +
                 ", valorUnitario=" + valorUnitario +
                 ", status=" + status +

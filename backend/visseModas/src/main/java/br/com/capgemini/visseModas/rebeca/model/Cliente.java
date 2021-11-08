@@ -1,9 +1,14 @@
 package br.com.capgemini.visseModas.rebeca.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Cliente {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
     protected String nome;
 
