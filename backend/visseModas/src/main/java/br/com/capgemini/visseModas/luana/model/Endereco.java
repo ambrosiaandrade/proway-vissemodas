@@ -1,7 +1,14 @@
 package br.com.capgemini.visseModas.luana.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Endereco {
 
+    @Id
+    @GeneratedValue
     private Integer id;
     private String cep;
     private String cidade;

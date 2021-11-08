@@ -1,13 +1,22 @@
 package br.com.capgemini.visseModas.luana.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
 public class Pedido {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private LocalDate data;
+
+    @ManyToOne(fetch = FetchType.LAZY) // eager ou lazy --> lazy - não vai carregar todos os pedidos para um cliente de imediato, só se precisar
     private Cliente cliente;
+
+    @ManyToOne()
     private Endereco endereco;
+    
     private Situacao situacao;
     private Double valorTotal;
     private Integer quantidadeTotal;

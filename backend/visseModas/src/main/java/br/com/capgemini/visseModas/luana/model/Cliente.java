@@ -1,9 +1,14 @@
 package br.com.capgemini.visseModas.luana.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Cliente {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
     protected String nome;
     protected List<Endereco> listaEnderecos;
