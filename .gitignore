@@ -21,3 +21,38 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Backend ------------------------------------------------------------------------------
+
+## IntelliJ IDEA
+backend/visseModas/.idea
+backend/visseModas/*.iws
+backend/visseModas/*.iml
+backend/visseModas/*.ipr
+
+## VS Code
+backend/visseModas/.vscode
+
+## NetBeans
+backend/visseModas/nbproject/private/
+backend/visseModas/nbbuild/
+backend/visseModas/dist/
+backend/visseModas/nbdist/
+backend/visseModas/.nb-gradle/
+backend/visseModas/build/
+backend/visseModas/!**/src/main/**/build/
+backend/visseModas/!**/src/test/**/build/
+
+backend/visseModas/target/
+backend/visseModas/!.mvn/wrapper/maven-wrapper.jar
+backend/visseModas/!**/src/main/**/target/
+backend/visseModas/!**/src/test/**/target/
+
+backend/visseModas/.apt_generated
+backend/visseModas/.classpath
+backend/visseModas/.factorypath
+backend/visseModas/.project
+backend/visseModas/.settings
+backend/visseModas/.springBeans
+backend/visseModas/.sts4-cache
+
