@@ -11,7 +11,7 @@ import java.util.List;
 
 // Repository substitui a DAO e tudo que é de banco é aqui
 @Repository
-public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
+public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 
     // Método criado pois não está dentro dos métodos nativos
     //@Query("select p from pedido p where p.situacao = :situacao")

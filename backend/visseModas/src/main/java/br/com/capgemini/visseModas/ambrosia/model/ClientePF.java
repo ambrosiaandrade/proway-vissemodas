@@ -2,18 +2,15 @@ package br.com.capgemini.visseModas.ambrosia.model;
 
 import javax.persistence.Entity;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+
 @Entity
 public class ClientePF extends Cliente{
 
     private String cpf;
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
 
     @Override
     public String toString() {
