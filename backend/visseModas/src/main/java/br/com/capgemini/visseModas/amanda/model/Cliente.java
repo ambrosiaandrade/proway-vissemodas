@@ -1,11 +1,19 @@
 package br.com.capgemini.visseModas.amanda.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Cliente {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
     protected String nome;
-    protected List<Endereco> listEnderecos;
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    protected List<Endereco> listaEnderecos;
 
     public Integer getId() {
         return id;
@@ -23,20 +31,12 @@ public abstract class Cliente {
         this.nome = nome;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public List<Endereco> getListaEnderecos() {
+        return listaEnderecos;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setListaEnderecos(List<Endereco> listaEnderecos) {
+        this.listaEnderecos = listaEnderecos;
     }
 
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", endereco=" + endereco +
-                '}';
-    }
 }

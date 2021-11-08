@@ -1,6 +1,10 @@
 package br.com.capgemini.visseModas.amanda.model;
 
-public class ClientePF extends Cliente {
+import javax.persistence.Entity;
+
+@Entity
+public class ClientePF extends Cliente{
+
     private String cpf;
 
     public String getCpf() {
@@ -16,7 +20,6 @@ public class ClientePF extends Cliente {
         return "ClientePF{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
-                ", endereco=" + endereco +
                 ", cpf='" + cpf + '\'' +
                 '}';
     }

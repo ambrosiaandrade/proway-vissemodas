@@ -1,9 +1,17 @@
 package br.com.capgemini.visseModas.amanda.model;
 
+import javax.persistence.*;
+
+@Entity
+//@Table(name = "produtos")
 public class Produto {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String descricao;
     private String tamanho;
+    //@Column(name = "valor_unitario")
     private Double valorUnitario;
     private Boolean status;
 

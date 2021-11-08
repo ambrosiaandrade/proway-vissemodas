@@ -1,22 +1,22 @@
 package br.com.capgemini.visseModas.amanda.model;
 
-public class ItensPedido {
+import javax.persistence.*;
+
+@Entity
+public class ItemPedido {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Produto produto;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Pedido pedido;
+
     private Integer quantidade;
     private Double valorTotal;
-
-    @Override
-    public String toString() {
-        return "ItensPedido{" +
-                "id=" + id +
-                ", produto=" + produto +
-                ", pedido=" + pedido +
-                ", quantidade=" + quantidade +
-                ", valorTotal=" + valorTotal +
-                '}';
-    }
 
     public Integer getId() {
         return id;
@@ -56,5 +56,16 @@ public class ItensPedido {
 
     public void setValorTotal(Double valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemPedido{" +
+                "id=" + id +
+                ", produto=" + produto +
+                ", pedido=" + pedido +
+                ", quantidade=" + quantidade +
+                ", valorTotal=" + valorTotal +
+                '}';
     }
 }
