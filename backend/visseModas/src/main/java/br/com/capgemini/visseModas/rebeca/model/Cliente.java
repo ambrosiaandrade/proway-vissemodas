@@ -1,10 +1,10 @@
-package br.com.capgemini.visseModas.valquiria.model;
+package br.com.capgemini.visseModas.rebeca.model;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Cliente {
 
     @Id
@@ -12,7 +12,6 @@ public abstract class Cliente {
     protected Integer id;
     protected String nome;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     protected List<Endereco> listaEnderecos;
 
     public Integer getId() {
@@ -39,4 +38,12 @@ public abstract class Cliente {
         this.listaEnderecos = listaEnderecos;
     }
 
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", listaEnderecos=" + listaEnderecos +
+                '}';
+    }
 }
