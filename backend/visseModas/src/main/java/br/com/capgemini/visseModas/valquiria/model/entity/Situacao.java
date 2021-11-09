@@ -1,4 +1,4 @@
-package br.com.capgemini.visseModas.valquiria.model;
+package br.com.capgemini.visseModas.valquiria.model.entity;
 
 public enum Situacao{
     ABERTO, CANCELADO, FECHADO, FINALIZADO;
