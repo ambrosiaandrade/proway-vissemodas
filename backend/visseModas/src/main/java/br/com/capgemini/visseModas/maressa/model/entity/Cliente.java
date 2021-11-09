@@ -1,4 +1,4 @@
-package br.com.capgemini.visseModas.maressa.model;
+package br.com.capgemini.visseModas.maressa.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

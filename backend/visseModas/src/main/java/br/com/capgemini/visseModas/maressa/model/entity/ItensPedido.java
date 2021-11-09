@@ -1,4 +1,4 @@
-package br.com.capgemini.visseModas.maressa.model;
+package br.com.capgemini.visseModas.maressa.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,14 +28,5 @@ public class ItensPedido {
     private Integer quantidade;
     private Double valorTotal;
 
-    @Override
-    public String toString() {
-        return "ItensPedido{" +
-                "id=" + id +
-                ", produto=" + produto +
-                ", pedido=" + pedido +
-                ", quantidade=" + quantidade +
-                ", valorTotal=" + valorTotal +
-                '}';
-    }
+
 }

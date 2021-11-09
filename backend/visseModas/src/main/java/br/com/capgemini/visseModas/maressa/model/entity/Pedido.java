@@ -1,4 +1,4 @@
-package br.com.capgemini.visseModas.maressa.model;
+package br.com.capgemini.visseModas.maressa.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,17 +39,5 @@ public class Pedido {
     private Integer quantidadeTotal;
     private Double percentualDesconto;
 
-    @Override
-    public String toString() {
-        return "Pedido{" +
-                "id=" + id +
-                ", data=" + data +
-                ", cliente=" + cliente +
-                ", endereco=" + endereco +
-                ", situacao=" + situacao +
-                ", valorTotal=" + valorTotal +
-                ", quantidadeTotal=" + quantidadeTotal +
-                ", percentualDesconto=" + percentualDesconto +
-                '}';
-    }
+
 }

@@ -1,4 +1,4 @@
-package br.com.capgemini.visseModas.maressa.model;
+package br.com.capgemini.visseModas.maressa.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,14 +26,4 @@ public class Endereco {
     @ManyToOne(fetch = FetchType.LAZY)
     private Cliente cliente;
 
-    @Override
-    public String toString() {
-        return "Endereco{" +
-                "id=" + id +
-                ", cep='" + cep + '\'' +
-                ", cidade='" + cidade + '\'' +
-                ", bairro='" + bairro + '\'' +
-                ", rua='" + rua + '\'' +
-                '}';
-    }
 }
