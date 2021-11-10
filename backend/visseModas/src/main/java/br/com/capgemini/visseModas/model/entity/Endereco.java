@@ -1,9 +1,11 @@
-package br.com.capgemini.visseModas.model.entity;
+package main.java.br.com.capgemini.visseModas.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import br.com.capgemini.visseModas.model.entity.Cliente;
 
 import javax.persistence.*;
 
@@ -27,6 +29,7 @@ public class Endereco {
     private Cliente cliente;
 
     //lado mais forte é a tabela que tem que a coluna do relacionamento
+
 
 
 }
