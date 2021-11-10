@@ -1,4 +1,4 @@
-/*
+
 package br.com.capgemini.visseModas.controller.service;
 
 import br.com.capgemini.visseModas.model.entity.ClientePF;
@@ -81,7 +81,7 @@ public class ClienteServicePF {
     //    }
 
     //find com DTO
- */
+
 /*   public List<ClienteDTO> listarTudo(){
         List<ClientePF> listaClientesPF = repository.findAll();
         return ClienteDTO.converter(listaClientesPF);
