@@ -1,106 +1,73 @@
 
 package br.com.capgemini.visseModas.controller.service;
 
+import br.com.capgemini.visseModas.model.dto.ClientePFDTO;
 import br.com.capgemini.visseModas.model.entity.ClientePF;
 import br.com.capgemini.visseModas.model.repository.ClientePFRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
 @Service
-public class ClienteServicePF {
+public class ClientePFService {
 
+    @Autowired //injecao de dependencia
     private ClientePFRepository repository;
-
 
     public void salvar(ClientePF clientePF) {
         repository.save(clientePF);
     }
 
-    private void atualizar(Scanner scan) {
-        System.out.println("Digite o ID que deseja alterar");
-        int id = scan.nextInt();
-
-        System.out.println("Descrição do Cargo");
-        String descricao = scan.next();
-
-        Cargo cargo = new Cargo();
-
-        cargo.setId(id);
-        cargo.setDescricao(descricao);
-
-        cargoRepository.save(cargo);
-        System.out.println("Cargo Atualizado!");
+    private void deletar(Long id) {
+        repository.deleteById(id);
     }
 
-    public Categoria alterar(@PathVariable Long id, @RequestBody Categoria categoria){
+    public List<ClientePF> listarTudo() {
+        return repository.findAll();
+    }
+
+    //find com DTO
+    public List<ClientePFDTO> listarTudoDTO(){
+        List<ClientePF> listaClientesPF = repository.findAll();
+        return ClientePFDTO.converter(listaClientesPF);
+    }
+
+    public ClientePF alterar(Long id){
 
         //recebe do banco de dados
-        Optional<Categoria> categoriaBuscada = repository.findById(id);
+        Optional<ClientePF> clientePFBuscado = repository.findById(id);
 
-        if(!categoriaBuscada.isPresent()){
+        if(!clientePFBuscado.isPresent()){
             return null;
         }
 
         //converte o Option
-        Categoria categoriaNew = categoriaBuscada.get();
-        categoriaNew.setDescricao(categoria.getDescricao());
-        repository.save(categoriaNew);
+        ClientePF clientePF = clientePFBuscado.get();
 
-        System.out.println(categoria);
+        ClientePF clientePFNovo = new ClientePF();
+        clientePFNovo.setNome(clientePF.getNome());
+        clientePFNovo.setCpf(clientePF.getCpf());
 
-        return categoria;
+        repository.save(clientePF);
+
+        return clientePFNovo;
 
     }
 
-    //    @PutMapping("/{id}")
-//    public void merge(@PathVariable Long id, @RequestBody Categoria categoria){
-//        Categoria categoriaPesquisada = repository.getOne(id);
-//        if(categoriaPesquisada != null){
-//            categoriaPesquisada.setDataCadastro(categoria.getDataCadastro());
-//            repository.save(categoriaPesquisada);
+//    public void merge(Long id, ClientePF clientePF){
+//
+//        ClientePF clientePFPesquisado = repository.getOne(id);
+//
+//        if(clientePFPesquisado != null){
+//            clientePFPesquisado.setNome(clientePF.getNome());
+//            clientePFPesquisado.setCpf(clientePF.getCpf());
+//            repository.save(clientePFPesquisado);
 //        }
 //
 //    }
 
 
-
-//    private void visualizar() {
-//        Iterable<Cargo> cargos = cargoRepository.findAll();
-//        cargos.forEach(cargo -> System.out.println(cargo));
-//
-//    }
-
-    //    @GetMapping //find
-    //    public List<Categoria> listarTudo(){
-    //        return repository.findAll();
-    //    }
-
-    //find com DTO
-
-/*   public List<ClienteDTO> listarTudo(){
-        List<ClientePF> listaClientesPF = repository.findAll();
-        return ClienteDTO.converter(listaClientesPF);
-    }*//*
-
-
-
-    private void deletar(Long id) {
-        repository.deleteById(id);
-    }
-
-
-
-
-
-
-
-
-
-
 }
-*/
+
