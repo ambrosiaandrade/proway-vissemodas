@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import main.java.br.com.capgemini.visseModas.model.entity.Endereco;
 
 import javax.persistence.*;
 import java.io.Serializable;
