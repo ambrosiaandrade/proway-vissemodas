@@ -1,8 +1,8 @@
 package br.com.capgemini.visseModas.controller.service;
 
-import br.com.capgemini.visseModas.model.dto.ClientePFDTO;
-import br.com.capgemini.visseModas.model.entity.ClientePF;
-import br.com.capgemini.visseModas.model.repository.ClientePFRepository;
+import br.com.capgemini.visseModas.model.dto.ClienteDTO;
+import br.com.capgemini.visseModas.model.entity.Cliente;
+import br.com.capgemini.visseModas.model.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,46 +10,46 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ClientePFService {
+public class ClienteService {
 
     @Autowired //injecao de dependencia
-    private ClientePFRepository repository;
+    private ClienteRepository repository;
 
-    public void salvar(ClientePF clientePF) {
-        repository.save(clientePF);
+    public void salvar(Cliente cliente) {
+        repository.save(cliente);
     }
 
     private void deletar(Long id) {
         repository.deleteById(id);
     }
 
-    public List<ClientePF> listarTudo() {
+    public List<Cliente> listarTudo() {
         return repository.findAll();
     }
 
     //find com DTO
-    public List<ClientePFDTO> listarTudoDTO(){
-        List<ClientePF> listaClientesPF = repository.findAll();
-        return ClientePFDTO.converter(listaClientesPF);
+    public List<ClienteDTO> listarTudoDTO(){
+        List<Cliente> listaClientes = repository.findAll();
+        return ClienteDTO.converter(listaClientes);
     }
 
-    public ClientePF alterar(Long id){
+    public Cliente alterar(Long id){
 
         //recebe do banco de dados
-        Optional<ClientePF> clientePFBuscado = repository.findById(id);
+        Optional<Cliente> clientePFBuscado = repository.findById(id);
 
         if(!clientePFBuscado.isPresent()){
             return null;
         }
 
         //converte o Option
-        ClientePF clientePF = clientePFBuscado.get();
+        Cliente cliente = clientePFBuscado.get();
 
-        ClientePF clientePFNovo = new ClientePF();
-        clientePFNovo.setNome(clientePF.getNome());
-        clientePFNovo.setCpf(clientePF.getCpf());
+        Cliente clientePFNovo = new Cliente();
+        clientePFNovo.setNome(cliente.getNome());
+        clientePFNovo.setCpf(cliente.getCpf());
 
-        repository.save(clientePF);
+        repository.save(cliente);
 
         return clientePFNovo;
 

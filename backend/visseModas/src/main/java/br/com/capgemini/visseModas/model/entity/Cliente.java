@@ -16,13 +16,15 @@ import java.util.List;
 @NoArgsConstructor
 
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Cliente implements Serializable {
+public class Cliente{
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
     protected String nome;
+    private TipoCliente tipoCliente;
+    private String cpf;
+    private String cnpj;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     protected List<Endereco> listaEnderecos;
