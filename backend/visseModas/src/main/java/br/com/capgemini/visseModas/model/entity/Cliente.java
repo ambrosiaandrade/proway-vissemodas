@@ -19,10 +19,9 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Cliente implements Serializable {
 
-
     @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    //@GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue
     protected Long id;
     protected String nome;
 
