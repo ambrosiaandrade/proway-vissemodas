@@ -33,6 +33,7 @@ public class ProdutoService {
         return ProdutoDTO.converter(listaProdutos);
     }
 
+
     public Produto alterar(Long id){
         // Recebe do banco de dados
         Optional<Produto> produtoBuscado = repository.findById(id);
@@ -56,5 +57,12 @@ public class ProdutoService {
         repository.save(produtoNovo);
         return produtoNovo;
     }
+
+    public void inativar(Long id) {
+        Produto produtoExcluir = repository.getById(id);
+        produtoExcluir.setStatus(false);
+        repository.save(produtoExcluir);
+    }
+
 
 }

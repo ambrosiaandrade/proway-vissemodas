@@ -1,8 +1,8 @@
-package main.java.br.com.capgemini.visseModas.controller.service;
+package br.com.capgemini.visseModas.controller.service;
 
+import br.com.capgemini.visseModas.model.dto.EnderecoDTO;
+import br.com.capgemini.visseModas.model.entity.Endereco;
 import br.com.capgemini.visseModas.model.repository.EnderecoRepository;
-import main.java.br.com.capgemini.visseModas.model.dto.EnderecoDTO;
-import main.java.br.com.capgemini.visseModas.model.entity.Endereco;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

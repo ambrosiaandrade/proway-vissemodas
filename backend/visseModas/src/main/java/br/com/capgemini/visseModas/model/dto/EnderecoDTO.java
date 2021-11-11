@@ -1,6 +1,7 @@
-package main.java.br.com.capgemini.visseModas.model.dto;
+package br.com.capgemini.visseModas.model.dto;
 
-import main.java.br.com.capgemini.visseModas.model.entity.Endereco;
+import br.com.capgemini.visseModas.model.entity.Endereco;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
