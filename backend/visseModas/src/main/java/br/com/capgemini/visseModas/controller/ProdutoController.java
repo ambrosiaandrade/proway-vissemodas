@@ -1,7 +1,7 @@
 package br.com.capgemini.visseModas.controller;
 
 import br.com.capgemini.visseModas.controller.service.ProdutoService;
-import br.com.capgemini.visseModas.model.dto.ProdutoDTO;
+import br.com.capgemini.visseModas.model.dtoSaida.ProdutoDTO;
 import br.com.capgemini.visseModas.model.entity.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

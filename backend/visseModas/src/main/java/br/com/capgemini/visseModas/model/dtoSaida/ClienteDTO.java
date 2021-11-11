@@ -1,4 +1,4 @@
-package br.com.capgemini.visseModas.model.dto;
+package br.com.capgemini.visseModas.model.dtoSaida;
 
 import br.com.capgemini.visseModas.model.entity.Cliente;
 import lombok.Getter;
