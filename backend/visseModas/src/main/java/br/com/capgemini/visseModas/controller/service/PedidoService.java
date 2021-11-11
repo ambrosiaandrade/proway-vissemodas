@@ -53,7 +53,7 @@ public class PedidoService {
         pedido.setQuantidadeTotal(pedido.getQuantidadeTotal());
         pedido.setPercentualDesconto(pedido.getPercentualDesconto());
 
-       repository.save(Pedido);
+       repository.save(pedido);
 
        return pedidoNovo;
 

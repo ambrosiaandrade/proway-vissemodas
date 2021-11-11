@@ -10,7 +10,7 @@ public class PedidoDTO {
     private String cliente;
     private String enderecoEntrega;
     private String itensPedidos;
-    private enum situacao;
+    private Enum situacao;
     private Double valorTotal;
     private Integer quantidadeTotal;
     private Double percentualDesconto;
