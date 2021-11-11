@@ -14,8 +14,8 @@ import java.util.Optional;
 @Service
 public class PedidoService {
 
-    /*•	Deverá ser possível aplicar um percentual de desconto no pedido. O desconto será sobre o valor total dos produtos
-    •	Somente será possível aplicar desconto no pedido se ele estiver na situação Aberto (Fechado bloqueia)*/
+
+    // TODO	Não deve ser possível adicionar um produto desativado em um pedido*/
 
     @Autowired //injecao de dependencia para que o service se comunique com o repository
     private PedidoRepository repository;
@@ -34,9 +34,9 @@ public class PedidoService {
         repository.save(pedidoExcluir);
     }
 
-    public List<Pedido> listarTudo(){
-        return repository.findAll();
-    }
+//    public List<Pedido> listarTudo(){
+//        return repository.findAll();
+//    }
 
     // find com DTO
     public List<PedidoDTO> listarTudoDTO(){
@@ -68,6 +68,19 @@ public class PedidoService {
 
        return pedidoNovo;
 
+    }
+
+    //Deverá ser possível aplicar um percentual de desconto no pedido. O desconto será sobre o valor total dos produtos
+    // Somente será possível aplicar desconto no pedido se ele estiver na situação Aberto (Fechado bloqueia)*/
+    //                                     500                  30
+    public Double calcularDesconto(Pedido pedido, Double percentualDesconto){
+
+        if(pedido.getSituacao().equals("ABERTO")) {
+            //                           500 -        500              30          / 100
+            Double valorFinal = pedido.getValorTotal() - (pedido.getValorTotal() * (percentualDesconto / 100));
+            return valorFinal;
+        }
+        return 0.0;
     }
 
 }
