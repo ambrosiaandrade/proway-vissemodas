@@ -21,7 +21,7 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDate data;
+    private LocalDate data = LocalDate.now();
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Cliente cliente;

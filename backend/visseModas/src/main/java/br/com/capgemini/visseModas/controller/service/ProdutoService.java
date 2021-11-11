@@ -1,6 +1,6 @@
 package br.com.capgemini.visseModas.controller.service;
 
-import br.com.capgemini.visseModas.model.dto.ProdutoDTO;
+import br.com.capgemini.visseModas.model.dtoSaida.ProdutoDTO;
 import br.com.capgemini.visseModas.model.entity.Produto;
 import br.com.capgemini.visseModas.model.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +11,9 @@ import java.util.Optional;
 
 @Service
 public class ProdutoService {
+    /*  •	Não deve ser possível excluir um produto se ele estiver associado a algum pedido
+        •	Não deve ser possível adicionar um produto desativado em um pedido*/
+
 
     @Autowired // injeção de dependência
     private ProdutoRepository repository;

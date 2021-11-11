@@ -1,12 +1,11 @@
 package br.com.capgemini.visseModas.controller.service;
 
-import br.com.capgemini.visseModas.model.dto.EnderecoDTO;
+import br.com.capgemini.visseModas.model.dtoSaida.EnderecoDTO;
 import br.com.capgemini.visseModas.model.entity.Endereco;
 import br.com.capgemini.visseModas.model.repository.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.parser.Entity;
 import java.util.List;
 import java.util.Optional;
 
