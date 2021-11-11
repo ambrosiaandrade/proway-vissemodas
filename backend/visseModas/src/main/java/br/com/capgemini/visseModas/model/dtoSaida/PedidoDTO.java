@@ -1,13 +1,19 @@
-package br.com.capgemini.visseModas.model.dto;
+package br.com.capgemini.visseModas.model.dtoSaida;
 
 import br.com.capgemini.visseModas.model.entity.Pedido;
+import lombok.Getter;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//  DTO saída de dados do banco para a view
+@Getter
 public class PedidoDTO {
 
-    private String cliente;
+    private Long id;
+    private LocalDate data;
+    private String nomeCliente;
     private String enderecoEntrega;
     private String itensPedidos;
     private Enum situacao;
