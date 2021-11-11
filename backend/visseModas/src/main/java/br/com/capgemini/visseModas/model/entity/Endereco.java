@@ -1,4 +1,4 @@
-package main.java.br.com.capgemini.visseModas.model.entity;
+package br.com.capgemini.visseModas.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

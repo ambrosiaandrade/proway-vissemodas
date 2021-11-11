@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import main.java.br.com.capgemini.visseModas.model.entity.Endereco;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,7 +20,6 @@ import java.util.List;
 public abstract class Cliente implements Serializable {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.TABLE)
     @GeneratedValue
     protected Long id;
     protected String nome;
