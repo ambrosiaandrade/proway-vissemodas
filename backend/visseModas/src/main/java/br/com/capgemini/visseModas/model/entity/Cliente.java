@@ -25,6 +25,9 @@ public class Cliente{
     private TipoCliente tipoCliente;
     private String cpf;
     private String cnpj;
+    private Boolean status;
+    private String email;
+    private String senha;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     protected List<Endereco> listaEnderecos;
