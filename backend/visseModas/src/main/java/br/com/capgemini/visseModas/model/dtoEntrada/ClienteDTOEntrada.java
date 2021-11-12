@@ -12,20 +12,21 @@ import java.util.stream.Collectors;
 @Setter
 public class ClienteDTOEntrada {
 
-   //NÃO USAR ATRIBUTOS DE TIPO COMPLEXO
-
     private String nome;
-    private String cpf;
-    private String cnpj;
+    private String documento;
     private String tipo;
     private String email;
     private String senha;
 
+
+    public ClienteDTOEntrada(){
+
+    }
+
     public ClienteDTOEntrada(Cliente cliente) {
 
         cliente.setNome(nome);
-        cliente.setCpf(cpf);
-        cliente.setCnpj(cnpj);
+        cliente.setDocumento(documento);
         cliente.setTipoCliente(TipoCliente.valueOf(tipo));
         cliente.setEmail(email);
         cliente.setSenha(senha);
@@ -45,11 +46,10 @@ public class ClienteDTOEntrada {
         Cliente cliente = new Cliente();
 
         cliente.setNome(nome);
-        cliente.setCpf(cpf);
-        cliente.setCnpj(cnpj);
         cliente.setTipoCliente(TipoCliente.valueOf(tipo));
         cliente.setEmail(email);
         cliente.setSenha(senha);
+        cliente.setDocumento(documento);
 
         return cliente;
     }

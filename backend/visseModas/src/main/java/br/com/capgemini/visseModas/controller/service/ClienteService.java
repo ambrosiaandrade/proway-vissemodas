@@ -7,10 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ClienteService {
+
+    //TODO validar cpf e cnpj
 
     @Autowired //injecao de dependencia
     private ClienteRepository repository;
@@ -28,36 +29,33 @@ public class ClienteService {
     }
 
     //find com DTO
-    public List<ClienteDTOSaida> listarTudoDTO(){
+    public List<ClienteDTOSaida> listarTudoDTO() {
         List<Cliente> listaClientes = repository.findAll();
         return ClienteDTOSaida.converter(listaClientes);
     }
 
-    public Cliente alterar(Long id){
+    public void alterar(Cliente cliente) {
 
         //recebe do banco de dados
-        Optional<Cliente> clienteOptional = repository.findById(id);
+        Cliente clientePesquisado = repository.findById(cliente.getId()).get();
 
-        if(!clienteOptional.isPresent()){
-            return null;
+        if (clientePesquisado != null) {
+            clientePesquisado.setNome(cliente.getNome());
+            //clientePesquisado.setDocumento(cliente.getDocumento());
+            //clientePesquisado.setTipoCliente(cliente.getTipoCliente());
+            clientePesquisado.setEmail(cliente.getEmail());
+            clientePesquisado.setSenha(cliente.getSenha());
+
+            repository.save(clientePesquisado);
         }
-
-        //converte o Option
-        Cliente cliente = clienteOptional.get();
-
-        Cliente clienteNovo = new Cliente();
-        clienteNovo.setNome(cliente.getNome());
-        clienteNovo.setCpf(cliente.getCpf());
-        //clienteNovo.getCnpj(cliente.getCnpj());
-
-
-        repository.save(cliente);
-
-        return clienteNovo;
-
     }
 
 
 
+
 }
+
+
+
+
 
