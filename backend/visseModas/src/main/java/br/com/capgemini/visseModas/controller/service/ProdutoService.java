@@ -11,9 +11,8 @@ import java.util.Optional;
 
 @Service
 public class ProdutoService {
-    /*  •	Não deve ser possível excluir um produto se ele estiver associado a algum pedido
-        •	Não deve ser possível adicionar um produto desativado em um pedido*/
 
+    // Não deve ser possível excluir um produto se ele estiver associado a algum pedido
 
     @Autowired // injeção de dependência
     private ProdutoRepository repository;
@@ -22,17 +21,24 @@ public class ProdutoService {
         repository.save(produto);
     }
 
+    //Não deve ser possível excluir um produto se ele estiver associado a algum pedido
     public void deletar(Long id){
         repository.deleteById(id);
     }
 
-    public List<Produto> listarTudo(){
-        return repository.findAll();
-    }
+//    public List<Produto> listarTudo(){
+//        return repository.findAll();
+//    }
+//
+//    // find com DTO
+//    public List<ProdutoDTO> listarTudoDTO(){
+//        List<Produto> listaProdutos = repository.findAll();
+//        return ProdutoDTO.converter(listaProdutos);
+//    }
 
-    // find com DTO
-    public List<ProdutoDTO> listarTudoDTO(){
-        List<Produto> listaProdutos = repository.findAll();
+    // Não deve ser possível adicionar um produto desativado em um pedido
+    public List<ProdutoDTO> listarTudoAtivo(){
+        List<Produto> listaProdutos = repository.findByStatus(true);
         return ProdutoDTO.converter(listaProdutos);
     }
 
@@ -66,6 +72,7 @@ public class ProdutoService {
         produtoExcluir.setStatus(false);
         repository.save(produtoExcluir);
     }
+
 
 
 }

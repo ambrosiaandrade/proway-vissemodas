@@ -1,6 +1,6 @@
 package br.com.capgemini.visseModas.controller.service;
 
-import br.com.capgemini.visseModas.model.dtoSaida.ClienteDTO;
+import br.com.capgemini.visseModas.model.dtoSaida.ClienteDTOSaida;
 import br.com.capgemini.visseModas.model.entity.Cliente;
 import br.com.capgemini.visseModas.model.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,57 +15,48 @@ public class ClienteService {
     @Autowired //injecao de dependencia
     private ClienteRepository repository;
 
+    //save
     public void salvar(Cliente cliente) {
         repository.save(cliente);
     }
 
-    private void deletar(Long id) {
-        repository.deleteById(id);
-    }
-
-    public List<Cliente> listarTudo() {
-        return repository.findAll();
+    //delete
+    public void inativar(Long id) {
+        Cliente cliente = repository.getById(id);
+        cliente.setStatus(false);
+        repository.save(cliente);
     }
 
     //find com DTO
-    public List<ClienteDTO> listarTudoDTO(){
+    public List<ClienteDTOSaida> listarTudoDTO(){
         List<Cliente> listaClientes = repository.findAll();
-        return ClienteDTO.converter(listaClientes);
+        return ClienteDTOSaida.converter(listaClientes);
     }
 
     public Cliente alterar(Long id){
 
         //recebe do banco de dados
-        Optional<Cliente> clientePFBuscado = repository.findById(id);
+        Optional<Cliente> clienteOptional = repository.findById(id);
 
-        if(!clientePFBuscado.isPresent()){
+        if(!clienteOptional.isPresent()){
             return null;
         }
 
         //converte o Option
-        Cliente cliente = clientePFBuscado.get();
+        Cliente cliente = clienteOptional.get();
 
-        Cliente clientePFNovo = new Cliente();
-        clientePFNovo.setNome(cliente.getNome());
-        clientePFNovo.setCpf(cliente.getCpf());
+        Cliente clienteNovo = new Cliente();
+        clienteNovo.setNome(cliente.getNome());
+        clienteNovo.setCpf(cliente.getCpf());
+        //clienteNovo.getCnpj(cliente.getCnpj());
+
 
         repository.save(cliente);
 
-        return clientePFNovo;
+        return clienteNovo;
 
     }
 
-//    public void merge(Long id, ClientePF clientePF){
-//
-//        ClientePF clientePFPesquisado = repository.getOne(id);
-//
-//        if(clientePFPesquisado != null){
-//            clientePFPesquisado.setNome(clientePF.getNome());
-//            clientePFPesquisado.setCpf(clientePF.getCpf());
-//            repository.save(clientePFPesquisado);
-//        }
-//
-//    }
 
 
 }

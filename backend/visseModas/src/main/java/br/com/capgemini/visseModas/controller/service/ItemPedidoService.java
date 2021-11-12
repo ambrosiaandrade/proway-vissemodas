@@ -19,7 +19,7 @@ public class ItemPedidoService {
         repository.save(itemPedido);
     }
 
-    private void deletar(Long id){
+    public void deletar(Long id){
         repository.deleteById(id);
     }
     public List<ItemPedido> listarTudo(){
