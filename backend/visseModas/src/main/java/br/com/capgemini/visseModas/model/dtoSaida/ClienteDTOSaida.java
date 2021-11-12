@@ -30,8 +30,8 @@ public class ClienteDTOSaida {
     }
 
     //metodo que converte a entidade para DTO
-    public static List<ClienteDTOSaida> converter(List<Cliente> listaClientesPF){
-        return listaClientesPF.stream().map(ClienteDTOSaida::new).collect(Collectors.toList());
+    public static List<ClienteDTOSaida> converter(List<Cliente> listaClientes){
+        return listaClientes.stream().map(ClienteDTOSaida::new).collect(Collectors.toList());
     }
 
     public Cliente dtoToCliente() {
