@@ -1,6 +1,7 @@
 package br.com.capgemini.visseModas.model.dtoSaida;
 
 import br.com.capgemini.visseModas.model.entity.Cliente;
+import br.com.capgemini.visseModas.model.entity.TipoCliente;
 import lombok.Getter;
 
 import java.util.List;
@@ -11,18 +12,19 @@ public class ClienteDTOSaida {
 
     private Long id;
     private String nome;
-    private String cpf;
-    private String cnpj;
-    private String tipo;
+    private String documento;
+    //private String tipo;
     private String email;
     private String senha;
+
+    public ClienteDTOSaida() {
+    }
 
     public ClienteDTOSaida(Cliente cliente) {
         this.id = cliente.getId();
         this.nome = cliente.getNome();
-        this.cpf = cliente.getCpf();
-        this.cnpj = cliente.getCnpj();
-        this.tipo = cliente.getTipoCliente().name();
+        this.documento = cliente.getDocumento();
+        //this.tipo = cliente.getTipoCliente().name();
         this.email = cliente.getEmail();
         this.senha = cliente.getSenha();
     }
@@ -32,6 +34,19 @@ public class ClienteDTOSaida {
         return listaClientesPF.stream().map(ClienteDTOSaida::new).collect(Collectors.toList());
     }
 
+    public Cliente dtoToCliente() {
+
+        Cliente cliente = new Cliente();
+
+        cliente.setId(id);
+        cliente.setNome(nome);
+        //cliente.setTipoCliente(TipoCliente.valueOf(tipo));
+        cliente.setEmail(email);
+        cliente.setSenha(senha);
+        cliente.setDocumento(documento);
+
+        return cliente;
+    }
 
 
 }

@@ -15,10 +15,10 @@ public class ProdutoController {
     @Autowired
     private ProdutoService service;
 
-    @GetMapping //findAll
-    public List<ClienteDTOSaida> listarTudo() {
-        return service.listarTudoDTO();
-    }
+//    @GetMapping //findAll
+//    public List<ClienteDTOSaida> listarTudo() {
+//        //return service.listarTudoDTO();
+//    }
 
     @PostMapping //save   //vai no corpo
     public void salvar(@RequestBody Produto produto) {

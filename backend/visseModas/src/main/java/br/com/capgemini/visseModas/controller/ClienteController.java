@@ -35,14 +35,12 @@ public class ClienteController {
     }
 
     @PatchMapping("/{id}") //merge
-    public Cliente alterar(@PathVariable Long id, @RequestBody ClienteDTOSaida clienteDTO) {
+    public void alterar(@PathVariable Long id, @RequestBody ClienteDTOSaida clienteDTOSaida) {
 
-//        //converte o DTO para Cliente
-//        Cliente cliente = clienteDTO.dtoToCliente();
-
-        Cliente clienteAlterado = service.alterar(id);
-        return clienteAlterado;
-
+        //converte o DTO para Cliente
+        Cliente cliente = clienteDTOSaida.dtoToCliente();
+        cliente.setId(id);
+        service.alterar(cliente);
     }
 
 

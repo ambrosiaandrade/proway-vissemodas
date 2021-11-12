@@ -5,9 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
 
 @Getter
@@ -22,10 +20,11 @@ public class Cliente{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
     protected String nome;
+
+    @Enumerated(EnumType.STRING)
     private TipoCliente tipoCliente;
-    private String cpf;
-    private String cnpj;
-    private Boolean status;
+    private String documento;
+    private Boolean status = true;
     private String email;
     private String senha;
 
