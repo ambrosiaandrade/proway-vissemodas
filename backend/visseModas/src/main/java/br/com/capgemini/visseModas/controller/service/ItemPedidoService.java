@@ -1,6 +1,6 @@
 package br.com.capgemini.visseModas.controller.service;
 
-import br.com.capgemini.visseModas.model.dtoSaida.ItemPedidoDTO;
+import br.com.capgemini.visseModas.model.dtoSaida.ItemPedidoDTOSaida;
 import br.com.capgemini.visseModas.model.entity.ItemPedido;
 import br.com.capgemini.visseModas.model.repository.ItemPedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +27,9 @@ public class ItemPedidoService {
     }
 
     // find com DTO
-    public List<ItemPedidoDTO> listarTudoDTO(){
+    public List<ItemPedidoDTOSaida> listarTudoDTO(){
         List<ItemPedido> listaItemPedido = repository.findAll();
-        return ItemPedidoDTO.converter(listaItemPedido);
+        return ItemPedidoDTOSaida.converter(listaItemPedido);
     }
 
     public ItemPedido alterar(Long id){
@@ -53,5 +53,8 @@ public class ItemPedidoService {
         itemPedidoNovo.setValorTotal(itemPedido.getValorTotal());
         repository.save(itemPedido);
         return itemPedido;
+    }
+
+    public void inativar(Long id) {
     }
 }
