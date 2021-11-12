@@ -30,6 +30,4 @@ public class Cliente{
     protected List<Endereco> listaEnderecos;
 
 
-
-
 }

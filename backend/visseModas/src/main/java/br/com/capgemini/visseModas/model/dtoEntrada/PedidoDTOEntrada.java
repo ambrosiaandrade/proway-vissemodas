@@ -1,5 +1,6 @@
 package br.com.capgemini.visseModas.model.dtoEntrada;
 
+import br.com.capgemini.visseModas.model.entity.Cliente;
 import br.com.capgemini.visseModas.model.entity.Pedido;
 import lombok.Setter;
 
@@ -17,6 +18,8 @@ public class PedidoDTOEntrada {
     private Double percentualDesconto;
 
     public PedidoDTOEntrada(Pedido pedido){
+
+        //pedido.setCliente(Cliente.valueOf(nomeCliente));
 
     }
 }

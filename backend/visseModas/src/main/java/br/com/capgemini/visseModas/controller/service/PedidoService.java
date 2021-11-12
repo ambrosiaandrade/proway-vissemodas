@@ -14,8 +14,8 @@ import java.util.Optional;
 @Service
 public class PedidoService {
 
-    /*•	Deverá ser possível aplicar um percentual de desconto no pedido. O desconto será sobre o valor total dos produtos
-    •	Somente será possível aplicar desconto no pedido se ele estiver na situação Aberto (Fechado bloqueia)*/
+    // Deverá ser possível aplicar um percentual de desconto no pedido. O desconto será sobre o valor total dos produtos
+    // Somente será possível aplicar desconto no pedido se ele estiver na situação Aberto (Fechado bloqueia)
 
     @Autowired //injecao de dependencia para que o service se comunique com o repository
     private PedidoRepository repository;
