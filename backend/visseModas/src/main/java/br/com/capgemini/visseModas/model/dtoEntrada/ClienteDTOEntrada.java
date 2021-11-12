@@ -2,7 +2,6 @@ package br.com.capgemini.visseModas.model.dtoEntrada;
 
 import br.com.capgemini.visseModas.model.entity.Cliente;
 import br.com.capgemini.visseModas.model.entity.TipoCliente;
-import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -30,6 +29,10 @@ public class ClienteDTOEntrada {
         cliente.setTipoCliente(TipoCliente.valueOf(tipo));
         cliente.setEmail(email);
         cliente.setSenha(senha);
+    }
+
+    public ClienteDTOEntrada(){
+
     }
 
 //    //metodo que converte a entidade para DTO

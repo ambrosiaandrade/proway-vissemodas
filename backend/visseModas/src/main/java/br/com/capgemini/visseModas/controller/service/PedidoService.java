@@ -2,7 +2,6 @@ package br.com.capgemini.visseModas.controller.service;
 
 import br.com.capgemini.visseModas.model.dtoSaida.PedidoDTO;
 import br.com.capgemini.visseModas.model.entity.Pedido;
-import br.com.capgemini.visseModas.model.entity.Produto;
 import br.com.capgemini.visseModas.model.entity.Situacao;
 import br.com.capgemini.visseModas.model.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
