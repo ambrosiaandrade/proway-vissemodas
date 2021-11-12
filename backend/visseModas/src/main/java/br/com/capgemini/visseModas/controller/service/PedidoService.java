@@ -1,6 +1,6 @@
 package br.com.capgemini.visseModas.controller.service;
 
-import br.com.capgemini.visseModas.model.dtoSaida.PedidoDTO;
+import br.com.capgemini.visseModas.model.dtoSaida.PedidoDTOSaida;
 import br.com.capgemini.visseModas.model.entity.Pedido;
 import br.com.capgemini.visseModas.model.entity.Situacao;
 import br.com.capgemini.visseModas.model.repository.PedidoRepository;
@@ -32,14 +32,10 @@ public class PedidoService {
         repository.save(pedidoExcluir);
     }
 
-//    public List<Pedido> listarTudo(){
-//        return repository.findAll();
-//    }
-
     // find com DTO
-    public List<PedidoDTO> listarTudoDTO(){
+    public List<PedidoDTOSaida> listarTudoDTO(){
         List<Pedido> listaPedidos = repository.findAll();
-        return PedidoDTO.converter(listaPedidos);
+        return PedidoDTOSaida.converter(listaPedidos);
     }
 
     public Pedido alterar(Long id){

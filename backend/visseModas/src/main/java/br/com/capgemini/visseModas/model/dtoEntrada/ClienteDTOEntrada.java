@@ -32,10 +32,6 @@ public class ClienteDTOEntrada {
         cliente.setSenha(senha);
     }
 
-    public ClienteDTOEntrada(){
-
-    }
-
 //    //metodo que converte a entidade para DTO
 //    public static List<ClienteDTOEntrada> converter(List<Cliente> listaClientesPF){
 //        return listaClientesPF.stream().map(ClienteDTOEntrada::new).collect(Collectors.toList());

@@ -1,6 +1,5 @@
 package br.com.capgemini.visseModas.model.dtoEntrada;
 
-import br.com.capgemini.visseModas.model.entity.Cliente;
 import br.com.capgemini.visseModas.model.entity.Pedido;
 import lombok.Setter;
 
@@ -10,16 +9,25 @@ import java.time.LocalDate;
 @Setter
 public class PedidoDTOEntrada {
 
-    private String nomeCliente;
+    private String idCliente;
     private String enderecoEntrega;
     private String itensPedidos;
     private Double valorTotal;
     private Integer quantidadeTotal;
     private Double percentualDesconto;
 
+    public PedidoDTOEntrada(){
+
+    }
+
     public PedidoDTOEntrada(Pedido pedido){
 
-        //pedido.setCliente(Cliente.valueOf(nomeCliente));
+        //pedido.idCliente
+        //pedido.setEndereco
+        //pedido.setItensPedidos
+        pedido.setValorTotal(valorTotal);
+        pedido.setQuantidadeTotal(quantidadeTotal);
+        pedido.setPercentualDesconto(percentualDesconto);
 
     }
 }

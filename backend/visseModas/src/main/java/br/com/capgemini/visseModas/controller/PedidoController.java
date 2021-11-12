@@ -1,7 +1,7 @@
 package br.com.capgemini.visseModas.controller;
 
 import br.com.capgemini.visseModas.controller.service.PedidoService;
-import br.com.capgemini.visseModas.model.dtoSaida.PedidoDTO;
+import br.com.capgemini.visseModas.model.dtoSaida.PedidoDTOSaida;
 import br.com.capgemini.visseModas.model.entity.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ public class PedidoController {
     private PedidoService service;
 
     @GetMapping //findAll
-    public List<PedidoDTO> listarTudo() {
+    public List<PedidoDTOSaida> listarTudo() {
         return service.listarTudoDTO();
     }
 
