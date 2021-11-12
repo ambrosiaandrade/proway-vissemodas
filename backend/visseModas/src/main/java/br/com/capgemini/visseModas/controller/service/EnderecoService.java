@@ -1,6 +1,7 @@
 package br.com.capgemini.visseModas.controller.service;
 
-import br.com.capgemini.visseModas.model.dtoSaida.EnderecoDTO;
+import br.com.capgemini.visseModas.model.dtoSaida.EnderecoDTOSaida;
+import br.com.capgemini.visseModas.model.entity.Cliente;
 import br.com.capgemini.visseModas.model.entity.Endereco;
 import br.com.capgemini.visseModas.model.repository.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,34 +20,40 @@ public class EnderecoService {
         repository.save(endereco);
     }
 
-    private void deletar(Long id) {
+    public void deletar(Long id) {
         repository.deleteById(id);
     }
 
-    public List<Endereco> listarTudo() {
-        return repository.findAll();
-    }
 
-    // com DTO
-    public List<EnderecoDTO> listarTudoDTO() {
+    public List<EnderecoDTOSaida> listarTudoDTO() {
         List<Endereco> listaEndereco = repository.findAll();
-        return EnderecoDTO.converter(listaEndereco);
+        return EnderecoDTOSaida.converter(listaEndereco);
     }
 
-    public Endereco alterar(Long id) {
-        Optional<Endereco> enderecoBuscado = repository.findById(id);
-        if (!enderecoBuscado.isPresent()) {
-            return null;
+    public Endereco alterar(Endereco endereco) {
+
+        //recebe do banco de dados
+        Endereco enderecoPesquisado = repository.findById(endereco.getId()).get();
+
+        if (enderecoPesquisado != null) {
+            enderecoPesquisado.setRua(endereco.getRua());
+            enderecoPesquisado.setBairro(endereco.getBairro());
+            enderecoPesquisado.setCidade(endereco.getCidade());
+            enderecoPesquisado.setCep(endereco.getCep());
+
+            repository.save(enderecoPesquisado);
         }
-        Endereco endereco = enderecoBuscado.get();
-        Endereco enderecoNovo = new Endereco();
 
-        enderecoNovo.setCep(endereco.getCep());
-        enderecoNovo.setCidade(endereco.getCidade());
-        enderecoNovo.setBairro(endereco.getBairro());
-        enderecoNovo.setRua(endereco.getRua());
-        repository.save(endereco);
-        return endereco;
+        return enderecoPesquisado;
     }
+
+
+
+
+
+
+
+
+
 
 }
