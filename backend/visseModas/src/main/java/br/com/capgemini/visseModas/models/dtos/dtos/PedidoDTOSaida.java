@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 //  DTO saída de dados do banco para a view
 @Getter
-public class PedidoDTO {
+public class PedidoDTOSaida {
 
     private Long id;
     private LocalDate data;
@@ -21,7 +21,7 @@ public class PedidoDTO {
     private Integer quantidadeTotal;
     private Double percentualDesconto;
 
-    public PedidoDTO(Pedido pedido){
+    public PedidoDTOSaida(Pedido pedido){
         this.id = pedido.getId();
         this.data = pedido.getData();
         this.situacao = pedido.getSituacao();

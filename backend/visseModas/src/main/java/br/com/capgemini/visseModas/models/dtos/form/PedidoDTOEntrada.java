@@ -7,14 +7,25 @@ import lombok.Setter;
 @Setter
 public class PedidoDTOEntrada {
 
-    private String nomeCliente;
+    private String idCliente;
     private String enderecoEntrega;
     private String itensPedidos;
     private Double valorTotal;
     private Integer quantidadeTotal;
     private Double percentualDesconto;
 
+    public PedidoDTOEntrada(){
+
+    }
+
     public PedidoDTOEntrada(Pedido pedido){
+
+        //pedido.idCliente
+        //pedido.setEndereco
+        //pedido.setItensPedidos
+        pedido.setValorTotal(valorTotal);
+        pedido.setQuantidadeTotal(quantidadeTotal);
+        pedido.setPercentualDesconto(percentualDesconto);
 
     }
 

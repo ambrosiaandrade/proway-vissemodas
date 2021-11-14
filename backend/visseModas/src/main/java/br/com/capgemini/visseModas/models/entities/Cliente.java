@@ -34,6 +34,4 @@ public class Cliente{
     private List<Endereco> listaEnderecos;
 
 
-
-
 }

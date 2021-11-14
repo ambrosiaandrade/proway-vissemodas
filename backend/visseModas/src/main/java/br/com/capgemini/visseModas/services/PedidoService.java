@@ -1,6 +1,6 @@
 package br.com.capgemini.visseModas.services;
 
-import br.com.capgemini.visseModas.models.dtos.dtos.PedidoDTO;
+import br.com.capgemini.visseModas.models.dtos.dtos.PedidoDTOSaida;
 import br.com.capgemini.visseModas.models.entities.Pedido;
 import br.com.capgemini.visseModas.models.entities.Situacao;
 import br.com.capgemini.visseModas.models.repositories.PedidoRepository;
@@ -12,7 +12,6 @@ import java.util.Optional;
 
 @Service
 public class PedidoService {
-
 
     // TODO	Não deve ser possível adicionar um produto desativado em um pedido*/
 
@@ -33,14 +32,10 @@ public class PedidoService {
         repository.save(pedidoExcluir);
     }
 
-//    public List<Pedido> listarTudo(){
-//        return repository.findAll();
-//    }
-
     // find com DTO
-    public List<PedidoDTO> listarTudoDTO(){
+    public List<PedidoDTOSaida> listarTudoDTO(){
         List<Pedido> listaPedidos = repository.findAll();
-        return PedidoDTO.converter(listaPedidos);
+        return PedidoDTOSaida.converter(listaPedidos);
     }
 
     public Pedido alterar(Long id){
