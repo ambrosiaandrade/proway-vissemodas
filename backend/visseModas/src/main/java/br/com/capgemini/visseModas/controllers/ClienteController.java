@@ -25,8 +25,8 @@ public class ClienteController {
     public void salvar(@RequestBody ClienteForm clienteDTO) {
 
           //converte o DTO para Cliente
-          //Cliente cliente = clienteDTO.dtoToCliente();
-          //service.salvar(cliente);
+          Cliente cliente = clienteDTO.dtoToCliente();
+          service.salvar(cliente);
     }
 
     @DeleteMapping("/{id}") //delete
