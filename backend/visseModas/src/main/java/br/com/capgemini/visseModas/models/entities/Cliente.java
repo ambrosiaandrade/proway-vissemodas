@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 
 @Entity
-public class Cliente{
+public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class Cliente{
     private TipoCliente tipoCliente;
 
     private String documento;
-    private Boolean status = true; //TODO pesquisar
+    private Boolean status = true;
     private String email;
     private String senha;
 
@@ -33,5 +33,13 @@ public class Cliente{
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Endereco> listaEnderecos;
 
+    public Cliente(String nome, TipoCliente tipoCliente, String documento, String email, String senha, List<Endereco> listaEnderecos) {
+        this.nome = nome;
+        this.tipoCliente = tipoCliente;
+        this.documento = documento;
+        this.email = email;
+        this.senha = senha;
+        this.listaEnderecos = listaEnderecos;
+    }
 
 }

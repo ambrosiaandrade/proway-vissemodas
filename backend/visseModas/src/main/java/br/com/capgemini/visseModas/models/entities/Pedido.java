@@ -33,7 +33,7 @@ public class Pedido {
     private List<ItemPedido> itensPedidos = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
-    private Situacao situacao = Situacao.ABERTO; //TODO inicializar o pedido já como aberto OK
+    private Situacao situacao = Situacao.ABERTO;
 
     private Double valorTotal;
     private Integer quantidadeTotal;

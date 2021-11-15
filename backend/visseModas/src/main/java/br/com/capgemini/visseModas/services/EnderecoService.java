@@ -1,49 +1,75 @@
 package br.com.capgemini.visseModas.services;
 
-import br.com.capgemini.visseModas.models.dtos.dtos.EnderecoDTOSaida;
+import br.com.capgemini.visseModas.models.dtos.dtos.ClienteDTO;
+import br.com.capgemini.visseModas.models.dtos.dtos.EnderecoDTO;
+import br.com.capgemini.visseModas.models.dtos.update.ClienteUpdate;
+import br.com.capgemini.visseModas.models.entities.Cliente;
 import br.com.capgemini.visseModas.models.entities.Endereco;
 import br.com.capgemini.visseModas.models.repositories.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EnderecoService {
 
     @Autowired // injeção de dependência
-    private EnderecoRepository repository;
+    private EnderecoRepository enderecoRepository;
+
 
     public void salvar(Endereco endereco) {
-        repository.save(endereco);
+        enderecoRepository.save(endereco);
     }
 
-    public void deletar(Long id) {
-        repository.deleteById(id);
-    }
+    //alterar
+    public ResponseEntity<EnderecoDTO> alterar(Long id, EnderecoDTO form) {
 
-
-    public List<EnderecoDTOSaida> listarTudoDTO() {
-        List<Endereco> listaEndereco = repository.findAll();
-        return EnderecoDTOSaida.converter(listaEndereco);
-    }
-
-    public Endereco alterar(Endereco endereco) {
-
-        //recebe do banco de dados
-        Endereco enderecoPesquisado = repository.findById(endereco.getId()).get();
-
-        if (enderecoPesquisado != null) {
-            enderecoPesquisado.setRua(endereco.getRua());
-            enderecoPesquisado.setBairro(endereco.getBairro());
-            enderecoPesquisado.setCidade(endereco.getCidade());
-            enderecoPesquisado.setCep(endereco.getCep());
-
-            repository.save(enderecoPesquisado);
+        Optional<Endereco> optional = enderecoRepository.findById(id);
+        if (optional.isPresent()) {
+            Endereco endereco = form.atualizar(id, enderecoRepository);
+            enderecoRepository.save(endereco);
+            return ResponseEntity.ok(new EnderecoDTO(endereco));
         }
 
-        return enderecoPesquisado;
+        return ResponseEntity.notFound().build();
     }
+
+
+
+    public ResponseEntity<Endereco> deletar(Long id) {
+
+        Optional<Endereco> optional = enderecoRepository.findById(id);
+
+        if (optional.isPresent()) {
+
+            Endereco endereco = optional.get();
+            enderecoRepository.delete(endereco);
+            return ResponseEntity.ok().build();
+
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
+
+    public ResponseEntity<EnderecoDTO> detalhar(Long id) {
+        Optional<Endereco> optional = enderecoRepository.findById(id);
+        if (optional.isPresent()) {
+            return ResponseEntity.ok(new EnderecoDTO(optional.get()));
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
+
+    public List<EnderecoDTO> listarTudoDTO() {
+        List<Endereco> listaEndereco = enderecoRepository.findAll();
+        return EnderecoDTO.converter(listaEndereco);
+    }
+
 
 
 
