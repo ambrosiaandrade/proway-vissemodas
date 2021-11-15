@@ -21,13 +21,13 @@ public class ClienteController {
         return service.listarTudoDTO();
     }
 
-    @PostMapping
-    public void salvar(@RequestBody ClienteForm clienteDTO) {
-
-          //converte o DTO para Cliente
-          Cliente cliente = clienteDTO.dtoToCliente();
-          service.salvar(cliente);
-    }
+//    @PostMapping
+//    public void salvar(@RequestBody ClienteForm ClienteDTOSaida) {
+//
+//          //converte o DTO para Cliente
+//          Cliente cliente = clienteDTO.dtoToCliente();
+//          service.salvar(cliente);
+//    }
 
     @DeleteMapping("/{id}") //delete
     public void deletar(@PathVariable Long id) {

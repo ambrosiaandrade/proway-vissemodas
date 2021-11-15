@@ -4,9 +4,18 @@ import br.com.capgemini.visseModas.models.dtos.dtos.ProdutoDTO;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.models.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -26,6 +35,12 @@ public class ProdutoService {
         repository.deleteById(id);
     }
 
+    // O link do post que resolveu um problema
+    // https://stackoverflow.com/questions/52656517/no-serializer-found-for-class-org-hibernate-proxy-pojo-bytebuddy-bytebuddyinterc
+    public Produto buscarUmProduto(Long id){
+        return repository.findById(id).get();
+    }
+
     public List<Produto> listarTudo(){
         return repository.findAll();
     }
@@ -42,29 +57,29 @@ public class ProdutoService {
         return ProdutoDTO.converter(listaProdutos);
     }
 
+    public Produto alterar(Long id, Produto produto){
 
-    public Produto alterar(Long id){
-        // Recebe do banco de dados
-        Optional<Produto> produtoBuscado = repository.findById(id);
+        try{
+            // Verificar se existe
+            Optional<Produto> temProduto = repository.findById(id);
 
-        // Verificação para saber se existe
-        if (!produtoBuscado.isPresent()){
+            // Recebe do banco de dados
+            Produto produtoBuscado = repository.findById(id).get();
+
+            // Settando
+            produtoBuscado.setDescricao(produto.getDescricao());
+            produtoBuscado.setTamanho(produto.getTamanho());
+            produtoBuscado.setValorUnitario(produto.getValorUnitario());
+            produtoBuscado.setStatus(produto.getStatus());
+
+            repository.save(produtoBuscado);
+            return produtoBuscado;
+
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
             return null;
         }
 
-        // Convertendo o Option
-        Produto produto = produtoBuscado.get();
-        Produto produtoNovo = new Produto();
-
-        // Settando
-        produtoNovo.setDescricao(produto.getDescricao());
-        produtoNovo.setTamanho(produto.getTamanho());
-        produtoNovo.setValorUnitario(produto.getValorUnitario());
-        produtoNovo.setStatus(produto.getStatus());
-
-        // Salvar
-        repository.save(produtoNovo);
-        return produtoNovo;
     }
 
 //    public void inativar(Long id) {

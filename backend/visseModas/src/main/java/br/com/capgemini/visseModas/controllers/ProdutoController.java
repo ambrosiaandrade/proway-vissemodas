@@ -3,7 +3,11 @@ package br.com.capgemini.visseModas.controllers;
 import br.com.capgemini.visseModas.services.ProdutoService;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/produtos")
@@ -15,6 +19,11 @@ public class ProdutoController {
     @GetMapping //findAll
     public List<Produto> listarTudo() {
         return service.listarTudo();
+    }
+
+    @GetMapping("/{id}") //findAll
+    public Produto produto(@PathVariable Long id) {
+        return service.buscarUmProduto(id);
     }
 
     @PostMapping //save   //vai no corpo
@@ -32,17 +41,17 @@ public class ProdutoController {
         service.ativarInativar(id, status);
     }
 
-    @PatchMapping("/{id}") //merge
-    public Produto alterar(@PathVariable Long id, @RequestBody Produto produto) {
+    @PutMapping("/{id}") //merge
+    public Object alterar(@PathVariable Long id, @RequestBody Produto produto) {
 
-        Produto produtoAlterado = service.alterar(id);
-        return produtoAlterado;
+        Produto produtoAlterado = service.alterar(id, produto);
 
+        if (produtoAlterado == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Produto não foi encontrado");
+        }
+
+        return HttpStatus.OK;
     }
-
-
-
-
 
 }
 

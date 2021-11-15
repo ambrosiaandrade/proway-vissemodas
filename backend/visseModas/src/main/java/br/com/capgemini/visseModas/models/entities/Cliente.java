@@ -24,9 +24,6 @@ public class Cliente{
     @Enumerated(EnumType.STRING)
     private TipoCliente tipoCliente;
 
-    @Enumerated(EnumType.STRING)
-    private TipoCliente tipoCliente;
-
     private String documento;
     private Boolean status = true; //TODO pesquisar
     private String email;
