@@ -16,8 +16,8 @@ public class ProdutoController {
     private ProdutoService service;
 
     @GetMapping //findAll
-    public List<ProdutoDTO> listarTudo() {
-        return service.listarTudoDTO();
+    public List<Produto> listarTudo() {
+        return service.listarTudo();
     }
 
     @PostMapping //save   //vai no corpo
@@ -25,9 +25,14 @@ public class ProdutoController {
         service.salvar(produto);
     }
 
-    @DeleteMapping("/{id}") //delete
-    public void deletar(@PathVariable Long id) {
-        service.inativar(id);
+//    @DeleteMapping("/{id}") //delete
+//    public void deletar(@PathVariable Long id) {
+//        service.inativar(id);
+//    }
+
+    @DeleteMapping("/{id}/{status}") //delete
+    public void deletar(@PathVariable Long id, @PathVariable Boolean status) {
+        service.ativarInativar(id, status);
     }
 
     @PatchMapping("/{id}") //merge

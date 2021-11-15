@@ -29,10 +29,16 @@ public class ProdutoService {
     public List<Produto> listarTudo(){
         return repository.findAll();
     }
+//
+//    // find com DTO
+//    public List<ProdutoDTO> listarTudoDTO(){
+//        List<Produto> listaProdutos = repository.findAll();
+//        return ProdutoDTO.converter(listaProdutos);
+//    }
 
-    // find com DTO
-    public List<ProdutoDTO> listarTudoDTO(){
-        List<Produto> listaProdutos = repository.findAll();
+    // Não deve ser possível adicionar um produto desativado em um pedido
+    public List<ProdutoDTO> listarTudoAtivo(){
+        List<Produto> listaProdutos = repository.findByStatus(true);
         return ProdutoDTO.converter(listaProdutos);
     }
 
@@ -61,9 +67,17 @@ public class ProdutoService {
         return produtoNovo;
     }
 
-    public void inativar(Long id) {
+//    public void inativar(Long id) {
+//        Produto produtoExcluir = repository.getById(id);
+//        produtoExcluir.setStatus(false);
+//        repository.save(produtoExcluir);
+//    }
+//
+    public void ativarInativar(Long id, Boolean status) {
         Produto produtoExcluir = repository.getById(id);
-        produtoExcluir.setStatus(false);
+        // Se veio como verdadeiro é settado como falso...
+        produtoExcluir.setStatus(!status);
+
         repository.save(produtoExcluir);
     }
 

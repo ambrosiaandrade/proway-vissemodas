@@ -22,9 +22,9 @@ public class Cliente{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
     protected String nome;
+
+    @Enumerated(EnumType.STRING)
     private TipoCliente tipoCliente;
-    private String cpf;
-    private String cnpj;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     protected List<Endereco> listaEnderecos;
