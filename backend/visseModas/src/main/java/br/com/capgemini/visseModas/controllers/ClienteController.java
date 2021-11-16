@@ -18,6 +18,8 @@ import java.util.List;
 @RequestMapping("/clientes")
 public class ClienteController {
 
+    //TODO não precisa excluir
+
     @Autowired
     private ClienteService service;
 
@@ -44,11 +46,11 @@ public class ClienteController {
 
     }
 
-    //deletar
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> remover(@PathVariable Long id) {
-        return service.inativar(id);
-    }
+//    //deletar
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<?> deletar(@PathVariable Long id) {
+//        return service.inativar(id);
+//    }
 
     //buscar cliente por id
     @GetMapping("/{id}")

@@ -29,7 +29,7 @@ public class ClienteUpdate {
     }
 
     public Cliente atualizar(Long id, ClienteRepository clienteRepository) {
-        Cliente cliente = clienteRepository.getOne(id);
+        Cliente cliente = clienteRepository.getById(id);
 
         cliente.setNome(this.nome);
         cliente.setEmail(this.email);
