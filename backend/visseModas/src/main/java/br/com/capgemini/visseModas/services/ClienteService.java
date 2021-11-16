@@ -22,13 +22,9 @@ import java.util.Optional;
 @Service
 public class ClienteService {
 
-    //TODO validar cpf e cnpj
-
-    @Autowired //injecao de dependencia
+    @Autowired
     private ClienteRepository clienteRepository;
 
-
-    //save
     public void salvar(Cliente cliente) {
         clienteRepository.save(cliente);
     }
@@ -71,7 +67,6 @@ public class ClienteService {
         return ResponseEntity.notFound().build();
     }
 
-    //find com DTO
     public List<ClienteDTO> listarTudoDTO() {
         List<Cliente> listaClientes = clienteRepository.findAll();
         return ClienteDTO.converter(listaClientes);

@@ -9,27 +9,29 @@ import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.List;
 
 @Setter
 public class ClienteForm {
 
-    @NotNull @NotEmpty //TODO ver validacoes
+    //validates that the property is not null or empty; can be applied to String, Collection, Map or Array values.
+    //TODO validar cpf e cnpj
+    @NotEmpty(message = "O nome do cliente é obrigatório")
     private String nome;
-    //@CPF
-    //private String cpf;
-    //@CNPJ
-    //private String cnpj;
+    @NotEmpty(message = "O documento do cliente é obrigatório.")
     private String documento;
+    @NotEmpty(message = "O tipo do cliente é obrigatório.")
     private String tipo;
-    @Email
+    @Email(message = "O email deve ser válido.")
     private String email;
+    @NotEmpty(message = "A senha do cliente é obrigatória.")
     private String senha;
-    //private String cep;
+
+    @CPF(message = "CPF inválido.")
+    private String cpf;
+    @CNPJ(message = "CNPJ inválido.")
+    private String cnpj;
 
     public ClienteForm(){
 
@@ -41,6 +43,7 @@ public class ClienteForm {
         Cliente cliente = new Cliente();
 
         cliente.setNome(nome);
+        verificaTipo();
         cliente.setDocumento(documento);
         cliente.setTipoCliente(TipoCliente.valueOf(tipo));
         cliente.setEmail(email);
@@ -48,6 +51,15 @@ public class ClienteForm {
 
         return cliente;
     }
+
+    public void verificaTipo(){
+        if(tipo.equals(TipoCliente.FISICA)){
+            cpf = documento;
+        }else {
+            cnpj = documento;
+        }
+    }
+
 
     //TODO ver esse metodo
     //metodo que devolve com cliente completo, com a lista de enderecos para popular a view

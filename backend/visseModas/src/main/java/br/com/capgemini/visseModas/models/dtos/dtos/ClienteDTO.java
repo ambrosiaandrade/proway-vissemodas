@@ -30,13 +30,13 @@ public class ClienteDTO {
         this.senha = cliente.getSenha();
     }
 
-    //metodo que converte a entidade para DTO
+    //metodo que converte a Lista de Clientes para Lista de Clientes DTO
     public static List<ClienteDTO> converter(List<Cliente> listaClientes){
         return listaClientes.stream().map(ClienteDTO::new).collect(Collectors.toList());
     }
 
 
-    public Cliente dtoToCliente() {
+    public Cliente converteDTOParaCliente() {
 
         Cliente cliente = new Cliente();
 

@@ -18,12 +18,11 @@ import java.util.List;
 @RequestMapping("/clientes")
 public class ClienteController {
 
-    //TODO não precisa excluir
+    //não precisa excluir cliente
 
     @Autowired
     private ClienteService service;
 
-    //metodo que salva e devolve uma reposta ao invés de ser void
     @PostMapping
     public ResponseEntity<ClienteDTO> salvar(@RequestBody @Valid ClienteForm form, UriComponentsBuilder uriBuilder) {
 
@@ -34,7 +33,6 @@ public class ClienteController {
         return ResponseEntity.created(uri).body(new ClienteDTO(cliente));
     }
 
-    //alterar
     @PatchMapping("/{id}")
     public ResponseEntity<ClienteUpdate> alterar(@PathVariable Long id, @RequestBody @Valid ClienteUpdate form, UriComponentsBuilder uriBuilder ) {
 
@@ -52,13 +50,11 @@ public class ClienteController {
 //        return service.inativar(id);
 //    }
 
-    //buscar cliente por id
     @GetMapping("/{id}")
     public ResponseEntity<ClienteDTO> detalhar(@PathVariable Long id) {
         return service.detalhar(id);
     }
 
-    //listar tudo
     @GetMapping
     public List<ClienteDTO> listarTudo() {
         return service.listarTudoDTO();
