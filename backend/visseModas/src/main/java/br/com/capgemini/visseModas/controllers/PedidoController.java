@@ -53,7 +53,7 @@ public class PedidoController {
         return service.detalhar(id);
     }
 
-    @GetMapping //findAll
+    @GetMapping("todos") //findAll
     public List<PedidoDTO> listarTudo() {
         return service.listarTudoDTO();
     }
