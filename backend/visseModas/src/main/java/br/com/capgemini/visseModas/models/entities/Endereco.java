@@ -19,9 +19,11 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String cep;
+    private String estado;
     private String cidade;
     private String bairro;
-    private String rua;
+    private String logradouro;
+    private Integer numero;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Cliente cliente;
