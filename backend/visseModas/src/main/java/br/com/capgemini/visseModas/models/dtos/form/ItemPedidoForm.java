@@ -1,27 +1,37 @@
-package br.com.capgemini.visseModas.model.dtoEntrada;
+package br.com.capgemini.visseModas.models.dtos.form;
 
-import br.com.capgemini.visseModas.model.entity.ItemPedido;
-import br.com.capgemini.visseModas.model.entity.Pedido;
-import br.com.capgemini.visseModas.model.entity.Produto;
+
+import br.com.capgemini.visseModas.models.entities.ItemPedido;
+import br.com.capgemini.visseModas.models.entities.Pedido;
+import br.com.capgemini.visseModas.models.entities.Produto;
 import lombok.Setter;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 @Setter
-public class ItemPedidoDTOEntrada {
+public class ItemPedidoForm {
+
+    @NotNull @NotEmpty
     private Produto idProduto;
     private Pedido idPedido;
     private Integer quantidade;
     private Double valorTotal;
 
-    public ItemPedidoDTOEntrada() {
+    public ItemPedidoForm() {
 
     }
 
-    public ItemPedidoDTOEntrada(ItemPedido itemPedido) {
-        Produto produto = new Produto();
+    public ItemPedido formToItemPedido() {
+
+        ItemPedido itemPedido = new ItemPedido();
+
         itemPedido.setProduto(idProduto);
         itemPedido.setPedido(idPedido);
         itemPedido.setQuantidade(quantidade);
         itemPedido.setValorTotal(valorTotal);
+
+        return itemPedido;
 
     }
 
