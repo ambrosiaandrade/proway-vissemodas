@@ -7,9 +7,9 @@ import lombok.Setter;
 @Setter
 public class PedidoForm {
 
-    private String idCliente;
-    private String enderecoEntrega;
-    private String itensPedidos;
+    //private String idCliente;
+    //private String enderecoEntrega;
+    //private String itensPedidos;
     private Double valorTotal;
     private Integer quantidadeTotal;
     private Double percentualDesconto;
@@ -18,6 +18,7 @@ public class PedidoForm {
 
     }
 
+    //método que pega os dados do dto e converte para entidade
     public Pedido formToPedido(){
 
         Pedido pedido = new Pedido();
@@ -31,8 +32,4 @@ public class PedidoForm {
 
         return pedido;
     }
-
-
-
-
 }

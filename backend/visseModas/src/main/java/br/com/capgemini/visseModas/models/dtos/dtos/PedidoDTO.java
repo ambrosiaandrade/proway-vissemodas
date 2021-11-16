@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//  DTO saída de dados do banco para a view
+// DTO saída de dados do banco para a view
 @Getter
 public class PedidoDTO {
 

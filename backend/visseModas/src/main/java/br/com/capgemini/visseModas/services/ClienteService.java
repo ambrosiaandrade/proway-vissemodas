@@ -77,14 +77,4 @@ public class ClienteService {
         return ClienteDTO.converter(listaClientes);
     }
 
-
-
-
-
-
 }
-
-
-
-
-
