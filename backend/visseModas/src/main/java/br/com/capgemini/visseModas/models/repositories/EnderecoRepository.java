@@ -1,0 +1,15 @@
+package br.com.capgemini.visseModas.models.repositories;
+
+
+import br.com.capgemini.visseModas.models.entities.Cliente;
+import br.com.capgemini.visseModas.models.entities.Endereco;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
+
+    Endereco findByCep(String cep);
+
+    List<Endereco> findByClienteNome(String nomeCliente);
+}
