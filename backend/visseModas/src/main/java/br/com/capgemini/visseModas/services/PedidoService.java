@@ -1,6 +1,5 @@
 package br.com.capgemini.visseModas.services;
 
-import br.com.capgemini.visseModas.models.dtos.dtos.PedidoDTOSaida;
 import br.com.capgemini.visseModas.models.entities.Pedido;
 import br.com.capgemini.visseModas.models.entities.Situacao;
 import br.com.capgemini.visseModas.models.repositories.PedidoRepository;

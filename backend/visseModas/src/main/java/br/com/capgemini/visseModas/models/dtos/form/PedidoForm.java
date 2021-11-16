@@ -5,7 +5,7 @@ import lombok.Setter;
 
 //DTO entrada de dados da view pro banco
 @Setter
-public class PedidoDTOEntrada {
+public class PedidoForm {
 
     private String idCliente;
     private String enderecoEntrega;
@@ -14,11 +14,13 @@ public class PedidoDTOEntrada {
     private Integer quantidadeTotal;
     private Double percentualDesconto;
 
-    public PedidoDTOEntrada(){
+    public PedidoForm(){
 
     }
 
-    public PedidoDTOEntrada(Pedido pedido){
+    public Pedido formToPedido(){
+
+        Pedido pedido = new Pedido();
 
         //pedido.idCliente
         //pedido.setEndereco
@@ -27,6 +29,7 @@ public class PedidoDTOEntrada {
         pedido.setQuantidadeTotal(quantidadeTotal);
         pedido.setPercentualDesconto(percentualDesconto);
 
+        return pedido;
     }
 
 
