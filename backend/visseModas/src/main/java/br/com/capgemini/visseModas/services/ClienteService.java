@@ -37,20 +37,21 @@ public class ClienteService {
         return ResponseEntity.notFound().build();
     }
 
-    public ResponseEntity<Cliente> inativar(Long id) {
-
-        Optional<Cliente> optional = clienteRepository.findById(id);
-
-        if (optional.isPresent()) {
-
-            Cliente cliente = optional.get();
-            clienteRepository.save(cliente);
-            return ResponseEntity.ok().build();
-
-        }
-
-        return ResponseEntity.notFound().build();
-    }
+//    public ResponseEntity<Cliente> inativar(Long id) {
+//
+//        Optional<Cliente> optional = clienteRepository.findById(id);
+//
+//        if (optional.isPresent()) {
+//
+//            Cliente cliente = optional.get();
+//            cliente.setStatus(false);
+//            clienteRepository.save(cliente);
+//            return ResponseEntity.ok().build();
+//
+//        }
+//
+//        return ResponseEntity.notFound().build();
+//    }
 
 
     public ResponseEntity<ClienteDTO> detalhar(Long id) {

@@ -21,7 +21,7 @@ public class Produto {
     private String descricao;
     private String tamanho;
     private Double valorUnitario;
-    private Boolean status;
+    private Boolean status = true;
 
 
 }
