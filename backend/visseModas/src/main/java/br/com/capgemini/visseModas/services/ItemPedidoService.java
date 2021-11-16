@@ -1,9 +1,11 @@
 package br.com.capgemini.visseModas.services;
 
 import br.com.capgemini.visseModas.models.dtos.dtos.ItemPedidoDTO;
+import br.com.capgemini.visseModas.models.dtos.update.ItemPedidoUpdate;
 import br.com.capgemini.visseModas.models.entities.ItemPedido;
 import br.com.capgemini.visseModas.models.repositories.ItemPedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,26 +15,51 @@ import java.util.Optional;
 public class ItemPedidoService {
 
     @Autowired
-    private ItemPedidoRepository repository;
+    private ItemPedidoRepository itemPedidoRepository;
 
     public void salvar(ItemPedido itemPedido){
-        repository.save(itemPedido);
+        itemPedidoRepository.save(itemPedido);
     }
 
-    public void deletar(Long id){
-        repository.deleteById(id);
+    public ResponseEntity<ItemPedidoUpdate> alterar(Long id, ItemPedidoUpdate form){
+
+        Optional<ItemPedido> optional = itemPedidoRepository.findById(id);
+
+        if(!optional.isPresent()){
+            ItemPedido itemPedido = form.atualizar(id,itemPedidoRepository);
+            itemPedidoRepository.save(itemPedido);
+            return ResponseEntity.ok(new ItemPedidoUpdate(itemPedido));
+        }
+
+        return ResponseEntity.notFound().build();
     }
-    public List<ItemPedido> listarTudo(){
-        return repository.findAll();
+
+    public ResponseEntity<ItemPedidoDTO> detalhar(Long id){
+        Optional<ItemPedido> itemPedidoOptional = itemPedidoRepository.findById(id);
+        if(itemPedidoOptional.isPresent()){
+            return ResponseEntity.ok(new ItemPedidoDTO(itemPedidoOptional.get()));
+        }
+        return ResponseEntity.notFound().build();
     }
+
+    /*public void deletar(Long id){
+        itemPedidoRepository.deleteById(id);
+    }*/
+    /*public List<ItemPedido> listarTudo(){
+        return itemPedidoRepository.findAll();
+    }*/
 
     // find com DTO
     public List<ItemPedidoDTO> listarTudoDTO(){
-        List<ItemPedido> listaItemPedido = repository.findAll();
+        List<ItemPedido> listaItemPedido = itemPedidoRepository.findAll();
         return ItemPedidoDTO.converter(listaItemPedido);
     }
 
-    public ItemPedido alterar(Long id){
+    public ResponseEntity<?> inativar(Long id) {
+        return null;
+    }
+
+    /*public ItemPedido alterar(Long id, @Valid ItemPedidoUpdate form){
 
         // recebe do banco de dados
         Optional<ItemPedido> itemPedidoBuscada = repository.findById(id);
@@ -53,5 +80,6 @@ public class ItemPedidoService {
         itemPedidoNovo.setValorTotal(itemPedido.getValorTotal());
         repository.save(itemPedido);
         return itemPedido;
-    }
+    }*/
+
 }
