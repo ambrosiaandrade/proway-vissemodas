@@ -20,6 +20,7 @@ public class EnderecoController {
     @Autowired
     private EnderecoService service;
 
+    //pode cadastrar e excluir, ver sobre relacinamento com o cliente, pode alterar tudo
 
     //metodo que salva e devolve uma reposta ao invés de ser void
     @PostMapping

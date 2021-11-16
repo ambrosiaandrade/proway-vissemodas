@@ -13,18 +13,19 @@ public class ClienteDTO {
     private Long id;
     private String nome;
     private String documento;
-    private String tipo;
+    private String tipoCliente;
     private String email;
     private String senha;
 
     public ClienteDTO() {
     }
 
+    //alimenta o DTO com o Cliente que vem do banco de dados
     public ClienteDTO(Cliente cliente) {
         this.id = cliente.getId();
         this.nome = cliente.getNome();
         this.documento = cliente.getDocumento();
-        this.tipo = cliente.getTipoCliente().name();
+        this.tipoCliente = cliente.getTipoCliente().name();
         this.email = cliente.getEmail();
         this.senha = cliente.getSenha();
     }
@@ -41,7 +42,7 @@ public class ClienteDTO {
 
         cliente.setId(id);
         cliente.setNome(nome);
-        cliente.setTipoCliente(TipoCliente.valueOf(tipo));
+        cliente.setTipoCliente(TipoCliente.valueOf(tipoCliente));
         cliente.setEmail(email);
         cliente.setSenha(senha);
         cliente.setDocumento(documento);

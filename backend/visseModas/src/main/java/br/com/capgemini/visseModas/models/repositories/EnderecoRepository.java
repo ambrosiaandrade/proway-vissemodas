@@ -11,5 +11,6 @@ public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
 
     Endereco findByCep(String cep);
 
+    //busca os enderecos do cliente
     List<Endereco> findByClienteNome(String nomeCliente);
 }
