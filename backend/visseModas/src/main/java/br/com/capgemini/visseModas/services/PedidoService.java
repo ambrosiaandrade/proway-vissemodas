@@ -1,10 +1,12 @@
 package br.com.capgemini.visseModas.services;
 
-import br.com.capgemini.visseModas.models.dtos.dtos.PedidoDTOSaida;
+import br.com.capgemini.visseModas.models.dtos.dtos.PedidoDTO;
+import br.com.capgemini.visseModas.models.dtos.update.PedidoUpdate;
 import br.com.capgemini.visseModas.models.entities.Pedido;
 import br.com.capgemini.visseModas.models.entities.Situacao;
 import br.com.capgemini.visseModas.models.repositories.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,52 +18,56 @@ public class PedidoService {
     // TODO	Não deve ser possível adicionar um produto desativado em um pedido*/
 
     @Autowired //injecao de dependencia para que o service se comunique com o repository
-    private PedidoRepository repository;
+    private PedidoRepository pedidoRepository;
 
     public void salvar(Pedido pedido){
-        repository.save(pedido);
+        pedidoRepository.save(pedido);
     }
 
-    public void deletar(Long id){
-        repository.deleteById(id);
+    public ResponseEntity<PedidoUpdate> alterar(Long id, PedidoUpdate form){
+
+        Optional<Pedido> optional = pedidoRepository.findById(id);
+        if(optional.isPresent()){
+           Pedido pedido = form.atualizar(id, pedidoRepository);
+           pedidoRepository.save(pedido);
+           return ResponseEntity.ok(new PedidoUpdate(pedido));
+        }
+        // converte o option
+
+        return ResponseEntity.notFound().build();
     }
 
-    public void inativar(Long id) {
-        Pedido pedidoExcluir = repository.getById(id);
-        pedidoExcluir.setSituacao(Situacao.CANCELADO);
-        repository.save(pedidoExcluir);
+    /*public void deletar(Long id){
+        pedidoRepository.deleteById(id);
+    }*/
+
+    public ResponseEntity<Pedido> inativar(Long id) {
+
+        Optional<Pedido> optional = pedidoRepository.findById(id);
+        if(optional.isPresent()){
+
+            Pedido pedido = optional.get();
+            pedido.setSituacao(Situacao.CANCELADO);
+            pedidoRepository.save(pedido);
+            return ResponseEntity.ok().build();
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
+    public ResponseEntity<PedidoDTO> detalhar(Long id){
+        Optional<Pedido> pedidoOptional = pedidoRepository.findById(id);
+        if(pedidoOptional.isPresent()){
+            return ResponseEntity.ok(new PedidoDTO(pedidoOptional.get()));
+        }
+
+        return ResponseEntity.notFound().build();
     }
 
     // find com DTO
-    public List<PedidoDTOSaida> listarTudoDTO(){
-        List<Pedido> listaPedidos = repository.findAll();
-        return PedidoDTOSaida.converter(listaPedidos);
-    }
-
-    public Pedido alterar(Long id){
-
-        // recebe do banco de dados
-        Optional<Pedido> pedidoBuscado = repository.findById(id);
-
-        if(!pedidoBuscado.isPresent()){
-            return null;
-        }
-        // converte o option
-        Pedido pedido = pedidoBuscado.get();
-
-        Pedido pedidoNovo = new Pedido();
-        pedido.setCliente(pedido.getCliente());
-        pedido.setEnderecoEntrega(pedido.getEnderecoEntrega());
-        pedido.setItensPedidos(pedido.getItensPedidos());
-        pedido.setSituacao(pedido.getSituacao());
-        pedido.setValorTotal(pedido.getValorTotal());
-        pedido.setQuantidadeTotal(pedido.getQuantidadeTotal());
-        pedido.setPercentualDesconto(pedido.getPercentualDesconto());
-
-       repository.save(pedido);
-
-       return pedidoNovo;
-
+    public List<PedidoDTO> listarTudoDTO(){
+        List<Pedido> listaPedidos = pedidoRepository.findAll();
+        return PedidoDTO.converter(listaPedidos);
     }
 
     //Deverá ser possível aplicar um percentual de desconto no pedido. O desconto será sobre o valor total dos produtos

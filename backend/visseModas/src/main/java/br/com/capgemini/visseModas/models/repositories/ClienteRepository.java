@@ -1,11 +1,7 @@
 package br.com.capgemini.visseModas.models.repositories;
 
 import br.com.capgemini.visseModas.models.entities.Cliente;
-import br.com.capgemini.visseModas.models.entities.Endereco;
-import br.com.capgemini.visseModas.models.entities.TipoCliente;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 

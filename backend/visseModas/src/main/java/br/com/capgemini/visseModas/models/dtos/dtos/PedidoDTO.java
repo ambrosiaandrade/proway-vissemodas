@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//  DTO saída de dados do banco para a view
+// DTO saída de dados do banco para a view
 @Getter
 public class PedidoDTO {
 
@@ -30,8 +30,8 @@ public class PedidoDTO {
         this.percentualDesconto = pedido.getPercentualDesconto();
     }
 
-    public static List<PedidoDTOSaida> converter(List<Pedido> listaPedidos){
-        return listaPedidos.stream().map(PedidoDTOSaida::new).collect(Collectors.toList());
+    public static List<PedidoDTO> converter(List<Pedido> listaPedidos){
+        return listaPedidos.stream().map(PedidoDTO::new).collect(Collectors.toList());
     }
 
 }
