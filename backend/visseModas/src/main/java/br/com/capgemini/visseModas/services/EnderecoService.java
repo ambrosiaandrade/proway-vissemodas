@@ -71,13 +71,13 @@ public class EnderecoService {
     }
 
 
+    public Endereco buscarPorCep(String cep) {
+        Optional<Endereco> optional = enderecoRepository.findByCep(cep);
+        if (optional.isPresent()) {
+            return optional.get();
+        }
 
+        return null;
 
-
-
-
-
-
-
-
+    }
 }

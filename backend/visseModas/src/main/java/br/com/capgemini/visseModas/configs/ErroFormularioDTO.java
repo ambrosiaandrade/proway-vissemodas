@@ -1,4 +1,4 @@
-package br.com.capgemini.visseModas.config;
+package br.com.capgemini.visseModas.configs;
 
 public class ErroFormularioDTO {
 

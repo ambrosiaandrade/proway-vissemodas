@@ -25,7 +25,6 @@ public class Cliente {
     private TipoCliente tipoCliente;
 
     private String documento;
-    private Boolean status = true;
     private String email;
     private String senha;
 
