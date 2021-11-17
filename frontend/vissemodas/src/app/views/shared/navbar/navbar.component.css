@@ -1,0 +1,19 @@
+nav{
+    background-color: #d26e56 !important;
+    background-image: url(../../../../vetores/Navbar.svg);
+    background-size: cover;
+}
+
+img{
+    padding: 0;
+    margin: 0;
+    border: none;
+    width: 150px;
+    height: 100px;
+    background-image: url(../../../../vetores/Logotipo.svg);
+    background-size: cover;
+}
+
+a, nav {
+    padding: 0;
+}
