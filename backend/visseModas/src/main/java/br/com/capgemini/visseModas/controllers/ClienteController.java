@@ -6,12 +6,18 @@ import br.com.capgemini.visseModas.models.dtos.form.ClienteForm;
 import br.com.capgemini.visseModas.models.dtos.dtos.ClienteDTO;
 import br.com.capgemini.visseModas.models.entities.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.nio.file.Path;
 import java.util.List;
 
 @RestController
@@ -58,6 +64,25 @@ public class ClienteController {
     @GetMapping
     public List<ClienteDTO> listarTudo() {
         return service.listarTudoDTO();
+    }
+                                                                                            //se não obrigatorio
+    @GetMapping("paginacao")                         //avisando o Spring sobre os parametros de url (required = false)
+    public Page<ClienteDTO> listarTudoPaginacao(@RequestParam int pagina, @RequestParam int quantidade) {
+
+        Pageable paginacao = PageRequest.of(pagina, quantidade);
+        return service.listarTudoDTOPaginacao(paginacao);
+    }
+
+    @GetMapping("paginacaoOrdenada")
+    public Page<ClienteDTO> listarTudoPaginacao(@RequestParam int pagina, @RequestParam int quantidade, @RequestParam String ordenacao) {
+
+        Pageable paginacao = PageRequest.of(pagina, quantidade, Sort.Direction.ASC, ordenacao);
+        return service.listarTudoDTOPaginacao(paginacao);
+    }
+
+    @GetMapping("pageable")                     //setando uma ordenacao default, se não passar parametros
+    public Page<ClienteDTO> listarTudoPaginacao(@PageableDefault(sort="nome", direction = Sort.Direction.ASC, page=0, size = 10) Pageable paginacao) {
+        return service.listarTudoDTOPaginacao(paginacao);
     }
 
 

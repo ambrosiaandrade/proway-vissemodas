@@ -1,5 +1,7 @@
 package br.com.capgemini.visseModas.models.dtos.dtos;
 
+import br.com.capgemini.visseModas.models.entities.Cliente;
+import br.com.capgemini.visseModas.models.entities.Endereco;
 import br.com.capgemini.visseModas.models.entities.Pedido;
 import lombok.Getter;
 
@@ -14,7 +16,7 @@ public class PedidoDTO {
     private Long id;
     private LocalDate data;
     private String nomeCliente;
-    private String enderecoEntrega;
+    private String cep;
     private String itensPedidos;
     private Enum situacao;
     private Double valorTotal;
@@ -29,6 +31,18 @@ public class PedidoDTO {
         this.quantidadeTotal = pedido.getQuantidadeTotal();
         this.percentualDesconto = pedido.getPercentualDesconto();
     }
+
+    public PedidoDTO(Pedido pedido, Cliente cliente, Endereco endereco){
+        this.id = pedido.getId();
+        this.data = pedido.getData();
+        this.nomeCliente = cliente.getNome();
+        this.cep = endereco.getCep();
+        this.situacao = pedido.getSituacao();
+        this.valorTotal = pedido.getValorTotal();
+        this.quantidadeTotal = pedido.getQuantidadeTotal();
+        this.percentualDesconto = pedido.getPercentualDesconto();
+    }
+
 
     public static List<PedidoDTO> converter(List<Pedido> listaPedidos){
         return listaPedidos.stream().map(PedidoDTO::new).collect(Collectors.toList());

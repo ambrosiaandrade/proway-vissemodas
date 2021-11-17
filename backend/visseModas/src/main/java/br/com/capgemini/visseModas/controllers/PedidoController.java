@@ -1,8 +1,11 @@
 package br.com.capgemini.visseModas.controllers;
 import br.com.capgemini.visseModas.models.dtos.dtos.PedidoDTO;
 import br.com.capgemini.visseModas.models.dtos.form.PedidoForm;
-import br.com.capgemini.visseModas.models.dtos.update.ClienteUpdate;
 import br.com.capgemini.visseModas.models.dtos.update.PedidoUpdate;
+import br.com.capgemini.visseModas.models.entities.Cliente;
+import br.com.capgemini.visseModas.models.entities.Endereco;
+import br.com.capgemini.visseModas.services.ClienteService;
+import br.com.capgemini.visseModas.services.EnderecoService;
 import br.com.capgemini.visseModas.services.PedidoService;
 import br.com.capgemini.visseModas.models.entities.Pedido;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +23,19 @@ public class PedidoController {
 
     @Autowired
     private PedidoService service;
+    @Autowired
+    private ClienteService clienteService;
+    @Autowired
+    private EnderecoService enderecoService;
 
     @PostMapping //metodo que salva e devolve uma reposta ao invés de ser void   //vai no corpo
     public ResponseEntity<PedidoDTO> salvar(@RequestBody @Valid PedidoForm form, UriComponentsBuilder uriBuilder) {
 
-        Pedido pedido = form.formToPedido();
+        Pedido pedido = form.formToPedido(clienteService, enderecoService);
         service.salvar(pedido);
 
         URI uri = uriBuilder.path("/clientes/{id}").buildAndExpand(pedido.getId()).toUri();
-        return ResponseEntity.created(uri).body(new PedidoDTO(pedido));
+        return ResponseEntity.created(uri).body(new PedidoDTO(pedido, pedido.getCliente(), pedido.getEnderecoEntrega()));
     }
 
     // alterar
@@ -53,7 +60,7 @@ public class PedidoController {
         return service.detalhar(id);
     }
 
-    @GetMapping("todos") //findAll
+    @GetMapping //findAll
     public List<PedidoDTO> listarTudo() {
         return service.listarTudoDTO();
     }
