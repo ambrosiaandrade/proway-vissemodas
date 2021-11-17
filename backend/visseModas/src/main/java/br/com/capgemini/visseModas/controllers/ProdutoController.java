@@ -13,8 +13,6 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
@@ -69,14 +67,8 @@ public class ProdutoController {
 
 
 
-        Produto produtoAlterado = service.alterar(id, produto);
 
-        if (produtoAlterado == null){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Produto não foi encontrado");
-        }
 
-        return HttpStatus.OK;
-    }
 
 }
 
