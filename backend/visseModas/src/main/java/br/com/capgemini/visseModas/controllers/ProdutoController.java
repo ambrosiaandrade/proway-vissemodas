@@ -45,8 +45,7 @@ public class ProdutoController {
     //deletar
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletar(@PathVariable Long id) {
-        return service.inativar(id);
-
+        return service.inativar(id); //chamar o deletar e decidir no service se deleta ou nao
     }
 
     //buscar cliente por id

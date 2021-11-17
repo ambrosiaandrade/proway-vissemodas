@@ -1,4 +1,4 @@
-package br.com.capgemini.visseModas.config;
+package br.com.capgemini.visseModas.configs;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;

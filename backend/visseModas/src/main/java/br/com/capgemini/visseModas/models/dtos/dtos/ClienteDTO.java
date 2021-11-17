@@ -3,6 +3,7 @@ package br.com.capgemini.visseModas.models.dtos.dtos;
 import br.com.capgemini.visseModas.models.entities.Cliente;
 import br.com.capgemini.visseModas.models.entities.TipoCliente;
 import lombok.Getter;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,7 +26,7 @@ public class ClienteDTO {
         this.id = cliente.getId();
         this.nome = cliente.getNome();
         this.documento = cliente.getDocumento();
-        this.tipoCliente = cliente.getTipoCliente().name();
+        //this.tipoCliente = cliente.getTipoCliente().name();
         this.email = cliente.getEmail();
         this.senha = cliente.getSenha();
     }
@@ -33,6 +34,10 @@ public class ClienteDTO {
     //metodo que converte a Lista de Clientes para Lista de Clientes DTO
     public static List<ClienteDTO> converter(List<Cliente> listaClientes){
         return listaClientes.stream().map(ClienteDTO::new).collect(Collectors.toList());
+    }
+
+    public static Page<ClienteDTO> converterPaginacao(Page<Cliente> listaClientes){
+        return listaClientes.map(ClienteDTO::new);
     }
 
 
