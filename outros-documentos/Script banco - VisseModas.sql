@@ -45,11 +45,11 @@ bairro			varchar(50),
 logradouro		varchar(100)
 );
 
-select * from cliente ;
-select * from item_pedido;
-select * from pedido ;
-select * from produto ;
-select * from endereco ;
+select * from cliente ; 	-- ok
+select * from item_pedido; -- falta o backend
+select * from pedido ; 		-- falta o backend
+select * from produto ; 	-- ok
+select * from endereco ; 	-- ok
 
 -- FOREIGN KEYS
 alter table item_pedido add constraint foreign key (produto_id) references produto(id);
