@@ -20,7 +20,10 @@ import { HttpClientModule } from '@angular/common/http';
     ListProdutoComponent,
     HomeComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    ClienteComponent,
+    AddClienteComponent,
+    ListClienteComponent
   ],
   imports: [
     BrowserModule,

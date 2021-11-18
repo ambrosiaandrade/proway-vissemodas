@@ -108,6 +108,7 @@
                             </div>
                             <!-- VALOR UNITÁRIO -->
                             <div class="col-6">
+<<<<<<< HEAD
                                 <label for="inputValorUnitario" class="form-label">valor unitário</label>
                                 <!--
                                   TODO: Ver se tem 2 casas decimais no input number
@@ -117,10 +118,38 @@
                                 <div class="text-danger" 
                                 *ngIf="produtoForm.get('valorUnitario')?.hasError('required')
                                 && produtoForm.get('valorUnitario')?.touched">
+=======
+                                <label for="inputValorUnitario" class="form-label">valor unitário *</label>
+                                <input formControlName="valorUnitario"
+                                type="number" min="0" step="0.5" class="form-control" id="inputValorUnitario" placeholder="Informe o valor">
+                                <div class="text-danger"
+                                *ngIf="produtoForm.get('valorUnitario')?.hasError('required') && produtoForm.get('valorUnitario')?.touched">
+                                    <span>Campo obrigatório</span>
+                                </div>
+                            </div>
+                            <!-- IMAGEM -->
+                            <div class="col-6">
+                                <label for="inputImagem" class="form-label">imagem *</label>
+                                <input formControlName="imagem"
+                                type="text" class="form-control" id="inputImagem" placeholder="Informe a url da imagem">
+                                <div class="text-danger"
+                                *ngIf="produtoForm.get('imagem')?.hasError('required') && produtoForm.get('imagem')?.touched">
+                                    <span>Campo obrigatório</span>
+                                </div>
+                            </div>
+                            <!-- CATEGORIA -->
+                            <div class="col-6">
+                                <label for="inputCategoria" class="form-label">categoria *</label>
+                                <input formControlName="categoria"
+                                type="text" class="form-control" id="inputCategoria" placeholder="Informe a categoria">
+                                <div class="text-danger"
+                                *ngIf="produtoForm.get('categoria')?.hasError('required') && produtoForm.get('categoria')?.touched">
+>>>>>>> feature/rebeca.lira
                                     <span>Campo obrigatório</span>
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
 
                         <!-- BOTÕES -->
                         <div class="mt-5 mb-3">
@@ -128,6 +157,13 @@
                             <button [disabled]="produtoForm.invalid" type="submit" class="btn btn-secondary float-end">Cadastrar</button>
                         </div>
 
+=======
+                        <!-- botões -->
+                        <div class="mt-5 mb-3">
+                            <button routerLink="" class="btn btn-secondary">voltar</button>
+                            <button type="submit" class="btn btn-secondary float-end">cadastrar</button>
+                        </div>
+>>>>>>> feature/rebeca.lira
                     </form>
                 </div>
             </div>
