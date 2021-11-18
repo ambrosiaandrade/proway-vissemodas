@@ -3,7 +3,6 @@ package br.com.capgemini.visseModas.models.dtos.update;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.models.repositories.ProdutoRepository;
 import lombok.Data;
-import lombok.Getter;
 
 import java.math.BigDecimal;
 
@@ -16,7 +15,6 @@ public class ProdutoUpdate {
     private BigDecimal valorUnitario;
     private String categoria;
     private String imagem;
-    private Boolean status;
 
     public ProdutoUpdate(){
 
@@ -27,6 +25,8 @@ public class ProdutoUpdate {
         this.descricao = produto.getDescricao();
         this.tamanho = produto.getTamanho();
         this.valorUnitario = produto.getValorUnitario();
+        this.categoria = produto.getCategoria();
+        this.imagem = produto.getImagem();
     }
 
     public Produto atualizar(Long id, ProdutoRepository produtoRepository){
@@ -37,6 +37,8 @@ public class ProdutoUpdate {
         produto.setDescricao(descricao);
         produto.setTamanho(tamanho);
         produto.setValorUnitario(valorUnitario);
+        produto.setCategoria(categoria);
+        produto.setImagem(imagem);
 
         return produto;
     }
@@ -48,6 +50,8 @@ public class ProdutoUpdate {
         produto.setTamanho(tamanho);
         produto.setValorUnitario(valorUnitario);
         produto.setDescricao(descricao);
+        produto.setCategoria(categoria);
+        produto.setImagem(imagem);
 
         return produto;
     }

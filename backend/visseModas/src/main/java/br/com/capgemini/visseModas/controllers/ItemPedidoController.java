@@ -1,6 +1,7 @@
 package br.com.capgemini.visseModas.controllers;
 
 import br.com.capgemini.visseModas.models.dtos.dtos.ItemPedidoDTO;
+import br.com.capgemini.visseModas.models.dtos.dtos.PedidoDTO;
 import br.com.capgemini.visseModas.models.dtos.form.ItemPedidoForm;
 import br.com.capgemini.visseModas.models.dtos.update.ItemPedidoUpdate;
 import br.com.capgemini.visseModas.models.entities.ItemPedido;
@@ -17,7 +18,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/itens")
+@RequestMapping("/itempedido")
 public class ItemPedidoController {
 
     @Autowired
@@ -55,9 +56,10 @@ public class ItemPedidoController {
         //service.inativar(id);
     }
 
+
     @GetMapping("/{id}") //findAll
-    public List<ItemPedidoDTO> detalhar(@PathVariable Long id) {
-        return (List<ItemPedidoDTO>) service.detalhar(id);
+    public ResponseEntity<ItemPedidoDTO> detalhar(@PathVariable Long id) {
+        return service.detalhar(id);
     }
 
     @GetMapping //findAll

@@ -3,13 +3,14 @@ package br.com.capgemini.visseModas.models.dtos.form;
 
 import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.models.repositories.ProdutoRepository;
+import lombok.Data;
 import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
-@Setter
+@Data
 public class ProdutoForm {
 
     @NotEmpty
