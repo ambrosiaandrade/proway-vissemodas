@@ -16,7 +16,6 @@ import java.util.List;
 public class PedidoForm {
 
     private String nomeCliente;
-    private String cep;
     private List<ItemPedido> itensPedidos;
     private BigDecimal valorTotal;
     private Integer quantidadeTotal;

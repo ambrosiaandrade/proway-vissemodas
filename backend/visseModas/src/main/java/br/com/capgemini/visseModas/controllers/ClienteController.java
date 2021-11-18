@@ -6,6 +6,7 @@ import br.com.capgemini.visseModas.models.dtos.dtos.ClienteDTO;
 import br.com.capgemini.visseModas.models.entities.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;

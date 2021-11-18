@@ -37,7 +37,7 @@ public class ProdutoService {
         return ResponseEntity.notFound().build();
     }
 
-    //Não deve ser possível excluir um produto se ele estiver associado a algum pedido
+    //TODO Não deve ser possível excluir um produto se ele estiver associado a algum pedido
     public ResponseEntity<Produto> inativar(Long id) {
 
         Optional<Produto> optional = produtoRepository.findById(id);
@@ -45,10 +45,8 @@ public class ProdutoService {
         if (optional.isPresent()) {
 
             Produto produto = optional.get();
-            produto.setStatus(false);
-            produtoRepository.save(produto);
+            inativar(produto);
             return ResponseEntity.ok().build();
-
         }
 
         return ResponseEntity.notFound().build();
@@ -85,32 +83,11 @@ public class ProdutoService {
         return null;
     }
 
-
-
-//    public Produto alterar(Long id){
-//        // Recebe do banco de dados
-//        Optional<Produto> produtoBuscado = produtoRepository.findById(id);
-//
-//        // Verificação para saber se existe
-//        if (!produtoBuscado.isPresent()){
-//            return null;
-//        }
-//
-//        // Convertendo o Option
-//        Produto produto = produtoBuscado.get();
-//        Produto produtoNovo = new Produto();
-//
-//        // Settando
-//        produtoNovo.setDescricao(produto.getDescricao());
-//        produtoNovo.setTamanho(produto.getTamanho());
-//        produtoNovo.setValorUnitario(produto.getValorUnitario());
-//        produtoNovo.setStatus(produto.getStatus());
-//
-//        // Salvar
-//        produtoRepository.save(produtoNovo);
-//        return produtoNovo;
-//    }
-
+    //metodo para inativar produto
+    public void inativar(Produto produto){
+        produto.setStatus(false);
+        produtoRepository.save(produto);
+    }
 
 
 

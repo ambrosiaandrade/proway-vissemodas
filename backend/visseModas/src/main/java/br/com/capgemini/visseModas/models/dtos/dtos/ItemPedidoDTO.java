@@ -22,6 +22,7 @@ public class ItemPedidoDTO {
     public ItemPedidoDTO(){
 
     }
+
     public ItemPedidoDTO(ItemPedido itemPedido){
         this.id = itemPedido.getId();
         this.idProduto = itemPedido.getProduto().getId();
@@ -34,17 +35,17 @@ public class ItemPedidoDTO {
         return listaItemPedido.stream().map(ItemPedidoDTO::new).collect(Collectors.toList());
     }
 
-    public ItemPedido dtoToItemPedido(Pedido pedido, Produto produto){
-
-        ItemPedido itemPedido = new ItemPedido(quantidade, pedido, produto);
-
-        itemPedido.setId(id);
-        itemPedido.setProduto(produto);
-        itemPedido.setPedido(pedido);
-        itemPedido.setQuantidade(quantidade);
-        itemPedido.setValorItem(valorTotal);
-
-        return itemPedido;
-    }
+//    public ItemPedido dtoToItemPedido(Pedido pedido, Produto produto){
+//
+//        ItemPedido itemPedido = new ItemPedido(quantidade, pedido, produto);
+//
+//        itemPedido.setId(id);
+//        itemPedido.setProduto(produto);
+//        itemPedido.setPedido(pedido);
+//        itemPedido.setQuantidade(quantidade);
+//        itemPedido.setValorItem(valorTotal);
+//
+//        return itemPedido;
+//    }
 
 }
