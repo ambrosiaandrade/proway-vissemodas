@@ -20,9 +20,6 @@ public class EnderecoController {
     @Autowired
     private EnderecoService service;
 
-    //pode cadastrar e excluir, ver sobre relacinamento com o cliente, pode alterar tudo
-
-    //metodo que salva e devolve uma reposta ao invés de ser void
     @PostMapping
     public ResponseEntity<EnderecoDTO> salvar(@RequestBody @Valid EnderecoForm enderecoForm, UriComponentsBuilder uriBuilder) {
 
@@ -33,17 +30,6 @@ public class EnderecoController {
         return ResponseEntity.created(uri).body(new EnderecoDTO(endereco));
     }
 
-    //alterar
-    @PatchMapping("/{id}")
-    public ResponseEntity<EnderecoDTO> alterar(@PathVariable Long id, @RequestBody @Valid EnderecoDTO form, UriComponentsBuilder uriBuilder ) {
-
-        Endereco endereco = form.dtoToEndereco();
-        service.alterar(id, form);
-
-        URI uri = uriBuilder.path("/clientes/{id}").buildAndExpand(endereco.getId()).toUri();
-        return ResponseEntity.created(uri).body(new EnderecoDTO(endereco));
-
-    }
 
     //deletar
     @DeleteMapping("/{id}")

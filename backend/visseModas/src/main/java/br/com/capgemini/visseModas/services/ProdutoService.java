@@ -1,9 +1,8 @@
 package br.com.capgemini.visseModas.services;
 
-import br.com.capgemini.visseModas.models.dtos.dtos.ClienteDTO;
 import br.com.capgemini.visseModas.models.dtos.dtos.ProdutoDTO;
-import br.com.capgemini.visseModas.models.dtos.update.ClienteUpdate;
-import br.com.capgemini.visseModas.models.entities.Cliente;
+import br.com.capgemini.visseModas.models.dtos.form.ProdutoForm;
+import br.com.capgemini.visseModas.models.dtos.update.ProdutoUpdate;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.models.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +24,14 @@ public class ProdutoService {
         produtoRepository.save(produto);
     }
 
-    public ResponseEntity<ProdutoDTO> alterar(Long id, ProdutoDTO produtoDTO) {
+    public ResponseEntity<ProdutoUpdate> alterar(Long id, ProdutoUpdate form) {
 
         Optional<Produto> optional =  produtoRepository.findById(id);
         if (optional.isPresent()) {
-            Produto produto = produtoDTO.atualizar(id, produtoRepository);
+
+            Produto produto = form.atualizar(id, produtoRepository);
             produtoRepository.save(produto);
-            return ResponseEntity.ok(new ProdutoDTO(produto));
+            return ResponseEntity.ok(new ProdutoUpdate(produto));
         }
 
         return ResponseEntity.notFound().build();
@@ -73,6 +73,16 @@ public class ProdutoService {
     public List<ProdutoDTO> listarTudoAtivo(){
         List<Produto> listaProdutos = produtoRepository.findByStatus(true);
         return ProdutoDTO.converter(listaProdutos);
+    }
+
+
+    public Produto buscarPorId(Long id) {
+        Optional<Produto> optional = produtoRepository.findById(id);
+        if (optional.isPresent()) {
+            return optional.get();
+        }
+
+        return null;
     }
 
 

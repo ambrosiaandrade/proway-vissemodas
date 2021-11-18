@@ -13,10 +13,9 @@ public class ClienteDTO {
 
     private Long id;
     private String nome;
-    private String documento;
+    private String cpf;
+    private String cnpj;
     private String tipoCliente;
-    private String email;
-    private String senha;
 
     public ClienteDTO() {
     }
@@ -25,10 +24,10 @@ public class ClienteDTO {
     public ClienteDTO(Cliente cliente) {
         this.id = cliente.getId();
         this.nome = cliente.getNome();
-        this.documento = cliente.getDocumento();
-        //this.tipoCliente = cliente.getTipoCliente().name();
-        this.email = cliente.getEmail();
-        this.senha = cliente.getSenha();
+        this.cpf = cliente.getCpf();
+        this.cnpj = cliente.getCnpj();
+
+        this.tipoCliente = cliente.getTipoCliente().name();
     }
 
     //metodo que converte a Lista de Clientes para Lista de Clientes DTO
@@ -48,9 +47,8 @@ public class ClienteDTO {
         cliente.setId(id);
         cliente.setNome(nome);
         cliente.setTipoCliente(TipoCliente.valueOf(tipoCliente));
-        cliente.setEmail(email);
-        cliente.setSenha(senha);
-        cliente.setDocumento(documento);
+        cliente.setCpf(cpf);
+        cliente.setCnpj(cnpj);
 
         return cliente;
     }

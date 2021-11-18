@@ -1,7 +1,6 @@
 package br.com.capgemini.visseModas.services;
 
 import br.com.capgemini.visseModas.models.dtos.dtos.ClienteDTO;
-import br.com.capgemini.visseModas.models.dtos.update.ClienteUpdate;
 import br.com.capgemini.visseModas.models.entities.Cliente;
 import br.com.capgemini.visseModas.models.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,18 +20,6 @@ public class ClienteService {
 
     public void salvar(Cliente cliente) {
         clienteRepository.save(cliente);
-    }
-
-    public ResponseEntity<ClienteUpdate> alterar(Long id, ClienteUpdate form) {
-
-        Optional<Cliente> optional = clienteRepository.findById(id);
-        if (optional.isPresent()) {
-            Cliente cliente = form.atualizar(id, clienteRepository);
-            clienteRepository.save(cliente);
-            return ResponseEntity.ok(new ClienteUpdate(cliente));
-        }
-
-        return ResponseEntity.notFound().build();
     }
 
 //    public ResponseEntity<Cliente> inativar(Long id) {
