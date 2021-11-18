@@ -3,10 +3,6 @@ footer{
     color: white;
     height: 100%;
 }
-a{
-  text-decoration: none; 
-  color: white; 
-}
 
 .fa-brands, .fa-solid{
     font-size: 2.8em;
@@ -14,6 +10,11 @@ a{
 
 .fa-instagram{
     cursor: pointer;
+}
+
+a{
+    text-decoration: none; 
+    color: white; 
 }
 
 img{
