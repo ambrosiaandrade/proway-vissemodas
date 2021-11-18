@@ -1,9 +1,8 @@
 package br.com.capgemini.visseModas.services;
 
-import br.com.capgemini.visseModas.models.dtos.dtos.ClienteDTO;
 import br.com.capgemini.visseModas.models.dtos.dtos.ProdutoDTO;
-import br.com.capgemini.visseModas.models.dtos.update.ClienteUpdate;
-import br.com.capgemini.visseModas.models.entities.Cliente;
+import br.com.capgemini.visseModas.models.dtos.form.ProdutoForm;
+import br.com.capgemini.visseModas.models.dtos.update.ProdutoUpdate;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.models.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,19 +31,20 @@ public class ProdutoService {
         produtoRepository.save(produto);
     }
 
-    public ResponseEntity<ProdutoDTO> alterar(Long id, ProdutoDTO produtoDTO) {
+    public ResponseEntity<ProdutoUpdate> alterar(Long id, ProdutoUpdate form) {
 
         Optional<Produto> optional =  produtoRepository.findById(id);
         if (optional.isPresent()) {
-            Produto produto = produtoDTO.atualizar(id, produtoRepository);
+
+            Produto produto = form.atualizar(id, produtoRepository);
             produtoRepository.save(produto);
-            return ResponseEntity.ok(new ProdutoDTO(produto));
+            return ResponseEntity.ok(new ProdutoUpdate(produto));
         }
 
         return ResponseEntity.notFound().build();
     }
 
-    //Não deve ser possível excluir um produto se ele estiver associado a algum pedido
+    //TODO Não deve ser possível excluir um produto se ele estiver associado a algum pedido
     public ResponseEntity<Produto> inativar(Long id) {
 
         Optional<Produto> optional = produtoRepository.findById(id);
@@ -52,10 +52,8 @@ public class ProdutoService {
         if (optional.isPresent()) {
 
             Produto produto = optional.get();
-            produto.setStatus(false);
-            produtoRepository.save(produto);
+            inativar(produto);
             return ResponseEntity.ok().build();
-
         }
 
         return ResponseEntity.notFound().build();
@@ -83,31 +81,20 @@ public class ProdutoService {
     }
 
 
+    public Produto buscarPorId(Long id) {
+        Optional<Produto> optional = produtoRepository.findById(id);
+        if (optional.isPresent()) {
+            return optional.get();
+        }
 
-//    public Produto alterar(Long id){
-//        // Recebe do banco de dados
-//        Optional<Produto> produtoBuscado = produtoRepository.findById(id);
-//
-//        // Verificação para saber se existe
-//        if (!produtoBuscado.isPresent()){
-//            return null;
-//        }
-//
-//        // Convertendo o Option
-//        Produto produto = produtoBuscado.get();
-//        Produto produtoNovo = new Produto();
-//
-//        // Settando
-//        produtoNovo.setDescricao(produto.getDescricao());
-//        produtoNovo.setTamanho(produto.getTamanho());
-//        produtoNovo.setValorUnitario(produto.getValorUnitario());
-//        produtoNovo.setStatus(produto.getStatus());
-//
-//        // Salvar
-//        produtoRepository.save(produtoNovo);
-//        return produtoNovo;
-//    }
+        return null;
+    }
 
+    //metodo para inativar produto
+    public void inativar(Produto produto){
+        produto.setStatus(false);
+        produtoRepository.save(produto);
+    }
 
 
 

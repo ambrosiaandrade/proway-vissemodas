@@ -1,15 +1,13 @@
-package br.com.capgemini.visseModas.models.dtos.dtos;
+package br.com.capgemini.visseModas.models.dtos.update;
 
 import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.models.repositories.ProdutoRepository;
-import lombok.Getter;
+import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.stream.Collectors;
 
-@Getter
-public class ProdutoDTO {
+@Data
+public class ProdutoUpdate {
 
     private Long id;
     private String descricao;
@@ -17,24 +15,23 @@ public class ProdutoDTO {
     private BigDecimal valorUnitario;
     private String categoria;
     private String imagem;
-    private Boolean status;
 
-    public ProdutoDTO() {
+    public ProdutoUpdate(){
+
     }
 
-    public ProdutoDTO(Produto produto){
+    public ProdutoUpdate(Produto produto){
         this.id = produto.getId();
         this.descricao = produto.getDescricao();
         this.tamanho = produto.getTamanho();
         this.valorUnitario = produto.getValorUnitario();
         this.categoria = produto.getCategoria();
         this.imagem = produto.getImagem();
-        this.status = produto.getStatus();
     }
 
-    public Produto converteDTOParaProduto() {
+    public Produto atualizar(Long id, ProdutoRepository produtoRepository){
 
-        Produto produto = new Produto();
+        Produto produto = produtoRepository.getById(id);
 
         produto.setId(id);
         produto.setDescricao(descricao);
@@ -46,24 +43,18 @@ public class ProdutoDTO {
         return produto;
     }
 
+    public Produto produtoUpdateToProduto(){
+        Produto produto = new Produto();
 
-    public Produto atualizar(Long id, ProdutoRepository produtoRepository) {
-
-        Produto produto = produtoRepository.getById(id);
-
-        produto.setDescricao(descricao);
+        produto.setId(id);
         produto.setTamanho(tamanho);
         produto.setValorUnitario(valorUnitario);
+        produto.setDescricao(descricao);
         produto.setCategoria(categoria);
         produto.setImagem(imagem);
 
         return produto;
     }
 
-
-    // Método que converte a entidade para DTO
-    public static List<ProdutoDTO> converter(List<Produto> produtos){
-        return produtos.stream().map(ProdutoDTO::new).collect(Collectors.toList());
-    }
 
 }
