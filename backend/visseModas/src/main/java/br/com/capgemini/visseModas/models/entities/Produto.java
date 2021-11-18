@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -20,8 +21,10 @@ public class Produto {
     private Long id;
     private String descricao;
     private String tamanho;
-    private Double valorUnitario;
+    private BigDecimal valorUnitario;
     private Boolean status = true;
+    private String categoria;
+    private String imagem;
 
 
 }

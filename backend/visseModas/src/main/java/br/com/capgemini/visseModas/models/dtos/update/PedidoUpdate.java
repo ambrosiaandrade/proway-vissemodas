@@ -1,3 +1,4 @@
+/*
 package br.com.capgemini.visseModas.models.dtos.update;
 
 import br.com.capgemini.visseModas.models.entities.Pedido;
@@ -5,13 +6,15 @@ import br.com.capgemini.visseModas.models.repositories.PedidoRepository;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 //DTO para campos que podem ser alterados
 public class PedidoUpdate {
 
     //not null?
-    private Double valorTotal;
+    private BigDecimal valorTotal;
     private Integer quantidadeTotal;
     private Double percentualDesconto;
 
@@ -26,7 +29,7 @@ public class PedidoUpdate {
     }
 
     public Pedido atualizar(Long id, PedidoRepository pedidoRepository){
-        Pedido pedido = pedidoRepository.getOne(id);
+        Pedido pedido = pedidoRepository.getById(id);
 
         pedido.setValorTotal(this.valorTotal);
         pedido.setQuantidadeTotal(this.quantidadeTotal);
@@ -46,3 +49,4 @@ public class PedidoUpdate {
     }
 
 }
+*/

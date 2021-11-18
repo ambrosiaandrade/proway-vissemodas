@@ -5,6 +5,8 @@ import br.com.capgemini.visseModas.models.dtos.form.ItemPedidoForm;
 import br.com.capgemini.visseModas.models.dtos.update.ItemPedidoUpdate;
 import br.com.capgemini.visseModas.models.entities.ItemPedido;
 import br.com.capgemini.visseModas.services.ItemPedidoService;
+import br.com.capgemini.visseModas.services.PedidoService;
+import br.com.capgemini.visseModas.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,18 +17,22 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/itens-pedido")
+@RequestMapping("/itens")
 public class ItemPedidoController {
 
     @Autowired
     private ItemPedidoService service;
+    @Autowired
+    private PedidoService pedidoService;
+    @Autowired
+    private ProdutoService produtoService;
 
 
-    @PostMapping //save   //vai no corpo
+    @PostMapping
     public ResponseEntity<ItemPedidoDTO> salvar(@RequestBody ItemPedidoForm form, UriComponentsBuilder uriBuilder) {
 
         //converte o DTO para ItemPedido
-        ItemPedido itemPedido = form.formToItemPedido();
+        ItemPedido itemPedido = form.formToItemPedido(produtoService, pedidoService);
         service.salvar(itemPedido);
 
         URI uri = uriBuilder.path("/itempedido/{id}").buildAndExpand(itemPedido.getId()).toUri();

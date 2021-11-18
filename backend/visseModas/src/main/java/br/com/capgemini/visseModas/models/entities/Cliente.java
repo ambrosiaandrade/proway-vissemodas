@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @Setter
@@ -24,21 +23,18 @@ public class Cliente {
     @Enumerated(EnumType.STRING)
     private TipoCliente tipoCliente;
 
-    private String documento;
-    private String email;
-    private String senha;
+    private String cpf;
+    private String cnpj;
 
-    //TODO ver se precisa mais de um endereco
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-    private List<Endereco> listaEnderecos;
+    @OneToOne(mappedBy = "cliente", fetch = FetchType.LAZY)
+    private Endereco endereco;
 
-    public Cliente(String nome, TipoCliente tipoCliente, String documento, String email, String senha, List<Endereco> listaEnderecos) {
+    public Cliente(String nome, TipoCliente tipoCliente, String cpf, String cnpj, String email, String senha, Endereco endereco) {
         this.nome = nome;
         this.tipoCliente = tipoCliente;
-        this.documento = documento;
-        this.email = email;
-        this.senha = senha;
-        this.listaEnderecos = listaEnderecos;
+        this.cpf = cpf;
+        this.cnpj = cnpj;
+        this.endereco = endereco;
     }
 
 }

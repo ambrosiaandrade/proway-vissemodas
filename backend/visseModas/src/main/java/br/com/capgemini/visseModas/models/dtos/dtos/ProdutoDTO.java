@@ -4,6 +4,7 @@ import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.models.repositories.ProdutoRepository;
 import lombok.Getter;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,7 +14,9 @@ public class ProdutoDTO {
     private Long id;
     private String descricao;
     private String tamanho;
-    private Double valorUnitario;
+    private BigDecimal valorUnitario;
+    private String categoria;
+    private String imagem;
     private Boolean status;
 
     public ProdutoDTO() {
@@ -22,8 +25,10 @@ public class ProdutoDTO {
     public ProdutoDTO(Produto produto){
         this.id = produto.getId();
         this.descricao = produto.getDescricao();
-        this.valorUnitario = produto.getValorUnitario();
         this.tamanho = produto.getTamanho();
+        this.valorUnitario = produto.getValorUnitario();
+        this.categoria = produto.getCategoria();
+        this.imagem = produto.getImagem();
         this.status = produto.getStatus();
     }
 
@@ -35,6 +40,8 @@ public class ProdutoDTO {
         produto.setDescricao(descricao);
         produto.setTamanho(tamanho);
         produto.setValorUnitario(valorUnitario);
+        produto.setCategoria(categoria);
+        produto.setImagem(imagem);
 
         return produto;
     }
@@ -47,6 +54,8 @@ public class ProdutoDTO {
         produto.setDescricao(descricao);
         produto.setTamanho(tamanho);
         produto.setValorUnitario(valorUnitario);
+        produto.setCategoria(categoria);
+        produto.setImagem(imagem);
 
         return produto;
     }

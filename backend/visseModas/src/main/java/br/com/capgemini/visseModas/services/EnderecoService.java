@@ -1,9 +1,6 @@
 package br.com.capgemini.visseModas.services;
 
-import br.com.capgemini.visseModas.models.dtos.dtos.ClienteDTO;
 import br.com.capgemini.visseModas.models.dtos.dtos.EnderecoDTO;
-import br.com.capgemini.visseModas.models.dtos.update.ClienteUpdate;
-import br.com.capgemini.visseModas.models.entities.Cliente;
 import br.com.capgemini.visseModas.models.entities.Endereco;
 import br.com.capgemini.visseModas.models.repositories.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,21 +20,6 @@ public class EnderecoService {
     public void salvar(Endereco endereco) {
         enderecoRepository.save(endereco);
     }
-
-    //alterar
-    public ResponseEntity<EnderecoDTO> alterar(Long id, EnderecoDTO form) {
-
-        Optional<Endereco> optional = enderecoRepository.findById(id);
-        if (optional.isPresent()) {
-            Endereco endereco = form.atualizar(id, enderecoRepository);
-            enderecoRepository.save(endereco);
-            return ResponseEntity.ok(new EnderecoDTO(endereco));
-        }
-
-        return ResponseEntity.notFound().build();
-    }
-
-
 
     public ResponseEntity<Endereco> deletar(Long id) {
 
@@ -70,14 +52,4 @@ public class EnderecoService {
         return EnderecoDTO.converter(listaEndereco);
     }
 
-
-    public Endereco buscarPorCep(String cep) {
-        Optional<Endereco> optional = enderecoRepository.findByCep(cep);
-        if (optional.isPresent()) {
-            return optional.get();
-        }
-
-        return null;
-
-    }
 }

@@ -1,7 +1,5 @@
 package br.com.capgemini.visseModas.configs;
 
-import br.com.capgemini.visseModas.models.entities.CNPJGroup;
-import br.com.capgemini.visseModas.models.entities.CPFGroup;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.PathSelectors;
@@ -18,8 +16,8 @@ public class SwaggerConfigurations {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("br.com.capgemini.visseModas")) //pacote raiz
                 .paths(PathSelectors.ant("/**")) //pode ler tudo
-                .build()
-                .ignoredParameterTypes(CNPJGroup.class, CPFGroup.class); //pra ignorar alguma coisa
+                .build();
+//                .ignoredParameterTypes(); //pra ignorar alguma coisa
     }
 
 }

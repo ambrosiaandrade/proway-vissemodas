@@ -7,13 +7,15 @@ import br.com.capgemini.visseModas.models.repositories.ItemPedidoRepository;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 public class ItemPedidoUpdate {
 
     private Produto produto;
     private Integer quantidade;
-    private Double valorTotal;
+    private BigDecimal valorTotal;
 
     public ItemPedidoUpdate(){
 
@@ -22,14 +24,14 @@ public class ItemPedidoUpdate {
     public ItemPedidoUpdate(ItemPedido itemPedido){
         this.produto = itemPedido.getProduto();
         this.quantidade = itemPedido.getQuantidade();
-        this.valorTotal = itemPedido.getValorTotal();
+        this.valorTotal = itemPedido.getValorItem();
     }
     public ItemPedido atualizar(Long id, ItemPedidoRepository itemPedidoRepository){
         ItemPedido itemPedido = itemPedidoRepository.getById(id);
 
         itemPedido.setProduto(this.produto);
         itemPedido.setQuantidade(this.quantidade);
-        itemPedido.setValorTotal(this.valorTotal);
+        itemPedido.setValorItem(this.valorTotal);
 
         return itemPedido;
     }
@@ -40,7 +42,7 @@ public class ItemPedidoUpdate {
 
         itemPedido.setProduto(produto);
         itemPedido.setQuantidade(quantidade);
-        itemPedido.setValorTotal(valorTotal);
+        itemPedido.setValorItem(valorTotal);
 
         return itemPedido;
     }
