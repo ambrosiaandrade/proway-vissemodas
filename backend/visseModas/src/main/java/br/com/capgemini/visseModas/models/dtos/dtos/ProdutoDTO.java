@@ -1,8 +1,10 @@
 package br.com.capgemini.visseModas.models.dtos.dtos;
 
+import br.com.capgemini.visseModas.models.entities.Pedido;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.models.repositories.ProdutoRepository;
 import lombok.Getter;
+import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -64,6 +66,10 @@ public class ProdutoDTO {
     // Método que converte a entidade para DTO
     public static List<ProdutoDTO> converter(List<Produto> produtos){
         return produtos.stream().map(ProdutoDTO::new).collect(Collectors.toList());
+    }
+
+    public static Page<ProdutoDTO> converterPaginacao(Page<Produto> listaProdutos){
+        return listaProdutos.map(ProdutoDTO::new);
     }
 
 }
