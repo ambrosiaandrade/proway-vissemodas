@@ -1,6 +1,8 @@
 import { BinaryOperator } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Endereco } from 'src/app/models/endereco.model';
 import { ConsultaCepService } from 'src/app/services/consulta-cep.service';
 import { EnderecoService } from 'src/app/services/endereco.service';
@@ -15,7 +17,7 @@ export class AddEnderecoComponent implements OnInit {
   enderecoForm: FormGroup
 
   constructor(private _fb: FormBuilder, private CepService: ConsultaCepService, 
-   private _service: EnderecoService) {
+   private _service: EnderecoService, private _toastr: ToastrService, private _router: Router) {
     this.enderecoForm = _fb.group({
       cep: ['', Validators.required],
       logradouro: ['', Validators.required],
@@ -47,8 +49,7 @@ export class AddEnderecoComponent implements OnInit {
   }
 
   addEndereco(){
-    console.log(this.enderecoForm.value)
-    console.log(this.enderecoForm.get('cep')?.value)
+
     const ENDERECO: Endereco = {
       cep: this.enderecoForm.get('cep')?.value,
       logradouro: this.enderecoForm.get('logradouro')?.value,
@@ -60,6 +61,9 @@ export class AddEnderecoComponent implements OnInit {
     this._service.postEndereco(ENDERECO).subscribe({
       next: (data: any) => {
         console.log("Endereço cadastrado")
+        this._toastr.success('Cadastrado com sucesso', 'Endereço');
+        this._router.navigate(['']);
+        
       },
       error: (e) => console.log(e)
     })
