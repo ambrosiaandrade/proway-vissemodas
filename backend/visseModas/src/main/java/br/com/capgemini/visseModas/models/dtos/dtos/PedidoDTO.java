@@ -1,8 +1,9 @@
 package br.com.capgemini.visseModas.models.dtos.dtos;
 
-import br.com.capgemini.visseModas.models.entities.Pedido;
+import br.com.capgemini.visseModas.models.entities.*;
 import lombok.Getter;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,16 +15,23 @@ public class PedidoDTO {
     private Long id;
     private LocalDate data;
     private String nomeCliente;
-    private String enderecoEntrega;
-    private String itensPedidos;
-    private Enum situacao;
-    private Double valorTotal;
+    private List<ItemPedido> listaItens;
+    private Situacao situacao;
+    private BigDecimal valorTotal;
     private Integer quantidadeTotal;
     private Double percentualDesconto;
 
+    public PedidoDTO(){
+
+    }
+
+
     public PedidoDTO(Pedido pedido){
+
         this.id = pedido.getId();
         this.data = pedido.getData();
+        this.listaItens = pedido.getListaItens();
+        this.nomeCliente = pedido.getCliente().getNome();
         this.situacao = pedido.getSituacao();
         this.valorTotal = pedido.getValorTotal();
         this.quantidadeTotal = pedido.getQuantidadeTotal();

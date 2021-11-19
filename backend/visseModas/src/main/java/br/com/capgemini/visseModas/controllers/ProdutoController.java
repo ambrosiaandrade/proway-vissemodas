@@ -2,6 +2,7 @@ package br.com.capgemini.visseModas.controllers;
 
 import br.com.capgemini.visseModas.models.dtos.dtos.ProdutoDTO;
 import br.com.capgemini.visseModas.models.dtos.form.ProdutoForm;
+import br.com.capgemini.visseModas.models.dtos.update.ProdutoUpdate;
 import br.com.capgemini.visseModas.services.ProdutoService;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +32,11 @@ public class ProdutoController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<ProdutoDTO> alterar(@PathVariable Long id, @RequestBody @Valid ProdutoDTO produtoDTO, UriComponentsBuilder uriBuilder ) {
+    public ResponseEntity<ProdutoDTO> alterar(@PathVariable Long id, @RequestBody @Valid ProdutoUpdate form, UriComponentsBuilder uriBuilder ) {
 
-
-        Produto produto = produtoDTO.converteDTOParaProduto();
-        service.alterar(id, produtoDTO);
+        Produto produto = form.produtoUpdateToProduto();
+        produto.setId(id);
+        service.alterar(id, form);
 
         URI uri = uriBuilder.path("/produtos/{id}").buildAndExpand(produto.getId()).toUri();
         return ResponseEntity.created(uri).body(new ProdutoDTO(produto));
@@ -45,8 +46,7 @@ public class ProdutoController {
     //deletar
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletar(@PathVariable Long id) {
-        return service.inativar(id);
-
+        return service.inativar(id); //chamar o deletar e decidir no service se deleta ou nao
     }
 
     //buscar cliente por id
@@ -65,6 +65,8 @@ public class ProdutoController {
     public List<ProdutoDTO> listarTudo() {
         return service.listarTudo();
     }
+
+
 
 
 

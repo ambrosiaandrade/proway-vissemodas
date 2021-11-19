@@ -25,7 +25,8 @@ public class Endereco {
     private String logradouro;
     private Integer numero;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne
+    @JoinColumn(name = "id")
     private Cliente cliente;
 
     //lado mais forte é a tabela que tem que a coluna do relacionamento

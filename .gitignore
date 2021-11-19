@@ -62,3 +62,39 @@ backend/visseModas/.settings
 backend/visseModas/.springBeans
 backend/visseModas/.sts4-cache
 
+# Frontend ------------------------------------------------------------------------------
+
+## IntelliJ IDEA
+frontend/vissemodas/.idea
+frontend/vissemodas/*.iws
+frontend/vissemodas/*.iml
+frontend/vissemodas/*.ipr
+
+## VS Code
+frontend/vissemodas/.vscode
+
+## NetBeans
+frontend/vissemodas/nbproject/private/
+frontend/vissemodas/nbbuild/
+frontend/vissemodas/dist/
+frontend/vissemodas/nbdist/
+frontend/vissemodas/.nb-gradle/
+frontend/vissemodas/build/
+frontend/vissemodas/!**/src/main/**/build/
+frontend/vissemodas/!**/src/test/**/build/
+
+frontend/vissemodas/target/
+frontend/vissemodas/!.mvn/wrapper/maven-wrapper.jar
+frontend/vissemodas/!**/src/main/**/target/
+frontend/vissemodas/!**/src/test/**/target/
+
+frontend/vissemodas/.apt_generated
+frontend/vissemodas/.classpath
+frontend/vissemodas/.factorypath
+frontend/vissemodas/.project
+frontend/vissemodas/.settings
+frontend/vissemodas/.springBeans
+frontend/vissemodas/.sts4-cache
+
+# Angular
+frontend/vissemodas/node_modules

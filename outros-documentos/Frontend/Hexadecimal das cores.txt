@@ -1,4 +1,0 @@
-Bege: #FFD392
-Marrom mais claro: #D26E56
-Marrom: #973E2E
-Amarelo: #F1AE49

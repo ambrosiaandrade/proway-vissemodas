@@ -1,13 +1,16 @@
-create table Cliente (
-id				bigint not null auto_increment primary key,
-cpf				varchar(20),
-cnpj			varchar(20),
-nome 			varchar(100),
-tipo_cliente	int
+create table cliente (
+	id bigint 	not null auto_increment, 
+	documento 	varchar(255), 	
+	email 		varchar(255), 
+	nome 		varchar(255), 
+	senha 		varchar(255), 
+	status 		bit, 
+	tipo_cliente 	varchar(255), 
+	primary key (id)
 );
 
 create table item_pedido (
-id				bigint not null auto_increment primary key,
+id			bigint not null auto_increment primary key,
 produto_id		bigint not null,
 pedido_id		bigint not null,
 quantidade		int,
@@ -15,38 +18,38 @@ valor_total		double(10,2)
 );
 
 create table Pedido (
-id					bigint not null auto_increment primary key,
-cliente_id			bigint not null,
+id			bigint not null auto_increment primary key,
+cliente_id		bigint not null,
 endereco_entrega_id	bigint not null,
-data				date,
-situacao			varchar(10),
-valor_total			double(10,2),
+data			date,
+situacao		varchar(10),
+valor_total		double(10,2),
 quantidade_total	int,
 percentual_desconto	double(4,2)
 );
 
 create table produto (
-id				bigint not null auto_increment primary key,
+id			bigint not null auto_increment primary key,
 descricao		varchar(50),
 tamanho			varchar(10),
-valor_unitario	double(10,2),
+valor_unitario		double(10,2),
 status			boolean
 );
 
 create table Endereco ( 
-id				bigint not null auto_increment primary key,
+id			bigint not null auto_increment primary key,
 cliente_id		bigint not null,
-cep				varchar(9),
+cep			varchar(9),
 cidade			varchar(40),
 bairro			varchar(50),
-rua				varchar(100)
+logradouro		varchar(100)
 );
 
-select * from cliente ;
-select * from item_pedido;
-select * from pedido ;
-select * from produto ;
-select * from endereco ;
+select * from cliente ; 	-- ok
+select * from item_pedido; -- falta o backend
+select * from pedido ; 		-- falta o backend
+select * from produto ; 	-- ok
+select * from endereco ; 	-- ok
 
 -- FOREIGN KEYS
 alter table item_pedido add constraint foreign key (produto_id) references produto(id);
@@ -74,8 +77,8 @@ inner join cliente
 on ende.cliente_id = cliente.id;
 
 -- CLIENTES
-insert into cliente (cpf, nome, tipo_cliente) values ('702.377.314-28', 'Rebeca Lira', 1);
-insert into cliente (cpf, nome, tipo_cliente) values ('132.548.944-13', 'Yuri Ferreira', 1);
+insert into cliente (documento, nome, tipo_cliente) values ('702.377.314-28', 'Rebeca Lira', "FISICA");
+insert into cliente (documento, nome, tipo_cliente) values ('132.548.944-13', 'Yuri Ferreira', "FISICA");
 
 -- PRODUTOS
 insert into produto (descricao, tamanho, valor_unitario, status) values ('Calça jeans skinny', '40', 65.90, true);
@@ -88,7 +91,7 @@ insert into pedido (cliente_id, endereco_entrega_id, situacao, valor_total, quan
 				   (2, 1, 'A CAMINHO', 400.00, 7, 15.00);
 		
 -- ENDEREÇOS
-insert into endereco (cliente_id, cep, cidade, bairro, rua) values
+insert into endereco (cliente_id, cep, cidade, bairro, logradouro) values
 (1, '51021-020', 'Recife', 'Boa Viagem', 'Av. Conselheiro Aguiar'),
 (2, '51021-040', 'Recife', 'Boa Viagem', 'Av. Eng. Domingos Ferreira');
 

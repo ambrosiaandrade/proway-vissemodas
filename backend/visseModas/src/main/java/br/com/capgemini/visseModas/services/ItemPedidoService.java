@@ -1,8 +1,10 @@
 package br.com.capgemini.visseModas.services;
 
 import br.com.capgemini.visseModas.models.dtos.dtos.ItemPedidoDTO;
+import br.com.capgemini.visseModas.models.dtos.dtos.PedidoDTO;
 import br.com.capgemini.visseModas.models.dtos.update.ItemPedidoUpdate;
 import br.com.capgemini.visseModas.models.entities.ItemPedido;
+import br.com.capgemini.visseModas.models.entities.Pedido;
 import br.com.capgemini.visseModas.models.repositories.ItemPedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +43,8 @@ public class ItemPedidoService {
         }
         return ResponseEntity.notFound().build();
     }
+
+
 
     /*public void deletar(Long id){
         itemPedidoRepository.deleteById(id);
