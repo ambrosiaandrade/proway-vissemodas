@@ -60,13 +60,13 @@ textarea:focus {
 }
 
 /* Botões */
-button {
+button, .btn {
   background-color: #d26e56 !important;
   color: #ffd392 !important;
   border: none !important;
 }
 
-button:hover {
+button:hover, .btn:hover {
   background-color: #973e2e !important;
   color: #ffd392 !important;
 }
