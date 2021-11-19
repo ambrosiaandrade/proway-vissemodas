@@ -41,7 +41,6 @@ input[type="number"] {
   background: none !important;
 }
 
-<<<<<<< HEAD
 #btnFinalizarCompra  {
   width: 12em;
   border-radius: 0.5em;
@@ -49,10 +48,4 @@ input[type="number"] {
   bottom: 10rem;
   right: 10rem;
   z-index: 9999;
-=======
-#btnFinalizarCompra {
-  width: 10em;
-  border-radius: 0.5em;
-  align-self: end;
->>>>>>> develop
 }
