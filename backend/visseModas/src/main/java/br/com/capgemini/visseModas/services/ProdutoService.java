@@ -1,11 +1,14 @@
 package br.com.capgemini.visseModas.services;
 
+import br.com.capgemini.visseModas.models.dtos.dtos.PedidoDTO;
 import br.com.capgemini.visseModas.models.dtos.dtos.ProdutoDTO;
 import br.com.capgemini.visseModas.models.dtos.form.ProdutoForm;
 import br.com.capgemini.visseModas.models.dtos.update.ProdutoUpdate;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.models.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -96,6 +99,11 @@ public class ProdutoService {
         produtoRepository.save(produto);
     }
 
+    public Page<ProdutoDTO> listarTudoDTOPaginacao(Pageable paginacao) {
+        //devolve um page ao invés de uma lista
+        Page<Produto> listaProdutos = produtoRepository.findAll(paginacao);
+        return ProdutoDTO.converterPaginacao(listaProdutos);
+    }
 
 
 }

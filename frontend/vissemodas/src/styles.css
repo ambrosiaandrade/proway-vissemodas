@@ -1,13 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-th{
-    text-transform: capitalize;
+@font-face {
+  font-family: lovelo;
+  src: url(./fonts/Lovelo_Black.otf) format("opentype");
 }
 
-@font-face {
-    font-family: lovelo;
-    src: url(./fonts/Lovelo_Black.otf) format("opentype");
-  }
-
 * {
-    font-family: "lovelo";
+  font-family: "lovelo";
+}
+
+th {
+  text-transform: capitalize;
 }

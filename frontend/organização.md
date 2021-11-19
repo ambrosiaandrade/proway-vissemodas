@@ -24,8 +24,8 @@ Done: ✅
         - last-pedido
         - history-pedido
     📁 shared
-        - footer ⌛ (80%)
-        - navbar ⌛ (80%)
+        - footer ✅
+        - navbar ⌛ (95%)
             // Configuração do cliente   // altera senha e e-mail
             // Configuração do admin     // listar produtos, listar clientes ...
 📁 models
