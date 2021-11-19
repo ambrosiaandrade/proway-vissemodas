@@ -1,31 +1,3 @@
-.title{
-    text-transform: uppercase;
-    text-align: center;
-}
-
-.text-danger{
-    margin-left: 10px; 
-}
-
-.btn {
-    color: #FFD392;
-}
-
-.form-label {
-    color: #973E2E;
-}
-
-.tipo {
-    color: #973E2E;
-}
-
-.form-check {
-    color: #973E2E;
-}
-
-.form-control {
-    color: blue;
-}
 
 img.user {
     display: block;
@@ -35,6 +7,3 @@ img.user {
     max-height: 50px;
 }
 
-.button {
-    color: #973E2E;
-}

@@ -1,8 +1,8 @@
 export class Cliente{
 
     id?: number;
-    cpf: string;
-    cnpj: string;
+    cpf?: string;
+    cnpj?: string;
     nome: string;
     status: boolean;
     tipoCliente: string;
