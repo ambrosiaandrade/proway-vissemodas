@@ -55,6 +55,7 @@ textarea:focus {
   font-family: "Arial";
   border-radius: 1em !important;
   background-color: #ffd392 !important;
+  border: none !important;
 }
 
 /* Botões */
