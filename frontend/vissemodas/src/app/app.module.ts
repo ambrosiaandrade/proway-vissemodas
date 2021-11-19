@@ -14,6 +14,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import { AddEnderecoComponent } from './views/endereco/add-endereco/add-endereco.component';
 import { CarrinhoComponent } from './views/carrinho/carrinho.component';
+import { FinalizadoComponent } from './views/finalizado/finalizado.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CarrinhoComponent } from './views/carrinho/carrinho.component';
     FooterComponent,
     AddEnderecoComponent,
     CarrinhoComponent,
+    FinalizadoComponent,
   ],
   imports: [
     BrowserModule,
