@@ -2,6 +2,7 @@ package br.com.capgemini.visseModas.models.dtos.dtos;
 
 import br.com.capgemini.visseModas.models.entities.*;
 import lombok.Getter;
+import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -25,7 +26,6 @@ public class PedidoDTO {
 
     }
 
-
     public PedidoDTO(Pedido pedido){
 
         this.id = pedido.getId();
@@ -40,6 +40,10 @@ public class PedidoDTO {
 
     public static List<PedidoDTO> converter(List<Pedido> listaPedidos){
         return listaPedidos.stream().map(PedidoDTO::new).collect(Collectors.toList());
+    }
+
+    public static Page<PedidoDTO> converterPaginacao(Page<Pedido> listaPedidos){
+        return listaPedidos.map(PedidoDTO::new);
     }
 
 }

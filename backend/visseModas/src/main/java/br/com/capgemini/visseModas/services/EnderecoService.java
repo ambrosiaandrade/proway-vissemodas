@@ -54,9 +54,4 @@ public class EnderecoService {
         return EnderecoDTO.converter(listaEndereco);
     }
 
-    public Page<EnderecoDTO> listarTudoDTOPaginacao(Pageable paginacao){
-        Page<Endereco> listaEnderecos = enderecoRepository.findAll(paginacao);
-        return EnderecoDTO.converterPaginacao(listaEnderecos);
-    }
-
 }
