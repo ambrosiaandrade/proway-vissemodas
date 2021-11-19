@@ -1,37 +1,38 @@
-footer{
-    background-color: #973e2e !important;
-    color: white;
-    height: 100%;
+footer {
+  background-color: #973e2e !important;
+  color: white;
 }
 
-.fa-brands, .fa-solid{
-    font-size: 2.8em;
+.fa-brands,
+.fa-solid {
+  font-size: 2.8em;
 }
 
-.fa-instagram{
-    cursor: pointer;
+.fa-instagram {
+  cursor: pointer;
 }
 
-a{
-    text-decoration: none; 
-    color: white; 
+a {
+  text-decoration: none;
+  color: white;
 }
 
-img{
-    height: 95%;
-    cursor: pointer;
+img {
+  height: 95%;
+  cursor: pointer;
 }
 
-.informacoes{
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.informacoes {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.informacoes, p {
-    font-family: "Arial";
-    font-size: 15px;
-    font-weight: bold;
-    margin-bottom: 0px;
+.informacoes,
+p {
+  font-family: "Arial";
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 0px;
 }
