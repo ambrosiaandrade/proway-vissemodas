@@ -1,0 +1,15 @@
+.title {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.text-danger {
+  margin-left: 10px;
+}
+
+/*
+  TODO: desfazer o comentário depois que ajustar
+*/
+/* .card {
+  border: none;
+} */

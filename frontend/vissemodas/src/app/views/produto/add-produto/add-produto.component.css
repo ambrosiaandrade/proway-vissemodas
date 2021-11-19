@@ -1,8 +1,75 @@
-.title{
-    text-transform: uppercase;
-    text-align: center;
+.card {
+  border: none;
 }
 
-.text-danger{
-    margin-left: 10px;
+.title {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.title,
+label {
+  color: #973e2e;
+}
+
+.text-danger span {
+  margin-left: 10px;
+  font-family: "Arial" !important;
+}
+
+/* Tipo ativo ou inativo */
+input[type="radio"]:focus {
+  box-shadow: 0 0 10px #ffd392;
+}
+
+input[type="radio"] {
+  border-color: #f1ae49;
+}
+
+input[type="radio"]:checked {
+  background-color: #f1ae49;
+  border-color: #f1ae49;
+}
+
+/* Cor de fundo dos inputs*/
+input[type="text"],
+input[type="number"],
+textarea,
+textarea:focus {
+  font-family: "Arial";
+  border-radius: 1em;
+  background-color: #ffd392;
+}
+
+/* Botões */
+button {
+  background-color: #d26e56;
+  color: #ffd392;
+  border: none;
+}
+
+button:hover {
+  background-color: #973e2e;
+  color: #ffd392;
+}
+
+button:disabled {
+  background-color: #f1b2538c;
+}
+
+/* Cor do placeholder */
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #973e2e;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #973e2e;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #973e2e;
 }

@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import { AddEnderecoComponent } from './views/endereco/add-endereco/add-endereco.component';
+import { CarrinhoComponent } from './views/carrinho/carrinho.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AddEnderecoComponent } from './views/endereco/add-endereco/add-endereco
     NavbarComponent,
     FooterComponent,
     AddEnderecoComponent,
+    CarrinhoComponent,
   ],
   imports: [
     BrowserModule,
