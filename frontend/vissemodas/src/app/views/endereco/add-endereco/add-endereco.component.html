@@ -4,21 +4,21 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="title">cadastrar endereço</h5>
-                    <form class="mt-3">
+                    <form class="mt-3" [formGroup]="enderecoForm" (ngSubmit)="addEndereco()">
 
                         <!-- CEP -->
                         <div class="mt-3">
                             <div class="col-4">
-                                <label for="inputDescricao">cep</label>
+                                <label for="inputCep">cep</label>
                                 <input formControlName="cep" id="inputCep" class="form-control"
-                                    placeholder="Informe o CEP">
+                                    placeholder="Informe o CEP" (focusout)="consultaCEP()">
                             </div>
                         </div>
 
                         <!-- LOGRADOURO -->
                         <div class="mt-3 ">
                             <label for="inputLogradouro" class="form-label">logradouro</label>
-                            <input formControlName="imagem" type="text" class="form-control" id="inputImagem">
+                            <input formControlName="logradouro" type="text" class="form-control" id="inputImagem">
                         </div>
                         <div class="mt-3 row">
                             <!-- CIDADE -->
@@ -46,8 +46,8 @@
                             </div>
                             <!-- NUMERO -->
                             <div class="col-4">
-                                <label for="inputBairro" class="form-label">número</label>
-                                <input formControlName="bairro" type="text" class="form-control" id="inputBairro">
+                                <label for="inputNumero" class="form-label">número</label>
+                                <input formControlName="numero" type="text" class="form-control" id="inputNumero">
 
                             </div>
 
