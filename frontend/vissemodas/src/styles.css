@@ -56,6 +56,7 @@ textarea:focus {
   border-radius: 1em !important;
   background-color: #ffd392 !important;
   border: none !important;
+  color: #973e2e !important;
 }
 
 /* Botões */
@@ -71,7 +72,8 @@ button:hover {
 }
 
 button:disabled {
-  background-color: #f1b2538c !important;
+  background-color: #f1b253 !important;
+  color: #973e2e !important;
 }
 
 /* Cor do placeholder */
