@@ -1,12 +1,12 @@
 package br.com.capgemini.visseModas.services;
 
 import br.com.capgemini.visseModas.models.dtos.dtos.ItemPedidoDTO;
-import br.com.capgemini.visseModas.models.dtos.dtos.PedidoDTO;
 import br.com.capgemini.visseModas.models.dtos.update.ItemPedidoUpdate;
 import br.com.capgemini.visseModas.models.entities.ItemPedido;
-import br.com.capgemini.visseModas.models.entities.Pedido;
 import br.com.capgemini.visseModas.models.repositories.ItemPedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -61,6 +61,11 @@ public class ItemPedidoService {
 
     public ResponseEntity<?> inativar(Long id) {
         return null;
+    }
+
+    public Page<ItemPedidoDTO> listarTudoDTOPaginacao(Pageable paginacao) {
+        Page<ItemPedido> listaItemPedido = itemPedidoRepository.findAll(paginacao);
+        return ItemPedidoDTO.converterPaginacao(listaItemPedido);
     }
 
     /*public ItemPedido alterar(Long id, @Valid ItemPedidoUpdate form){
