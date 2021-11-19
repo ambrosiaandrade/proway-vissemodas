@@ -25,7 +25,6 @@ public class PedidoDTO {
 
     }
 
-
     public PedidoDTO(Pedido pedido){
 
         this.id = pedido.getId();
