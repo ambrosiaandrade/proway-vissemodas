@@ -41,8 +41,11 @@ input[type="number"] {
   background: none !important;
 }
 
-#btnFinalizarCompra {
+#btnFinalizarCompra  {
   width: 12em;
   border-radius: 0.5em;
-  float: right !important;
+  position: fixed;
+  bottom: 10rem;
+  right: 10rem;
+  z-index: 9999;
 }
