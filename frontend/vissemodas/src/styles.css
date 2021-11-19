@@ -53,7 +53,7 @@ input[type="number"],
 textarea,
 textarea:focus {
   font-family: "Arial";
-  border-radius: 1em;
+  border-radius: 1em !important;
   background-color: #ffd392 !important;
 }
 
