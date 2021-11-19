@@ -12,12 +12,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
+import { AddClienteComponent } from './views/cliente/add-cliente/add-cliente.component';
+import { ListClienteComponent } from './views/cliente/list-cliente/list-cliente.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddProdutoComponent,
     ListProdutoComponent,
+    AddClienteComponent,
+    ListClienteComponent,
     HomeComponent,
     NavbarComponent,
     FooterComponent,
