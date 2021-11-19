@@ -18,6 +18,10 @@ th {
   border: none !important;
 }
 
+.card-body {
+  height: 100vh !important;
+}
+
 .title {
   text-transform: uppercase !important;
   text-align: center !important;

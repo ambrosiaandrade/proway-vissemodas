@@ -1,7 +1,3 @@
-.container {
-  height: 100vh;
-}
-
 .title {
   text-transform: uppercase;
   text-align: center;
@@ -17,6 +13,10 @@ span {
   color: #973e2e !important;
 }
 
+.card-body {
+  height: 80vh !important;
+}
+
 img {
   height: 8em;
   border-radius: 0.5em;
@@ -27,12 +27,12 @@ img {
 }
 
 .btnExcluir {
-  margin-top: 1em;
+  /* margin-top: 1em; */
   background: none !important;
 }
 
 .btnExcluir:hover {
-  margin-top: 1em;
+  /* margin-top: 1em; */
   background: none !important;
   color: #973e2e !important;
 }
@@ -42,7 +42,7 @@ input[type="number"] {
 }
 
 #btnFinalizarCompra {
-  width: 12em;
+  width: 10em;
   border-radius: 0.5em;
-  float: right !important;
+  align-self: end;
 }
