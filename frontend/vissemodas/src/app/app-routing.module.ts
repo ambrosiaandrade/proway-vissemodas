@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddClienteComponent } from './views/cliente/add-cliente/add-cliente.component';
 import { ListClienteComponent } from './views/cliente/list-cliente/list-cliente.component';
+import { CarrinhoComponent } from './views/carrinho/carrinho.component';
 import { AddEnderecoComponent } from './views/endereco/add-endereco/add-endereco.component';
 import { HomeComponent } from './views/home/home.component';
 import { AddProdutoComponent } from './views/produto/add-produto/add-produto.component';
@@ -14,11 +15,12 @@ const routes: Routes = [
   {path: 'add-cliente', component: AddClienteComponent},
   {path: 'list-cliente', component: ListClienteComponent},
   {path: 'add-endereco', component: AddEnderecoComponent},
-  {path: '**', redirectTo: '', pathMatch: 'full'}
+  {path: 'carrinho', component: CarrinhoComponent },
+  {path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

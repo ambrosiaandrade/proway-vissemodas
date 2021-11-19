@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddClienteComponent } from './views/cliente/add-cliente/add-cliente.component';
 import { ListClienteComponent } from './views/cliente/list-cliente/list-cliente.component';
 import { AddEnderecoComponent } from './views/endereco/add-endereco/add-endereco.component';
+import { CarrinhoComponent } from './views/carrinho/carrinho.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AddEnderecoComponent } from './views/endereco/add-endereco/add-endereco
     NavbarComponent,
     FooterComponent,
     AddEnderecoComponent,
+    CarrinhoComponent,
   ],
   imports: [
     BrowserModule,
