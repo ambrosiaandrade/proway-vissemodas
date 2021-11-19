@@ -1,12 +1,10 @@
 package br.com.capgemini.visseModas.models.dtos.dtos;
 
 import br.com.capgemini.visseModas.models.entities.ItemPedido;
-import br.com.capgemini.visseModas.models.entities.Pedido;
-import br.com.capgemini.visseModas.models.entities.Produto;
 import lombok.Getter;
+import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;
-import java.time.Period;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,6 +31,10 @@ public class ItemPedidoDTO {
 
     public static List<ItemPedidoDTO> converter (List<ItemPedido> listaItemPedido){
         return listaItemPedido.stream().map(ItemPedidoDTO::new).collect(Collectors.toList());
+    }
+
+    public static Page<ItemPedidoDTO> converterPaginacao(Page<ItemPedido> listaItemPedido) {
+        return listaItemPedido.map(ItemPedidoDTO::new);
     }
 
 //    public ItemPedido dtoToItemPedido(Pedido pedido, Produto produto){

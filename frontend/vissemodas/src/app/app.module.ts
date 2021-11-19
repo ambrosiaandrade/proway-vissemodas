@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
+import { AddEnderecoComponent } from './views/endereco/add-endereco/add-endereco.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     ListProdutoComponent,
     HomeComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    AddEnderecoComponent
   ],
   imports: [
     BrowserModule,

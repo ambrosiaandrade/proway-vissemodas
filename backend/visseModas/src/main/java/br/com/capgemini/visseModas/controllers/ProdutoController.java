@@ -1,11 +1,16 @@
 package br.com.capgemini.visseModas.controllers;
 
+import br.com.capgemini.visseModas.models.dtos.dtos.PedidoDTO;
 import br.com.capgemini.visseModas.models.dtos.dtos.ProdutoDTO;
 import br.com.capgemini.visseModas.models.dtos.form.ProdutoForm;
 import br.com.capgemini.visseModas.models.dtos.update.ProdutoUpdate;
 import br.com.capgemini.visseModas.services.ProdutoService;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -66,12 +71,10 @@ public class ProdutoController {
         return service.listarTudo();
     }
 
-
-
-
-
-
-
+    @GetMapping("pageable")                     //setando uma ordenacao default, se não passar parametros
+    public Page<ProdutoDTO> listarTudoPaginacao(@PageableDefault(sort="descricao", direction = Sort.Direction.ASC, page=0, size = 10) Pageable paginacao) {
+        return service.listarTudoDTOPaginacao(paginacao);
+    }
 
 }
 
