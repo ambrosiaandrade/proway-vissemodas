@@ -14,6 +14,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
 import { AddClienteComponent } from './views/cliente/add-cliente/add-cliente.component';
 import { ListClienteComponent } from './views/cliente/list-cliente/list-cliente.component';
+import { AddEnderecoComponent } from './views/endereco/add-endereco/add-endereco.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ListClienteComponent } from './views/cliente/list-cliente/list-cliente.
     HomeComponent,
     NavbarComponent,
     FooterComponent,
+    AddEnderecoComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,9 +34,9 @@ import { ListClienteComponent } from './views/cliente/list-cliente/list-cliente.
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
