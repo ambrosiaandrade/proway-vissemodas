@@ -9,8 +9,8 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'add-produto', component: AddProdutoComponent},
   {path: 'list-produto', component: ListProdutoComponent},
-  {path: '**', redirectTo: '', pathMatch: 'full'},
-  {path: 'add-endereco', component: AddEnderecoComponent}
+  {path: 'add-endereco', component: AddEnderecoComponent},
+  {path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 
 @NgModule({
