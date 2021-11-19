@@ -12,7 +12,7 @@ export class CarrinhoComponent implements OnInit {
   ngOnInit(): void {}
 
   finalizarCompra() {
-    alert('ok');
+    // TODO: fazer a implementação
     this._router.navigate(['/finalizado']);
   }
 }

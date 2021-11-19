@@ -7,16 +7,18 @@ import { AddEnderecoComponent } from './views/endereco/add-endereco/add-endereco
 import { HomeComponent } from './views/home/home.component';
 import { AddProdutoComponent } from './views/produto/add-produto/add-produto.component';
 import { ListProdutoComponent } from './views/produto/list-produto/list-produto.component';
+import { FinalizadoComponent } from './views/finalizado/finalizado.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'add-produto', component: AddProdutoComponent},
-  {path: 'list-produto', component: ListProdutoComponent},
-  {path: 'add-cliente', component: AddClienteComponent},
-  {path: 'list-cliente', component: ListClienteComponent},
-  {path: 'add-endereco', component: AddEnderecoComponent},
-  {path: 'carrinho', component: CarrinhoComponent },
-  {path: '**', redirectTo: '', pathMatch: 'full' },
+  { path: '', component: HomeComponent },
+  { path: 'add-produto', component: AddProdutoComponent },
+  { path: 'list-produto', component: ListProdutoComponent },
+  { path: 'add-cliente', component: AddClienteComponent },
+  { path: 'list-cliente', component: ListClienteComponent },
+  { path: 'add-endereco', component: AddEnderecoComponent },
+  { path: 'carrinho', component: CarrinhoComponent },
+  { path: 'finalizado', component: FinalizadoComponent },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({

@@ -3,13 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-finalizado',
   templateUrl: './finalizado.component.html',
-  styleUrls: ['./finalizado.component.css']
+  styleUrls: ['./finalizado.component.css'],
 })
 export class FinalizadoComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
