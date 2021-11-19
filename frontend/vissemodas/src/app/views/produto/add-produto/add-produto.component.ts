@@ -8,14 +8,17 @@ import { ProdutoService } from 'src/app/services/produto.service';
 @Component({
   selector: 'app-add-produto',
   templateUrl: './add-produto.component.html',
-  styleUrls: ['./add-produto.component.css']
+  styleUrls: ['./add-produto.component.css'],
 })
 export class AddProdutoComponent implements OnInit {
-
   produtoForm: FormGroup;
 
-  constructor(private _fb: FormBuilder, private _toastr: ToastrService, 
-              private _router: Router, private _service: ProdutoService) {
+  constructor(
+    private _fb: FormBuilder,
+    private _toastr: ToastrService,
+    private _router: Router,
+    private _service: ProdutoService
+  ) {
     this.produtoForm = this._fb.group({
       // Para cada input do nosso formulário
       descricao: ['', Validators.required],
@@ -23,14 +26,15 @@ export class AddProdutoComponent implements OnInit {
       valorUnitario: ['', Validators.required],
       status: ['', Validators.required],
       imagem: ['', Validators.required],
-      categoria: ['', Validators.required]
+      categoria: ['', Validators.required],
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  addProduto(){
+  // ../../../../assets/produtos/
+
+  addProduto() {
     console.log(this.produtoForm.value);
     const PRODUTO: Produto = {
       descricao: this.produtoForm.get('descricao')?.value,
@@ -39,16 +43,15 @@ export class AddProdutoComponent implements OnInit {
       status: this.produtoForm.get('status')?.value,
       imagem: this.produtoForm.get('imagem')?.value,
       categoria: this.produtoForm.get('categoria')?.value,
-    }
+    };
 
     this._service.postProduto(PRODUTO).subscribe({
       next: (data) => {
-        console.log("Produto cadastrado");
+        console.log('Produto cadastrado');
         this._toastr.success('Cadastrado com sucesso', 'Produto');
         this._router.navigate(['']);
       },
-      error: (e) => console.log(e)
+      error: (e) => console.log(e),
     });
   }
-
 }

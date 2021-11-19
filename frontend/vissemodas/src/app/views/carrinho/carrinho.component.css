@@ -1,3 +1,7 @@
+.container {
+  height: 100vh;
+}
+
 .title {
   text-transform: uppercase;
   text-align: center;
@@ -7,9 +11,38 @@
   margin-left: 10px;
 }
 
-/*
-  TODO: desfazer o comentário depois que ajustar
-*/
-/* .card {
-  border: none;
-} */
+.col-2,
+h6,
+span {
+  color: #973e2e !important;
+}
+
+img {
+  height: 8em;
+  border-radius: 0.5em;
+}
+
+#inputQtd {
+  padding-left: 2em !important;
+}
+
+.btnExcluir {
+  margin-top: 1em;
+  background: none !important;
+}
+
+.btnExcluir:hover {
+  margin-top: 1em;
+  background: none !important;
+  color: #973e2e !important;
+}
+
+input[type="number"] {
+  background: none !important;
+}
+
+#btnFinalizarCompra {
+  width: 12em;
+  border-radius: 0.5em;
+  float: right !important;
+}

@@ -16,6 +16,7 @@ import { AddClienteComponent } from './views/cliente/add-cliente/add-cliente.com
 import { ListClienteComponent } from './views/cliente/list-cliente/list-cliente.component';
 import { AddEnderecoComponent } from './views/endereco/add-endereco/add-endereco.component';
 import { CarrinhoComponent } from './views/carrinho/carrinho.component';
+import { FinalizadoComponent } from './views/finalizado/finalizado.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CarrinhoComponent } from './views/carrinho/carrinho.component';
     FooterComponent,
     AddEnderecoComponent,
     CarrinhoComponent,
+    FinalizadoComponent,
   ],
   imports: [
     BrowserModule,
