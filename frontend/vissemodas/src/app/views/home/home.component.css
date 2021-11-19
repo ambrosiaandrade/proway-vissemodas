@@ -26,21 +26,17 @@
   background: #973e2e;
 }
 
-/* Color of placeholder */
-::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: white;
-  opacity: 1; /* Firefox */
+/* Removendo o estilo marrom nos botões do carousel*/
+.carousel-control-next,
+.carousel-control-prev {
+  background: none !important;
+  /* color: #973e2e !important; */
 }
 
-:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: white;
-}
-
-::-ms-input-placeholder {
-  /* Microsoft Edge */
-  color: white;
+.carousel-control-next:hover,
+.carousel-control-prev:hover {
+  background: #973e2e21 !important;
+  /* color: #973e2e !important; */
 }
 
 /* Display 3 itens per row */
