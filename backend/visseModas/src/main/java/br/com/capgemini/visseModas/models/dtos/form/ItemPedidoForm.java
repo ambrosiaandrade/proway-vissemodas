@@ -13,14 +13,32 @@ import java.math.BigDecimal;
 @Setter
 public class ItemPedidoForm {
 
-    private Long idProduto;
     private Long idPedido;
+    private Long idProduto;
     private Integer quantidade;
-    private BigDecimal valorTotal;
+    //private BigDecimal valorItens;
 
     public ItemPedidoForm() {
 
     }
+
+
+
+    public ItemPedido formToItemPedido(ProdutoService produtoService) {
+
+        Produto produto = produtoService.buscarPorId(idProduto);
+
+        ItemPedido itemPedido = new ItemPedido();
+
+        itemPedido.setProduto(produto);
+        itemPedido.setQuantidade(quantidade);
+        //itemPedido.setValorPorItem(valorItens);
+
+        return itemPedido;
+
+    }
+
+
 
     public ItemPedido formToItemPedido(ProdutoService produtoService, PedidoService pedidoService) {
 
@@ -32,7 +50,7 @@ public class ItemPedidoForm {
         itemPedido.setProduto(produto);
         itemPedido.setPedido(pedido);
         itemPedido.setQuantidade(quantidade);
-        itemPedido.setValorItem(valorTotal);
+        //itemPedido.setValorPorItem(valorItens);
 
         return itemPedido;
 
