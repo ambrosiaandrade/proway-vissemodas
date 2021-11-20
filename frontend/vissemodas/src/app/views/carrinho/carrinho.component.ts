@@ -8,7 +8,7 @@ import { ListProdutoComponent } from '../produto/list-produto/list-produto.compo
   styleUrls: ['./carrinho.component.css'],
 })
 export class CarrinhoComponent implements OnInit {
-  constructor(private _router: Router, private _produto: ListProdutoComponent) {
+  constructor(private _router: Router) {
   // let listarCarrinho = _produto.carrinho
 
   }
