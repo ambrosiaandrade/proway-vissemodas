@@ -53,14 +53,25 @@ export class AddProdutoComponent implements OnInit {
       categoria: this.produtoForm.get('categoria')?.value,
     };
 
-    this._service.postProduto(PRODUTO).subscribe({
-      next: (data) => {
-        console.log('Produto cadastrado');
-        this._toastr.success('Cadastrado com sucesso', 'Produto');
-        this._router.navigate(['']);
-      },
-      error: (e) => console.log(e),
-    });
+    if (this.id !== null) {
+      // Atualizar
+      this._service.putProduto(this.id, PRODUTO).subscribe({
+        next: (data) => {
+          this._toastr.info('Editado com sucesso', 'Produto');
+          this._router.navigate(['/admin-list-produto']);
+        },
+        error: (e) => console.log(e),
+      });
+    } else {
+      this._service.postProduto(PRODUTO).subscribe({
+        next: (data) => {
+          console.log('Produto cadastrado');
+          this._toastr.success('Cadastrado com sucesso', 'Produto');
+          this._router.navigate(['']);
+        },
+        error: (e) => console.log(e),
+      });
+    }
   }
 
   isEditing() {

@@ -27,7 +27,7 @@ export class ProdutoService {
     return this._http.delete(`${this.url}/${id}`);
   }
 
-  pathProduto(id: any, produto: Produto): Observable<any> {
-    return this._http.patch(`${this.url}/${id}`, produto);
+  putProduto(id: any, produto: Produto): Observable<any> {
+    return this._http.put(`${this.url}/${id}`, produto);
   }
 }
