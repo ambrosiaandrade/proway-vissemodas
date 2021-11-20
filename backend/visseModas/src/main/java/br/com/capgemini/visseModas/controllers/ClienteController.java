@@ -4,6 +4,7 @@ import br.com.capgemini.visseModas.services.ClienteService;
 import br.com.capgemini.visseModas.models.dtos.form.ClienteForm;
 import br.com.capgemini.visseModas.models.dtos.dtos.ClienteDTO;
 import br.com.capgemini.visseModas.models.entities.Cliente;
+import br.com.capgemini.visseModas.services.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,11 +25,14 @@ public class ClienteController {
 
     @Autowired
     private ClienteService service;
+    @Autowired
+    private EnderecoService enderecoService;
+
 
     @PostMapping
     public ResponseEntity<ClienteDTO> salvar(@RequestBody @Valid ClienteForm form, UriComponentsBuilder uriBuilder) {
 
-        Cliente cliente = form.formToCliente();
+        Cliente cliente = form.formToCliente(enderecoService);
         service.salvar(cliente);
 
         URI uri = uriBuilder.path("/clientes/{id}").buildAndExpand(cliente.getId()).toUri();
