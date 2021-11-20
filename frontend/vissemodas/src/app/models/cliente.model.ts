@@ -1,19 +1,24 @@
-export class Cliente{
+export class Cliente {
+  id?: number;
+  cpf?: string;
+  cnpj?: string;
+  nome: string;
+  status?: boolean;
+  tipoCliente: string;
+  endereco: number;
 
-    id?: number;
-    cpf: string;
-    cnpj: string;
-    nome: string;
-    status: boolean;
-    tipoCliente: string;
-
-    constructor(cpf: string, cnpj: string, 
-                nome: string, status: boolean, tipoCliente: string){
-        this.cpf = cpf;
-        this.cnpj = cnpj;
-        this.nome = nome;
-        this.status = status;
-        this.tipoCliente = tipoCliente;
-    }
-
+  constructor(
+    cpf: string,
+    cnpj: string,
+    nome: string,
+    tipoCliente: string,
+    endereco: number
+  ) {
+    this.cpf = cpf;
+    this.cnpj = cnpj;
+    this.nome = nome;
+    this.status = true;
+    this.tipoCliente = tipoCliente;
+    this.endereco = endereco;
+  }
 }
