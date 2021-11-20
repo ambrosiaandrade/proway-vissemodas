@@ -21,7 +21,7 @@ public class Produto {
     private Long id;
     private String descricao;
     private String tamanho;
-    private BigDecimal valorUnitario;
+    private BigDecimal valorUnitario = BigDecimal.ZERO;
     private Boolean status = true;
     private String categoria;
     private String imagem;
