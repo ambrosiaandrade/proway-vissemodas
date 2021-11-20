@@ -10,6 +10,7 @@ import { ProdutoService } from 'src/app/services/produto.service';
 export class ListProdutoComponent implements OnInit {
 
   listaProdutos: Produto[] = [];
+  carrinho: Produto[] = []
 
   constructor(private _service: ProdutoService) { }
 
@@ -25,6 +26,10 @@ export class ListProdutoComponent implements OnInit {
       },
       error: (e) => console.log(e)
     });
+  }
+
+  addToCart(produto: any){
+    this.carrinho.push(produto);
   }
 
 }
