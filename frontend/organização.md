@@ -5,37 +5,50 @@ Done: ✅
 📁 views
     - home ⌛
         // visualização dos produtos ativos - visão cliente
+		// paginação
+	- carrinho
+		// onde ficam os produtos adicionados pelo cliente
     📁 produto ⌛
         - add-produto ✅
-        ** Serviço: Get, Add e Delete
+        ** Serviço: Get, Add, Edit e Delete
         - list-produto ✅ 
+		- admin-list-produto ✅ // para poder inativar o produto
+		- edit-produto 
     📁 endereco ⌛ (Amanda)
         - add-endereco
         ** Serviço: Get, Add e Delete  
-        // Método para buscar o id do cliente
-        // Método para buscar o CEP
+        // ?? Método para buscar o id do cliente
     📁 cliente ⌛ (Rebeca)
         - add-cliente
         ** Serviço: Get, Add e Delete(inativa)
         - choose-cliente // Quem é o cliente? Antes de fazer a compra escolher qual é o cliente.
-    - carrinho 📌
-        // onde haverão os itens que o cliente quer pedir
+		// ?? Método para buscar o id do endereco
+    - carrinho ⌛
+		// Adicionar itens no carrinho
+		// Editar a quantidade
+		// Excluir
+		// Desconto
+		// Enviar a lista dos produtos para o backend
+		// Prosseguir para fechar o pedido
     - pedido 📌
         - last-pedido
+			// quem é o cliente ?
+			// Puxar o último id do pedido
         - history-pedido
+			// listar todos os pedidos
     📁 shared
         - footer ✅
-        - navbar ⌛ (95%)
+        - navbar ✅
             // Configuração do cliente   // altera senha e e-mail
-            // Configuração do admin     // listar produtos, listar clientes ...
 📁 models
     - produto ✅
-    - endereco ⌛
-    - cliente ⌛
-    - itemPedido 📌 (?)
+    - endereco ✅
+    - cliente ✅
+    - itemPedido 📌 (?) // vamos mandar uma lista com os produtos para o backend
     - pedido 📌 (?)
 📁 services
     - produto ⌛
-    - endereco ⌛
-    - cliente ⌛
+    - endereco ✅
+    - cliente ✅
+	- itemPedido
     - pedido 📌 (?)

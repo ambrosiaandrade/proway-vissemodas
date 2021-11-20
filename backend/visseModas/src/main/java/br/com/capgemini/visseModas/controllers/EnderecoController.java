@@ -53,16 +53,6 @@ public class EnderecoController {
         return service.listarTudoDTO();
     }
 
-    @GetMapping("pageable")
-    public Page<EnderecoDTO> listarTudoPaginacao(@PageableDefault(sort="nome", direction = Sort.Direction.ASC, page = 0, size = 10)Pageable paginacao){
-        return service.listarTudoDTOPaginacao(paginacao);
-    }
-
-
-
-
-
-
 }
 
 

@@ -14,6 +14,7 @@
 }
 
 #inputBuscarProduto {
+  margin-left: 50%;
   font-family: "Arial";
 }
 
@@ -25,21 +26,17 @@
   background: #973e2e;
 }
 
-/* Color of placeholder */
-::placeholder {
-  /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: white;
-  opacity: 1; /* Firefox */
+/* Removendo o estilo marrom nos botões do carousel*/
+.carousel-control-next,
+.carousel-control-prev {
+  background: none !important;
+  /* color: #973e2e !important; */
 }
 
-:-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: white;
-}
-
-::-ms-input-placeholder {
-  /* Microsoft Edge */
-  color: white;
+.carousel-control-next:hover,
+.carousel-control-prev:hover {
+  background: #973e2e21 !important;
+  /* color: #973e2e !important; */
 }
 
 /* Display 3 itens per row */
@@ -54,4 +51,40 @@
   list-style: none;
   flex: 0 0 33.333333%;
   text-align: center;
+}
+
+@media only screen and (max-width: 799px) {
+  #inputBuscarProduto {
+    margin-left: 50%;
+  }
+}
+
+@media only screen and (max-width: 699px) {
+  .listaProdutos ul li {
+    list-style: none;
+    flex: 0 0 50%;
+    text-align: center;
+  }
+
+  #inputBuscarProduto {
+    margin-left: 40%;
+  }
+}
+
+@media only screen and (max-width: 599px) {
+  #inputBuscarProduto {
+    margin-left: 30%;
+  }
+}
+
+@media only screen and (max-width: 499px) {
+  .listaProdutos ul li {
+    list-style: none;
+    flex: 0 0 100%;
+    text-align: center;
+  }
+
+  #inputBuscarProduto {
+    margin-left: 20%;
+  }
 }

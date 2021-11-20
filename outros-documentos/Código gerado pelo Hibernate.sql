@@ -1,73 +1,66 @@
 -- Código gerado pelo Hibernate
 -- spring.jpa.show-sql=true
-
-CREATE TABLE cliente (
-    id bigint NOT NULL AUTO_INCREMENT,
+-- prettier-ignore
+create table cliente (
+    id bigint not null auto_increment,
     cnpj varchar(255),
     cpf varchar(255),
     nome varchar(255),
-    tipo_cliente integer,
-    PRIMARY KEY (id)
-) ENGINE = InnoDB 
-
-CREATE TABLE endereco (
-    id bigint NOT NULL AUTO_INCREMENT,
+    tipo_cliente varchar(255),
+    primary key (id)
+) engine = InnoDB --
+create table endereco (
+    id bigint not null auto_increment,
     bairro varchar(255),
     cep varchar(255),
     cidade varchar(255),
-    rua varchar(255),
-    cliente_id bigint,
-    PRIMARY KEY (id)
-) ENGINE = InnoDB 
-
-CREATE TABLE item_pedido (
-    id bigint NOT NULL AUTO_INCREMENT,
+    estado varchar(255),
+    logradouro varchar(255),
+    numero integer,
+    primary key (id)
+) engine = InnoDB --
+create table item_pedido (
+    id bigint not null auto_increment,
     quantidade integer,
-    valor_total double precision,
+    valor_item decimal(19, 2),
     pedido_id bigint,
     produto_id bigint,
-    PRIMARY KEY (id)
-) ENGINE = InnoDB 
-
-CREATE TABLE pedido (
-    id bigint NOT NULL AUTO_INCREMENT,
+    primary key (id)
+) engine = InnoDB --
+create table pedido (
+    id bigint not null auto_increment,
     data date,
     percentual_desconto double precision,
     quantidade_total integer,
     situacao varchar(255),
-    valor_total double precision,
+    valor_total decimal(19, 2),
     cliente_id bigint,
     endereco_entrega_id bigint,
-    PRIMARY KEY (id)
-) ENGINE = InnoDB 
-
-CREATE TABLE produto (
-    id bigint NOT NULL AUTO_INCREMENT,
+    primary key (id)
+) engine = InnoDB --
+create table produto (
+    id bigint not null auto_increment,
+    categoria varchar(255),
     descricao varchar(255),
-    STATUS bit,
+    imagem varchar(255),
+    status bit,
     tamanho varchar(255),
-    valor_unitario double precision,
-    PRIMARY KEY (id)
-) ENGINE = InnoDB
-
-
-ALTER TABLE
-    endereco
-ADD
-    CONSTRAINT FK8s7ivtl4foyhrfam9xqom73n9 FOREIGN KEY (cliente_id) REFERENCES cliente (id)
-ALTER TABLE
+    valor_unitario decimal(19, 2),
+    primary key (id)
+) engine = InnoDB --
+alter table
     item_pedido
-ADD
-    CONSTRAINT FK60ym08cfoysa17wrn1swyiuda FOREIGN KEY (pedido_id) REFERENCES pedido (id)
-ALTER TABLE
+add
+    constraint FK60ym08cfoysa17wrn1swyiuda foreign key (pedido_id) references pedido (id) --
+alter table
     item_pedido
-ADD
-    CONSTRAINT FKtk55mn6d6bvl5h0no5uagi3sf FOREIGN KEY (produto_id) REFERENCES produto (id)
-ALTER TABLE
+add
+    constraint FKtk55mn6d6bvl5h0no5uagi3sf foreign key (produto_id) references produto (id) --
+alter table
     pedido
-ADD
-    CONSTRAINT FK30s8j2ktpay6of18lbyqn3632 FOREIGN KEY (cliente_id) REFERENCES cliente (id)
-ALTER TABLE
+add
+    constraint FK30s8j2ktpay6of18lbyqn3632 foreign key (cliente_id) references cliente (id) --
+alter table
     pedido
-ADD
-    CONSTRAINT FKcrxxe5rpllxbh0sfi4a6rwphb FOREIGN KEY (endereco_entrega_id) REFERENCES endereco (id)
+add
+    constraint FKcrxxe5rpllxbh0sfi4a6rwphb foreign key (endereco_entrega_id) references endereco (id)

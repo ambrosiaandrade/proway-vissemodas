@@ -1,15 +1,26 @@
 <div class="container mt-5">
     <div class="row">
-        <div class="card">
-            <h5 class="mt-2">LISTA PRODUTO</h5>
-            <div class="card-body">
-                <table class="table table-hover" *ngIf="listaProdutos.length > 0">
+            <div class="cards" *ngIf="listaProdutos.length > 0">
+
+                <div class="card" style="width: 18rem;" *ngFor="let produto of listaProdutos">
+                    <img src={{produto.imagem}} alt={{produto.descricao}} class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{produto.descricao}}</h5>
+                        <p class="card-text"> tamanho: {{ produto.tamanho }}</p>
+                        <p class="card-text">{{ produto.valorUnitario | currency:'BRL' }}</p>
+                        <button href="#" class="btn btn-primary" (click)="addToCart(produto)">Adicionar ao carrinho</button>
+                    </div>
+                </div>
+
+                <!-- <table class="table table-hover" >
                     <thead>
                         <tr>
                             <th>Id</th>
                             <th>descrição</th>
                             <th>tamanho</th>
                             <th>valor unitário</th>
+                            <th>categoria</th>
+                            <th>imagem</th>
                             <th>status</th>
                         </tr>
                     </thead>
@@ -19,14 +30,14 @@
                             <td> {{ produto.descricao }} </td>
                             <td> {{ produto.tamanho }} </td>
                             <td> {{ produto.valorUnitario  | currency:'BRL' }} </td>
+                            <td> {{ produto.categoria }} </td>
                             <td> {{ produto.status == true ? "Ativo" : "Inativo" }} </td>
                         </tr>
                     </tbody>
-                </table>
+                </table> -->
                 <h5 class="mt-3 text-danger" *ngIf="listaProdutos.length == 0">
                     Não há produtos cadastrados
                 </h5>
-            </div>
         </div>
     </div>
 </div>

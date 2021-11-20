@@ -1,0 +1,51 @@
+.title {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.text-danger {
+  margin-left: 10px;
+}
+
+.col-2,
+h6,
+span {
+  color: #973e2e !important;
+}
+
+.card-body {
+  height: 80vh !important;
+}
+
+img {
+  height: 8em;
+  border-radius: 0.5em;
+}
+
+#inputQtd {
+  padding-left: 2em !important;
+}
+
+.btnExcluir {
+  /* margin-top: 1em; */
+  background: none !important;
+}
+
+.btnExcluir:hover {
+  /* margin-top: 1em; */
+  background: none !important;
+  color: #973e2e !important;
+}
+
+input[type="number"] {
+  background: none !important;
+}
+
+#btnFinalizarCompra  {
+  width: 12em;
+  border-radius: 0.5em;
+  position: fixed;
+  bottom: 10rem;
+  right: 10rem;
+  z-index: 9999;
+}

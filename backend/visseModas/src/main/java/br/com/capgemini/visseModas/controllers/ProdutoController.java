@@ -1,11 +1,16 @@
 package br.com.capgemini.visseModas.controllers;
 
+import br.com.capgemini.visseModas.models.dtos.dtos.PedidoDTO;
 import br.com.capgemini.visseModas.models.dtos.dtos.ProdutoDTO;
 import br.com.capgemini.visseModas.models.dtos.form.ProdutoForm;
 import br.com.capgemini.visseModas.models.dtos.update.ProdutoUpdate;
 import br.com.capgemini.visseModas.services.ProdutoService;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -31,7 +36,7 @@ public class ProdutoController {
         return ResponseEntity.created(uri).body(new ProdutoDTO(produto));
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<ProdutoDTO> alterar(@PathVariable Long id, @RequestBody @Valid ProdutoUpdate form, UriComponentsBuilder uriBuilder ) {
 
         Produto produto = form.produtoUpdateToProduto();
@@ -49,7 +54,7 @@ public class ProdutoController {
         return service.inativar(id); //chamar o deletar e decidir no service se deleta ou nao
     }
 
-    //buscar cliente por id
+    //buscar produto por id
     @GetMapping("/{id}")
     public ResponseEntity<ProdutoDTO> detalhar(@PathVariable Long id) {
         return service.detalhar(id);
@@ -66,12 +71,10 @@ public class ProdutoController {
         return service.listarTudo();
     }
 
-
-
-
-
-
-
+    @GetMapping("pageable")                     //setando uma ordenacao default, se não passar parametros
+    public Page<ProdutoDTO> listarTudoPaginacao(@PageableDefault(sort="descricao", direction = Sort.Direction.ASC, page=0, size = 10) Pageable paginacao) {
+        return service.listarTudoDTOPaginacao(paginacao);
+    }
 
 }
 

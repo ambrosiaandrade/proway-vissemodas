@@ -36,10 +36,6 @@ public class EnderecoDTO {
         return listaEnderecos.stream().map(EnderecoDTO::new).collect(Collectors.toList());
     }
 
-    public static Page<EnderecoDTO> converterPaginacao(Page<Endereco> listaEnderecos) {
-        return listaEnderecos.map(EnderecoDTO::new);
-    }
-
 
     public Endereco dtoToEndereco() {
 
