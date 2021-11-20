@@ -1,12 +1,30 @@
 .card-body{
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
 }
 .cards{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .card{
     margin: 5px;
+    text-align: center;
+    height: 500px;
+    display: flex;
+    justify-content: space-between !important;
+    align-items: center;
+    align-content: space-between;
+;
+}
+img{
+    height:288px;
+    width: auto;
+    object-fit: cover;
+
+}
+h5{
     text-align: center;
 }

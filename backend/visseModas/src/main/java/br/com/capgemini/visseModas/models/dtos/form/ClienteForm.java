@@ -1,6 +1,7 @@
 package br.com.capgemini.visseModas.models.dtos.form;
 
 import br.com.capgemini.visseModas.models.entities.*;
+import br.com.capgemini.visseModas.services.EnderecoService;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
@@ -21,18 +22,23 @@ public class ClienteForm {
     @NotEmpty(message = "O tipo do cliente é obrigatório.")
     private String tipoCliente;
 
+    private Long idEndereco;
+
     public ClienteForm(){
 
     }
 
     //pega os dados do DTO e cria em um cliente
-    public Cliente formToCliente() {
+    public Cliente formToCliente(EnderecoService enderecoService) {
+
+        Endereco endereco = enderecoService.buscarPorId(idEndereco);
 
         Cliente cliente = new Cliente();
 
         cliente.setNome(nome);
         cliente.setCpf(cpf);
         cliente.setCnpj(cnpj);
+        cliente.setEndereco(endereco);
         cliente.setTipoCliente(TipoCliente.valueOf(tipoCliente));
 
         return cliente;

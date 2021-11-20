@@ -18,6 +18,10 @@ th {
   border: none !important;
 }
 
+.card-body {
+  height: 100vh !important;
+}
+
 .title {
   text-transform: uppercase !important;
   text-align: center !important;
@@ -52,7 +56,7 @@ input[type="text"],
 input[type="number"],
 textarea,
 textarea:focus {
-  font-family: "Arial";
+  font-family: "Arial" !important;
   border-radius: 1em !important;
   background-color: #ffd392 !important;
   border: none !important;
@@ -60,13 +64,15 @@ textarea:focus {
 }
 
 /* Botões */
-button {
+button,
+.btn {
   background-color: #d26e56 !important;
   color: #ffd392 !important;
   border: none !important;
 }
 
-button:hover {
+button:hover,
+.btn:hover {
   background-color: #973e2e !important;
   color: #ffd392 !important;
 }
@@ -91,4 +97,14 @@ button:disabled {
 ::-ms-input-placeholder {
   /* Microsoft Edge */
   color: #973e2e !important;
+}
+
+/* Cor de fundo do autocomplete */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #ffd392 inset !important;
+}
+
+/* Cor do texto do autocomplete */
+input:-webkit-autofill {
+  -webkit-text-fill-color: #973e2e !important;
 }

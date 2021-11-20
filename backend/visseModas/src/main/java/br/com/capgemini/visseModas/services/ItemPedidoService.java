@@ -1,15 +1,18 @@
 package br.com.capgemini.visseModas.services;
 
 import br.com.capgemini.visseModas.models.dtos.dtos.ItemPedidoDTO;
-import br.com.capgemini.visseModas.models.dtos.update.ItemPedidoUpdate;
 import br.com.capgemini.visseModas.models.entities.ItemPedido;
+import br.com.capgemini.visseModas.models.entities.Pedido;
+import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.models.repositories.ItemPedidoRepository;
+import br.com.capgemini.visseModas.models.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,22 +21,43 @@ public class ItemPedidoService {
 
     @Autowired
     private ItemPedidoRepository itemPedidoRepository;
+    @Autowired
+    private ProdutoRepository produtoRepository;
+
+    //atualiza valor do item
+    public BigDecimal calcularValorPorItem(ItemPedido itemPedido){
+
+        //pego qual é o produto
+        Produto produto = produtoRepository.getById(itemPedido.getProduto().getId());
+        //atribui ao valor total dos itens (valor produto * quantidade)
+        itemPedido.setValorPorItem(produto.getValorUnitario().multiply(new BigDecimal(itemPedido.getQuantidade())));
+
+        return itemPedido.getValorPorItem();
+    }
+
+    //add itens na lista de pedidos
+    public List<ItemPedido> adicionarItem(Pedido pedido, ItemPedido item){
+
+        if(item.getProduto().getStatus() == true){
+            item.setPedido(pedido);
+            item.getPedido().getListaItens().add(item);
+            item.getPedido().getValorTotal().add(item.getValorPorItem());
+        }
+
+        return pedido.getListaItens();
+    }
+
+    //remove itens da lista de pedidos
+    public List<ItemPedido> removerItem(ItemPedido item){
+        item.getPedido().getValorTotal().subtract(item.getValorPorItem());
+        item.getPedido().getListaItens().remove(item);
+
+        return item.getPedido().getListaItens();
+    }
+
 
     public void salvar(ItemPedido itemPedido){
         itemPedidoRepository.save(itemPedido);
-    }
-
-    public ResponseEntity<ItemPedidoUpdate> alterar(Long id, ItemPedidoUpdate form){
-
-        Optional<ItemPedido> optional = itemPedidoRepository.findById(id);
-
-        if(!optional.isPresent()){
-            ItemPedido itemPedido = form.atualizar(id,itemPedidoRepository);
-            itemPedidoRepository.save(itemPedido);
-            return ResponseEntity.ok(new ItemPedidoUpdate(itemPedido));
-        }
-
-        return ResponseEntity.notFound().build();
     }
 
     public ResponseEntity<ItemPedidoDTO> detalhar(Long id){
@@ -44,51 +68,15 @@ public class ItemPedidoService {
         return ResponseEntity.notFound().build();
     }
 
-
-
-    /*public void deletar(Long id){
-        itemPedidoRepository.deleteById(id);
-    }*/
-    /*public List<ItemPedido> listarTudo(){
-        return itemPedidoRepository.findAll();
-    }*/
-
-    // find com DTO
-    public List<ItemPedidoDTO> listarTudoDTO(){
-        List<ItemPedido> listaItemPedido = itemPedidoRepository.findAll();
+    public List<ItemPedidoDTO> listarTudoDTO(Pedido pedido){
+        List<ItemPedido> listaItemPedido = itemPedidoRepository.findByPedidoId(pedido.getId());
         return ItemPedidoDTO.converter(listaItemPedido);
     }
 
-    public ResponseEntity<?> inativar(Long id) {
-        return null;
-    }
-
-    public Page<ItemPedidoDTO> listarTudoDTOPaginacao(Pageable paginacao) {
-        Page<ItemPedido> listaItemPedido = itemPedidoRepository.findAll(paginacao);
-        return ItemPedidoDTO.converterPaginacao(listaItemPedido);
-    }
-
-    /*public ItemPedido alterar(Long id, @Valid ItemPedidoUpdate form){
-
-        // recebe do banco de dados
-        Optional<ItemPedido> itemPedidoBuscada = repository.findById(id);
-
-        //verificando se existe
-        if(!itemPedidoBuscada.isPresent()){
-            return null;
-        }
-        // converte o Optional
-        ItemPedido itemPedido = itemPedidoBuscada.get();
-
-        // criando novo objeto
-        ItemPedido itemPedidoNovo = new ItemPedido();
-
-        // setando
-        itemPedidoNovo.setProduto(itemPedido.getProduto());
-        itemPedidoNovo.setQuantidade(itemPedido.getQuantidade());
-        itemPedidoNovo.setValorTotal(itemPedido.getValorTotal());
-        repository.save(itemPedido);
-        return itemPedido;
-    }*/
-
+    //todo ajustar
+//    public Page<ItemPedidoDTO> listarTudoDTOPaginacao(Pageable paginacao) {
+//        Page<ItemPedido> listaItemPedido = itemPedidoRepository.findAll(paginacao);
+//        return ItemPedidoDTO.converterPaginacao(listaItemPedido);
+//    }
+//
 }

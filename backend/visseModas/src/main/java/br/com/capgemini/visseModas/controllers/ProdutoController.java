@@ -36,7 +36,7 @@ public class ProdutoController {
         return ResponseEntity.created(uri).body(new ProdutoDTO(produto));
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<ProdutoDTO> alterar(@PathVariable Long id, @RequestBody @Valid ProdutoUpdate form, UriComponentsBuilder uriBuilder ) {
 
         Produto produto = form.produtoUpdateToProduto();
@@ -54,7 +54,7 @@ public class ProdutoController {
         return service.inativar(id); //chamar o deletar e decidir no service se deleta ou nao
     }
 
-    //buscar cliente por id
+    //buscar produto por id
     @GetMapping("/{id}")
     public ResponseEntity<ProdutoDTO> detalhar(@PathVariable Long id) {
         return service.detalhar(id);

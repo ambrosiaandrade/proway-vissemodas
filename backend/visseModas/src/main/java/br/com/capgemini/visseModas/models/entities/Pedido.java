@@ -24,11 +24,8 @@ public class Pedido {
     private Long id;
     private LocalDate data = LocalDate.now();
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Cliente cliente;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Endereco enderecoEntrega;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<ItemPedido> listaItens = new ArrayList<>();
@@ -36,20 +33,9 @@ public class Pedido {
     @Enumerated(EnumType.STRING)
     private Situacao situacao = Situacao.ABERTO;
 
-    private BigDecimal valorTotal;
+    private BigDecimal valorTotal = BigDecimal.ZERO;
     private Integer quantidadeTotal;
     private Double percentualDesconto;
-
-
-    public void adicionarItem(ItemPedido item){
-
-        if(item.getProduto().getStatus() == true){
-            item.setPedido(this);
-            this.getListaItens().add(item);
-            this.valorTotal = this.valorTotal.add(item.getValorItem());
-        }
-
-    }
 
 
 

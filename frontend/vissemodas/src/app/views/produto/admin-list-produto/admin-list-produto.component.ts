@@ -3,15 +3,12 @@ import { Produto } from 'src/app/models/produto.model';
 import { ProdutoService } from 'src/app/services/produto.service';
 
 @Component({
-  selector: 'app-list-produto',
-  templateUrl: './list-produto.component.html',
-  styleUrls: ['./list-produto.component.css'],
+  selector: 'app-admin-list-produto',
+  templateUrl: './admin-list-produto.component.html',
+  styleUrls: ['./admin-list-produto.component.css'],
 })
-export class ListProdutoComponent implements OnInit {
+export class AdminListProdutoComponent implements OnInit {
   listaProdutos: Produto[] = [];
-  carrinho: Produto[] = [];
-
-  ultimoIdProduto: number = 0;
 
   constructor(private _service: ProdutoService) {}
 
@@ -24,20 +21,18 @@ export class ListProdutoComponent implements OnInit {
       next: (data) => {
         //console.log(data);
         this.listaProdutos = data;
-        this.setUltimoIdProduto();
       },
       error: (e) => console.log(e),
     });
   }
 
-  addToCart(produto: any) {
-    this.carrinho.push(produto);
-  }
-
-  // Atribuindo o id do último produto
-  setUltimoIdProduto() {
-    this.ultimoIdProduto = this.listaProdutos.length;
-    console.log('Id último produto');
-    console.log(this.ultimoIdProduto);
+  desativarProduto(id: any) {
+    this._service.deleteProduto(id).subscribe({
+      next: (data) => {
+        console.log('Produto deletado');
+        this.listarProdutos();
+      },
+      error: (e) => console.log(e),
+    });
   }
 }
