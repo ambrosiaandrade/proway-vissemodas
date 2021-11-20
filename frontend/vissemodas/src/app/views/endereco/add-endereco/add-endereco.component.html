@@ -20,17 +20,18 @@
                   class="form-control"
                   placeholder="Informe o CEP"
                   (focusout)="consultaCEP()"
+                  mask="00.000-000"
                 />
               </div>
               <div
-              class="text-danger"
-              *ngIf="
-                enderecoForm.get('cep')?.hasError('required') &&
-                enderecoForm.get('cep')?.touched
-              "
-            >
-              <span>Campo obrigatório</span>
-            </div>
+                class="text-danger"
+                *ngIf="
+                  enderecoForm.get('cep')?.hasError('required') &&
+                  enderecoForm.get('cep')?.touched
+                "
+              >
+                <span>Campo obrigatório</span>
+              </div>
             </div>
 
             <!-- LOGRADOURO -->
@@ -39,19 +40,19 @@
               <input
                 formControlName="logradouro"
                 type="text"
-                  placeholder="Informe o logradouro"
-                  class="form-control"
+                placeholder="Informe o logradouro"
+                class="form-control"
                 id="inputImagem"
               />
               <div
-              class="text-danger"
-              *ngIf="
-                enderecoForm.get('logradouro')?.hasError('required') &&
-                enderecoForm.get('logradouro')?.touched
-              "
-            >
-              <span>Campo obrigatório</span>
-            </div>
+                class="text-danger"
+                *ngIf="
+                  enderecoForm.get('logradouro')?.hasError('required') &&
+                  enderecoForm.get('logradouro')?.touched
+                "
+              >
+                <span>Campo obrigatório</span>
+              </div>
             </div>
             <div class="mt-3 row">
               <!-- CIDADE -->
@@ -65,14 +66,14 @@
                   id="inputCidade"
                 />
                 <div
-                class="text-danger"
-                *ngIf="
-                  enderecoForm.get('cidade')?.hasError('required') &&
-                  enderecoForm.get('cidade')?.touched
-                "
-              >
-                <span>Campo obrigatório</span>
-              </div>
+                  class="text-danger"
+                  *ngIf="
+                    enderecoForm.get('cidade')?.hasError('required') &&
+                    enderecoForm.get('cidade')?.touched
+                  "
+                >
+                  <span>Campo obrigatório</span>
+                </div>
               </div>
 
               <!-- ESTADO -->
@@ -87,14 +88,14 @@
                 />
               </div>
               <div
-              class="text-danger"
-              *ngIf="
-                enderecoForm.get('estado')?.hasError('required') &&
-                enderecoForm.get('estado')?.touched
-              "
-            >
-              <span>Campo obrigatório</span>
-            </div>
+                class="text-danger"
+                *ngIf="
+                  enderecoForm.get('estado')?.hasError('required') &&
+                  enderecoForm.get('estado')?.touched
+                "
+              >
+                <span>Campo obrigatório</span>
+              </div>
             </div>
 
             <div class="mt-3 row">
@@ -109,14 +110,14 @@
                   id="inputBairro"
                 />
                 <div
-                class="text-danger"
-                *ngIf="
-                  enderecoForm.get('bairro')?.hasError('required') &&
-                  enderecoForm.get('bairro')?.touched
-                "
-              >
-                <span>Campo obrigatório</span>
-              </div>
+                  class="text-danger"
+                  *ngIf="
+                    enderecoForm.get('bairro')?.hasError('required') &&
+                    enderecoForm.get('bairro')?.touched
+                  "
+                >
+                  <span>Campo obrigatório</span>
+                </div>
               </div>
               <!-- NUMERO -->
               <div class="col-4">
@@ -130,20 +131,24 @@
                 />
               </div>
               <div
-              class="text-danger"
-              *ngIf="
-                enderecoForm.get('numero')?.hasError('required') &&
-                enderecoForm.get('numero')?.touched
-              "
-            >
-              <span>Campo obrigatório</span>
-            </div>
+                class="text-danger"
+                *ngIf="
+                  enderecoForm.get('numero')?.hasError('required') &&
+                  enderecoForm.get('numero')?.touched
+                "
+              >
+                <span>Campo obrigatório</span>
+              </div>
             </div>
 
             <!-- BOTÕES -->
             <div class="mt-5 mb-3">
               <button routerLink="" class="btn btn-secondary">Voltar</button>
-              <button type="submit" class="btn btn-secondary float-end" [disabled]="enderecoForm.invalid">
+              <button
+                type="submit"
+                class="btn btn-secondary float-end"
+                [disabled]="enderecoForm.invalid"
+              >
                 Cadastrar
               </button>
             </div>
