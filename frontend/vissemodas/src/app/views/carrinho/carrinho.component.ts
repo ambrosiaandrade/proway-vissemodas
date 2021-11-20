@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ListProdutoComponent } from '../produto/list-produto/list-produto.component';
 
 @Component({
   selector: 'app-carrinho',
@@ -7,8 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./carrinho.component.css'],
 })
 export class CarrinhoComponent implements OnInit {
-  constructor(private _router: Router) {}
+  constructor(private _router: Router, private _produto: ListProdutoComponent) {
+  // let listarCarrinho = _produto.carrinho
 
+  }
+  
   ngOnInit(): void {}
 
   finalizarCompra() {
