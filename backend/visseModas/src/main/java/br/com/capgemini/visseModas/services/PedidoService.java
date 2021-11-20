@@ -3,8 +3,10 @@ package br.com.capgemini.visseModas.services;
 import br.com.capgemini.visseModas.models.dtos.dtos.ClienteDTO;
 import br.com.capgemini.visseModas.models.dtos.dtos.PedidoDTO;
 import br.com.capgemini.visseModas.models.entities.Cliente;
+import br.com.capgemini.visseModas.models.entities.ItemPedido;
 import br.com.capgemini.visseModas.models.entities.Pedido;
 import br.com.capgemini.visseModas.models.entities.Situacao;
+import br.com.capgemini.visseModas.models.repositories.ItemPedidoRepository;
 import br.com.capgemini.visseModas.models.repositories.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,6 +23,33 @@ public class PedidoService {
 
     @Autowired
     private PedidoRepository pedidoRepository;
+    @Autowired
+    private ItemPedidoRepository itemPedidoRepository;
+
+
+    //add itens na lista de pedidos
+    public List<ItemPedido> adicionarItem(ItemPedido item){
+
+        item.getValorPorItem();
+
+        if(item.getProduto().getStatus() == true){
+            item.getPedido().getListaItens().add(item);
+            item.getPedido().getValorTotal().add(item.getValorPorItem());
+        }
+
+        return item.getPedido().getListaItens();
+    }
+
+    //remove itens da lista de pedidos
+    public List<ItemPedido> removerItem(ItemPedido item){
+        item.getPedido().getValorTotal().subtract(item.getValorPorItem());
+        item.getPedido().getListaItens().remove(item);
+
+        return item.getPedido().getListaItens();
+    }
+
+
+
 
     public void salvar(Pedido pedido){
         pedidoRepository.save(pedido);
@@ -53,6 +82,12 @@ public class PedidoService {
         List<Pedido> listaPedidos = pedidoRepository.findAll();
         return PedidoDTO.converter(listaPedidos);
     }
+
+//    public List<PedidoDTO> listarTudoPersonalizada(){
+//        List<Pedido> listaPedidos = itemPedidoRepository.listaItensPersonalizada();
+//        return PedidoDTO.converter(listaPedidos);
+//    }
+
 
     public BigDecimal calcularDesconto(Pedido pedido, BigDecimal percentualDesconto){
         if(pedido.getSituacao().equals("ABERTO")) {

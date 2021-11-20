@@ -25,8 +25,6 @@ import java.util.Optional;
 @Service
 public class ProdutoService {
 
-    // Não deve ser possível excluir um produto se ele estiver associado a algum pedido
-
     @Autowired // injeção de dependência
     private ProdutoRepository produtoRepository;
 

@@ -26,7 +26,7 @@ public class ItemPedidoDTO {
         this.idProduto = itemPedido.getProduto().getId();
         this.idPedido = itemPedido.getPedido().getId();
         this.quantidade = itemPedido.getQuantidade();
-        this.valorTotal = itemPedido.getValorItem();
+        this.valorTotal = itemPedido.getValorPorItem();
     }
 
     public static List<ItemPedidoDTO> converter (List<ItemPedido> listaItemPedido){
