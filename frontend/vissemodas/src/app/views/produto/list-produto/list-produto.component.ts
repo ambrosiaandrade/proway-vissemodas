@@ -21,7 +21,7 @@ export class ListProdutoComponent implements OnInit {
   listarProdutos() {
     return this._service.getProdutos().subscribe({
       next: (data) => {
-        console.log(data);
+        //console.log(data);
         this.listaProdutos = data;
       },
       error: (e) => console.log(e)
