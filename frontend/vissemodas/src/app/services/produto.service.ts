@@ -4,23 +4,30 @@ import { Observable } from 'rxjs';
 import { Produto } from '../models/produto.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class ProdutoService { 
-
+export class ProdutoService {
   private readonly url = 'http://localhost:8080/produtos';
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {}
 
-  getProdutos(): Observable<any>{
+  getOneProduto(id: any): Observable<any> {
+    return this._http.get(`${this.url}/${id}`);
+  }
+
+  getProdutos(): Observable<any> {
     return this._http.get(this.url);
   }
 
-  postProduto(produto: Produto): Observable<any>{
+  postProduto(produto: Produto): Observable<any> {
     return this._http.post(this.url, produto);
   }
 
-  deleteProduto(id: any):Observable<any>{
+  deleteProduto(id: any): Observable<any> {
     return this._http.delete(`${this.url}/${id}`);
+  }
+
+  pathProduto(id: any, produto: Produto): Observable<any> {
+    return this._http.patch(`${this.url}/${id}`, produto);
   }
 }

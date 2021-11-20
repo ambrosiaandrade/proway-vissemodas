@@ -1,3 +1,4 @@
+use vissemodas;
 
 insert into produto(descricao, tamanho, valor_unitario, categoria, imagem, status) values 
 ('calça jogger preta', '38', 130.00, 'calças', 'assets/produtos/calca-1.png', 1),
@@ -21,3 +22,6 @@ insert into produto(descricao, tamanho, valor_unitario, categoria, imagem, statu
 ('mocassim verde musgo', 40, 140.00, 'sapatos', 'assets/produtos/sapato-2.png', 1),
 ('sapato social marrom', 36, 110.00, 'sapatos', 'assets/produtos/sapato-3.png', 1),
 ('sapato boneca nude', 36, 110.00, 'sapatos', 'assets/produtos/sapato-4.png', 1);
+
+-- Ativando os produtos
+update produto set status=1 where id in(1,2,3,4,5,6,7,8,9,10,11,12);

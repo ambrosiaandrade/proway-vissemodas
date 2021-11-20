@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Produto } from 'src/app/models/produto.model';
 import { ProdutoService } from 'src/app/services/produto.service';
@@ -13,11 +13,16 @@ import { ProdutoService } from 'src/app/services/produto.service';
 export class AddProdutoComponent implements OnInit {
   produtoForm: FormGroup;
 
+  title: string = 'Cadastrar';
+  btn_text: string = 'Cadastrar';
+  id: any;
+
   constructor(
     private _fb: FormBuilder,
     private _toastr: ToastrService,
     private _router: Router,
-    private _service: ProdutoService
+    private _service: ProdutoService,
+    private _aRouter: ActivatedRoute
   ) {
     this.produtoForm = this._fb.group({
       // Para cada input do nosso formulário
@@ -28,9 +33,12 @@ export class AddProdutoComponent implements OnInit {
       imagem: ['', Validators.required],
       categoria: ['', Validators.required],
     });
+    this.id = this._aRouter.snapshot.paramMap.get('id');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isEditing();
+  }
 
   // ../../../../assets/produtos/
 
@@ -53,5 +61,27 @@ export class AddProdutoComponent implements OnInit {
       },
       error: (e) => console.log(e),
     });
+  }
+
+  isEditing() {
+    if (this.id !== null) {
+      this.title = 'Editar';
+      this.btn_text = 'Editar';
+
+      this._service.getOneProduto(this.id).subscribe({
+        next: (data) => {
+          // Atualizando os valores no produtoForm
+          this.produtoForm.patchValue({
+            descricao: data.descricao,
+            tamanho: data.tamanho,
+            valorUnitario: data.valorUnitario,
+            status: data.status,
+            imagem: data.imagem,
+            categoria: data.categoria,
+          });
+        },
+        error: (e) => console.log(e),
+      });
+    }
   }
 }

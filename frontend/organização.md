@@ -12,8 +12,8 @@ Done: ✅
         - add-produto ✅
         ** Serviço: Get, Add, Edit e Delete
         - list-produto ✅ 
+		- admin-list-produto ✅ // para poder inativar o produto
 		- edit-produto 
-		// delete --> inativar
     📁 endereco ⌛ (Amanda)
         - add-endereco
         ** Serviço: Get, Add e Delete  

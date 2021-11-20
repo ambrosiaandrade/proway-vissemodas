@@ -56,7 +56,7 @@ input[type="text"],
 input[type="number"],
 textarea,
 textarea:focus {
-  font-family: "Arial";
+  font-family: "Arial" !important;
   border-radius: 1em !important;
   background-color: #ffd392 !important;
   border: none !important;
@@ -64,13 +64,15 @@ textarea:focus {
 }
 
 /* Botões */
-button, .btn {
+button,
+.btn {
   background-color: #d26e56 !important;
   color: #ffd392 !important;
   border: none !important;
 }
 
-button:hover, .btn:hover {
+button:hover,
+.btn:hover {
   background-color: #973e2e !important;
   color: #ffd392 !important;
 }
