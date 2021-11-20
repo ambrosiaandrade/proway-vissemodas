@@ -20,6 +20,7 @@ import { AddEnderecoComponent } from './views/endereco/add-endereco/add-endereco
 import { CarrinhoComponent } from './views/carrinho/carrinho.component';
 import { FinalizadoComponent } from './views/finalizado/finalizado.component';
 import { AdminListProdutoComponent } from './views/produto/admin-list-produto/admin-list-produto.component';
+import { HistoryPedidoComponent } from './views/pedido/history-pedido/history-pedido.component';
 
 // Mask
 import { NgxMaskModule } from 'ngx-mask';
@@ -38,6 +39,7 @@ import { NgxMaskModule } from 'ngx-mask';
     CarrinhoComponent,
     FinalizadoComponent,
     AdminListProdutoComponent,
+    HistoryPedidoComponent,
   ],
   imports: [
     BrowserModule,

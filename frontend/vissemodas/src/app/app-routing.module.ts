@@ -9,6 +9,7 @@ import { AddProdutoComponent } from './views/produto/add-produto/add-produto.com
 import { ListProdutoComponent } from './views/produto/list-produto/list-produto.component';
 import { FinalizadoComponent } from './views/finalizado/finalizado.component';
 import { AdminListProdutoComponent } from './views/produto/admin-list-produto/admin-list-produto.component';
+import { HistoryPedidoComponent } from './views/pedido/history-pedido/history-pedido.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'add-endereco', component: AddEnderecoComponent },
   { path: 'carrinho', component: CarrinhoComponent },
   { path: 'finalizado', component: FinalizadoComponent },
+  { path: 'history-pedido', component: HistoryPedidoComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
