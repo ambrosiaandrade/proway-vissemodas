@@ -17,6 +17,14 @@ export class AddClienteComponent implements OnInit {
 
   idEndereco: number = 0;
   listEnderecos: Endereco[] = [];
+  // lastEndereco: Endereco = {
+  //   cep: '',
+  //   estado: '',
+  //   cidade: '',
+  //   bairro: '',
+  //   logradouro: '',
+  //   numero: 0,
+  // };
 
   constructor(
     private _fb: FormBuilder,
@@ -64,18 +72,32 @@ export class AddClienteComponent implements OnInit {
     });
   }
 
+  // getLastEnderecoObject(): void {
+  //   this._serviceEndereco.getOneEndereco(this.idEndereco).subscribe({
+  //     next: (data) => {
+  //       this.lastEndereco.cep = data.cep;
+  //       this.lastEndereco.estado = data.estado;
+  //       this.lastEndereco.cidade = data.cidade;
+  //       this.lastEndereco.bairro = data.bairro;
+  //       this.lastEndereco.logradouro = data.logradouro;
+  //       this.lastEndereco.numero = data.numero;
+  //     },
+  //     error: (e) => console.log(e),
+  //   });
+  // }
+
   addCliente() {
     //console.log(this.clienteForm.value);
+
+    // this.getLastEnderecoObject();
 
     // Verificando qual o tipo de cliente
     let tipoDoCliente = this.clienteForm.get('tipoCliente')?.value;
     // Atribuindo alguns valores ao cliente
     let CLIENTE: Cliente = {
       nome: this.clienteForm.get('nome')?.value,
-      cpf: '',
-      cnpj: '',
       tipoCliente: '',
-      endereco: this.idEndereco,
+      idEndereco: this.idEndereco,
     };
 
     // Atribuindo o restante dos valores de acordo com o tipo de cliente
@@ -85,7 +107,7 @@ export class AddClienteComponent implements OnInit {
       CLIENTE.cpf = this.clienteForm.get('cpf')?.value;
     } else {
       console.log('>>> CLIENTE JURÍDICO');
-      CLIENTE.tipoCliente = 'JURIDICA ';
+      CLIENTE.tipoCliente = 'JURIDICA';
       CLIENTE.cnpj = this.clienteForm.get('cnpj')?.value;
     }
 
