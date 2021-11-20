@@ -98,3 +98,13 @@ button:disabled {
   /* Microsoft Edge */
   color: #973e2e !important;
 }
+
+/* Cor de fundo do autocomplete */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #ffd392 inset !important;
+}
+
+/* Cor do texto do autocomplete */
+input:-webkit-autofill {
+  -webkit-text-fill-color: #973e2e !important;
+}

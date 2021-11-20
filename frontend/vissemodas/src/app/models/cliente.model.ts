@@ -12,13 +12,13 @@ export class Cliente {
     cnpj: string,
     nome: string,
     tipoCliente: string,
-    endereco: number
+    idEndereco: number
   ) {
     this.cpf = cpf;
     this.cnpj = cnpj;
     this.nome = nome;
     this.status = true;
     this.tipoCliente = tipoCliente;
-    this.idEndereco = endereco;
+    this.idEndereco = idEndereco;
   }
 }

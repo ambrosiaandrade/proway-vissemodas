@@ -17,14 +17,6 @@ export class AddClienteComponent implements OnInit {
 
   idEndereco: number = 0;
   listEnderecos: Endereco[] = [];
-  // lastEndereco: Endereco = {
-  //   cep: '',
-  //   estado: '',
-  //   cidade: '',
-  //   bairro: '',
-  //   logradouro: '',
-  //   numero: 0,
-  // };
 
   constructor(
     private _fb: FormBuilder,
@@ -51,8 +43,7 @@ export class AddClienteComponent implements OnInit {
   // se estiver marcado (checked) é o cliente físico
   // então, eu quero limpar o campo que seja do CNPJ caso ele tenha sido digitado
   // isso é mais uma precaução, pois,
-  // desta forma, eu garanto que não mandarei para o backend os 2 valores preenchidos,
-  // respectivamente, dos campos CPF e CNPJ
+  // para o backend só está indo um dos campos, ou CPF ou CNPJ
   handleTipoCliente(value: boolean) {
     if (value) {
       this.clienteForm.controls.cnpj.setValue('');
@@ -72,25 +63,7 @@ export class AddClienteComponent implements OnInit {
     });
   }
 
-  // getLastEnderecoObject(): void {
-  //   this._serviceEndereco.getOneEndereco(this.idEndereco).subscribe({
-  //     next: (data) => {
-  //       this.lastEndereco.cep = data.cep;
-  //       this.lastEndereco.estado = data.estado;
-  //       this.lastEndereco.cidade = data.cidade;
-  //       this.lastEndereco.bairro = data.bairro;
-  //       this.lastEndereco.logradouro = data.logradouro;
-  //       this.lastEndereco.numero = data.numero;
-  //     },
-  //     error: (e) => console.log(e),
-  //   });
-  // }
-
   addCliente() {
-    //console.log(this.clienteForm.value);
-
-    // this.getLastEnderecoObject();
-
     // Verificando qual o tipo de cliente
     let tipoDoCliente = this.clienteForm.get('tipoCliente')?.value;
     // Atribuindo alguns valores ao cliente
@@ -110,27 +83,6 @@ export class AddClienteComponent implements OnInit {
       CLIENTE.tipoCliente = 'JURIDICA';
       CLIENTE.cnpj = this.clienteForm.get('cnpj')?.value;
     }
-
-    // Uma outra forma que funcionaria
-    // Mas tem campos repetidos...
-
-    // if (tipoDoCliente) {
-    //   console.log('>>> CLIENTE FÍSICO');
-    //   CLIENTE = {
-    //     cpf: this.clienteForm.get('cpf')?.value,
-    //     nome: this.clienteForm.get('nome')?.value,
-    //     tipoCliente: 'FISICA',
-    //     endereco: this.idEndereco,
-    //   };
-    // } else {
-    //   console.log('>>> CLIENTE JURÍDICO');
-    //   CLIENTE = {
-    //     cnpj: this.clienteForm.get('cnpj')?.value,
-    //     nome: this.clienteForm.get('nome')?.value,
-    //     tipoCliente: 'JURIDICA',
-    //     endereco: this.idEndereco,
-    //   };
-    // }
 
     console.log(CLIENTE);
 
