@@ -23,7 +23,7 @@ import { AdminListProdutoComponent } from './views/produto/admin-list-produto/ad
 import { HistoryPedidoComponent } from './views/pedido/history-pedido/history-pedido.component';
 
 // Mask
-
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -48,6 +48,7 @@ import { HistoryPedidoComponent } from './views/pedido/history-pedido/history-pe
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     HttpClientModule,
+    NgxMaskModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

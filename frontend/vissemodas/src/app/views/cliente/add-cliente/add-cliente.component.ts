@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Cliente } from 'src/app/models/cliente.model';
 import { Endereco } from 'src/app/models/endereco.model';
@@ -18,12 +18,17 @@ export class AddClienteComponent implements OnInit {
   idEndereco: number = 0;
   listEnderecos: Endereco[] = [];
 
+  title: string = 'Fazer';
+  btn_text: string = 'Fazer';
+  id: any;
+
   constructor(
     private _fb: FormBuilder,
     private _toastr: ToastrService,
     private _router: Router,
     private _service: ClienteService,
-    private _serviceEndereco: EnderecoService
+    private _serviceEndereco: EnderecoService,
+    private _aRouter: ActivatedRoute
   ) {
     this.clienteForm = this._fb.group({
       // Para cada input do nosso formulário
@@ -33,10 +38,11 @@ export class AddClienteComponent implements OnInit {
       status: ['', Validators.required],
       tipoCliente: ['', Validators.required],
     });
+    this.id = this._aRouter.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {
-    this.getLastEnderecoId();
+    this.isEditing();
   }
 
   // Verificando o tipo de cliente
@@ -95,4 +101,26 @@ export class AddClienteComponent implements OnInit {
       error: (e) => console.log(e),
     });
   }
+
+isEditing() {
+  if (this.id !== null) {
+    this.title = 'Editar';
+    this.btn_text = 'Editar';
+
+    this._service.getOneCliente(this.id).subscribe({
+      next: (data) => {
+        // Atualizando os valores no produtoForm
+        this.clienteForm.patchValue({
+          cpf: data.cpf,
+          cnpj: data.cnpj,
+          nome: data.nome,
+          status: data.status,
+          tipoCliente: data.tipoCliente,
+        });
+      },
+      error: (e) => console.log(e),
+    });
+  }
 }
+}
+

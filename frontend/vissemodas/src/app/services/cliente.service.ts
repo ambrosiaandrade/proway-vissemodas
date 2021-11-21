@@ -23,4 +23,9 @@ export class ClienteService {
   deleteCliente(id: any):Observable<any>{
     return this._http.delete(`${this.url}/${id}`);
   }
+
+  getOneCliente (id: any):Observable<any>{
+    return this._http.get(`${this.url}/${id}`);
+  }
+
 }
