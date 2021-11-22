@@ -1,6 +1,7 @@
 package br.com.capgemini.visseModas.services;
 
 import br.com.capgemini.visseModas.models.dtos.dtos.EnderecoDTO;
+import br.com.capgemini.visseModas.models.dtos.dtos.ProdutoDTO;
 import br.com.capgemini.visseModas.models.entities.Endereco;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.models.repositories.EnderecoRepository;
@@ -62,4 +63,9 @@ public class EnderecoService {
         return EnderecoDTO.converter(listaEndereco);
     }
 
+    public Page<EnderecoDTO> listarTudoDTOPaginacao(Pageable paginacao) {
+        //devolve um page ao invés de uma lista
+        Page<Endereco> listaEndereco = enderecoRepository.findAll(paginacao);
+        return EnderecoDTO.converterPaginacao(listaEndereco);
+    }
 }

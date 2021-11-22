@@ -6,6 +6,7 @@ import br.com.capgemini.visseModas.models.repositories.ProdutoRepository;
 import lombok.Data;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -13,12 +14,15 @@ import java.math.BigDecimal;
 @Data
 public class ProdutoForm {
 
-    @NotEmpty
+    @NotBlank
     private String descricao;
-    @NotEmpty
+    @NotBlank
     private String tamanho;
+    @NotBlank
     private BigDecimal valorUnitario;
+    @NotBlank
     private String categoria;
+    @NotBlank
     private String imagem;
 
 
