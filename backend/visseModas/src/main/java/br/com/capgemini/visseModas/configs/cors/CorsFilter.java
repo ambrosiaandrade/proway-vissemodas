@@ -1,4 +1,4 @@
-package br.com.capgemini.visseModas.config.cors;
+package br.com.capgemini.visseModas.configs.cors;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

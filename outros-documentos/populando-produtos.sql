@@ -1,5 +1,6 @@
 use vissemodas;
 create schema vissemodas;
+drop schema vissemodas;
 
 insert into produto(descricao, tamanho, valor_unitario, categoria, imagem, status) values 
 ('calça jogger preta', '38', 130.00, 'calças', 'assets/produtos/calca-1.png', 1),
@@ -9,7 +10,8 @@ insert into produto(descricao, tamanho, valor_unitario, categoria, imagem, statu
 insert into produto(descricao, tamanho, valor_unitario, categoria, imagem, status) values 
 ('camisa listrada azul', 'G', 130.00, 'camisas', 'assets/produtos/camisa-1.png', 1),
 ('camisa listrada colorida', 'M', 140.00, 'camisas', 'assets/produtos/camisa-2.png', 1),
-('camisa preta', 'PP', 110.00, 'camisas', 'assets/produtos/camisa-3.png', 1);
+('camisa preta', 'PP', 110.00, 'camisas', 'assets/produtos/camisa-3.png', 1),
+('camisa cetim estampada', 'P', 180.00, 'camisas', 'assets/produtos/camisa-4.png', 1);
 
 insert into produto(descricao, tamanho, valor_unitario, categoria, imagem, status) values 
 ('mochila notebook preta', 38, 130.00, 'mochilas', 'assets/produtos/mochila-1.png', 1),
