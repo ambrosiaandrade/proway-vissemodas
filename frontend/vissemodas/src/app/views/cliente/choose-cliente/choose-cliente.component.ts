@@ -83,6 +83,5 @@ export class ChooseClienteComponent implements OnInit{
           
     }
 
-    buscarClientesPorId(documento: any);
 }
 
