@@ -24,7 +24,6 @@ import { HistoryPedidoComponent } from './views/pedido/history-pedido/history-pe
 
 // Mask
 import { NgxMaskModule } from 'ngx-mask';
-import { ItemPedidoService } from './services/item-pedido.service';
 
 @NgModule({
   declarations: [
