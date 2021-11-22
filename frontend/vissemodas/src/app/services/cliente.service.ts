@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Cliente } from '../models/cliente.model';
- 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -31,7 +31,7 @@ export class ClienteService {
     return this._http.delete(`${this.url}/${id}`);
   }
 
-  getOneCliente (id: any):Observable<any>{
+  getOneCliente(id: any): Observable<any> {
     return this._http.get(`${this.url}/${id}`);
   }
 }

@@ -104,25 +104,24 @@ export class AddClienteComponent implements OnInit {
     });
   }
 
-isEditing() {
-  if (this.id !== null) {
-    this.title = 'Editar';
-    this.btn_text = 'Editar';
+  isEditing() {
+    if (this.id !== null) {
+      this.title = 'Editar';
+      this.btn_text = 'Editar';
 
-    this._service.getOneCliente(this.id).subscribe({
-      next: (data) => {
-        // Atualizando os valores no produtoForm
-        this.clienteForm.patchValue({
-          cpf: data.cpf,
-          cnpj: data.cnpj,
-          nome: data.nome,
-          status: data.status,
-          tipoCliente: data.tipoCliente,
-        });
-      },
-      error: (e) => console.log(e),
-    });
+      this._service.getOneCliente(this.id).subscribe({
+        next: (data) => {
+          // Atualizando os valores no produtoForm
+          this.clienteForm.patchValue({
+            cpf: data.cpf,
+            cnpj: data.cnpj,
+            nome: data.nome,
+            status: data.status,
+            tipoCliente: data.tipoCliente,
+          });
+        },
+        error: (e) => console.log(e),
+      });
+    }
   }
 }
-}
-

@@ -6,82 +6,97 @@ import { Cliente } from 'src/app/models/cliente.model';
 import { ClienteService } from 'src/app/services/cliente.service';
 
 @Component({
-    selector: 'app-choose-cliente',
-    templateUrl: './choose-cliente.component.html',
-    styleUrls: ['./choose-cliente.component.css'],
-  })
+  selector: 'app-choose-cliente',
+  templateUrl: './choose-cliente.component.html',
+  styleUrls: ['./choose-cliente.component.css'],
+})
+export class ChooseClienteComponent implements OnInit {
+  public validacaoForm: FormGroup;
+  listClientes: Cliente[] = [];
 
-export class ChooseClienteComponent implements OnInit{
+  public documento: string = '';
+  public mostrarCliente: Cliente = {
+    nome: '',
+    tipoCliente: '',
+    idEndereco: 0,
+  };
 
-    validacaoForm: FormGroup;
-    listClientes: Cliente[] = [];
-    public cpf!: String;
-    public cnpj!: String;
-    public clienteCpf: any;
-    public documento: any;
-    public mostrarCliente: Cliente = {
-        nome: '',
-        tipoCliente: ''
-    };
-    tipoCliente: boolean = true;
-    
-    constructor(private _service: ClienteService, private route: ActivatedRoute,
-                private router: Router, private _fb: FormBuilder){
-        this.validacaoForm = _fb.group({
-            cpf: [''],
-            cnpj: ['']
-        })
+  tipoCliente: boolean = true;
+
+  constructor(
+    private _service: ClienteService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private _fb: FormBuilder
+  ) {
+    this.validacaoForm = _fb.group({
+      cpf: [''],
+      cnpj: [''],
+    });
+  }
+
+  ngOnInit(): void {
+    this.buscarClientes();
+  }
+
+  handleTipoCliente(value: boolean) {
+    if (!value) {
+      this.tipoCliente = false;
+    } else {
+      this.tipoCliente = true;
     }
+  }
 
-      ngOnInit(): void {
-        this.buscarClientes();
-      }      
+  buscarClientes() {
+    this._service.getClientes().subscribe({
+      next: (data) => {
+        this.listClientes = data;
+        console.log(data);
+      },
+      error: (e) => console.log(e),
+    });
+  }
 
-      handleTipoCliente(value: boolean) {
-        if (value) {
-            this.documento = this.cpf;
-            this.tipoCliente = true;
-            console.log(this.validacaoForm.get('cpf')?.value);
-            
-        } else {
-            this.documento = this.cnpj;
-            this.tipoCliente = false;
-            console.log(this.validacaoForm.get('cnpj')?.value);
-            
+  buscarClientePeloDocumento(documento: string): void {
+    if (!this.tipoCliente) {
+      for (let i = 0; i < this.listClientes.length; i++) {
+        let documentoSemPontuacao = this.listClientes[i].cnpj?.replace(
+          /\D/g,
+          ''
+        );
+        if (documento == documentoSemPontuacao) {
+          this.mostrarCliente = this.listClientes[i];
+          console.log(this.mostrarCliente);
         }
       }
-
-      buscarClientes() {
-          this._service.getClientes().subscribe({
-              next: (data) => {
-                  this.listClientes = data;
-                  this.cpf = this.validacaoForm.get('cpf')?.value;
-                  this.cnpj = this.validacaoForm.get('cnpj')?.value;
-                  console.log(data);
-                  console.log(this.documento);
-              },
-              error: (e) => console.log(e)
-          })
+    } else {
+      for (let i = 0; i < this.listClientes.length; i++) {
+        let documentoSemPontuacao = this.listClientes[i].cpf?.replace(
+          /\D/g,
+          ''
+        );
+        if (documento == documentoSemPontuacao) {
+          this.mostrarCliente = this.listClientes[i];
+          console.log(this.mostrarCliente);
+        }
       }
-
-      
-
-      buscarClientesPorId(documento: any): void {
-          if (this.tipoCliente) {
-              for (let i = 0; i < this.listClientes.length; i++) {
-                if (documento == this.listClientes[i].cpf) {
-                    this.mostrarCliente = this.listClientes[i];
-                } 
-              }
-          } else {
-            for (let i = 0; i < this.listClientes.length; i++) {
-                if (documento == this.listClientes[i].cnpj) {
-                    this.mostrarCliente = this.listClientes[i];
-                } 
-              }
-          }
-          
     }
 
-}
+    console.log('mostrarCliente', this.mostrarCliente);
+  }
 
+  filtrarCliente() {
+    this.validacaoForm.patchValue({
+      cpf: this.validacaoForm.get('cpf')?.value,
+      cnpj: this.validacaoForm.get('cnpj')?.value,
+    });
+
+    if (this.tipoCliente) {
+      this.documento = this.validacaoForm.controls.cpf.value;
+    } else {
+      this.documento = this.validacaoForm.controls.cnpj.value;
+    }
+
+    this.buscarClientePeloDocumento(this.documento);
+  }
+}
