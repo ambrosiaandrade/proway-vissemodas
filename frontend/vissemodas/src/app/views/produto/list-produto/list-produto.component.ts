@@ -30,14 +30,18 @@ export class ListProdutoComponent implements OnInit {
     });
   }
 
-  addToCart(produto: any) {
+  addToCart(produto: Produto) {
+    // this.carrinho.push(produto);
+    // console.log(this.carrinho);
+    //this._serviceItemPedido.addToItemPedido(produto);
     this.carrinho.push(produto);
+    localStorage.setItem('list', JSON.stringify(this.carrinho));
   }
 
   // Atribuindo o id do último produto
   setUltimoIdProduto() {
     this.ultimoIdProduto = this.listaProdutos.length;
-    console.log('Id último produto');
-    console.log(this.ultimoIdProduto);
+    // console.log('Id último produto');
+    // console.log(this.ultimoIdProduto);
   }
 }

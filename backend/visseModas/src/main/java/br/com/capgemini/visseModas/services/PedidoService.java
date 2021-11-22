@@ -52,6 +52,7 @@ public class PedidoService {
 
 
     public void salvar(Pedido pedido){
+        pedido.setSituacao(Situacao.FECHADO);
         pedidoRepository.save(pedido);
     }
 
@@ -89,13 +90,13 @@ public class PedidoService {
 //    }
 
 
-    public BigDecimal calcularDesconto(Pedido pedido, BigDecimal percentualDesconto){
+    /*public BigDecimal calcularDesconto(Pedido pedido, BigDecimal percentualDesconto){
         if(pedido.getSituacao().equals("ABERTO")) {
             BigDecimal valorFinal = pedido.getValorTotal().multiply(percentualDesconto);
             return valorFinal;
         }
         return (new BigDecimal(0));
-    }
+    }*/
 
     public Pedido buscarPorId(Long id) {
         Optional<Pedido> optional = pedidoRepository.findById(id);

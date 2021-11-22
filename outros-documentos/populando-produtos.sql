@@ -1,6 +1,6 @@
-use vissemodas;
-create schema vissemodas;
 drop schema vissemodas;
+create schema vissemodas;
+use vissemodas;
 
 insert into produto(descricao, tamanho, valor_unitario, categoria, imagem, status) values 
 ('calça jogger preta', '38', 130.00, 'calças', 'assets/produtos/calca-1.png', 1),

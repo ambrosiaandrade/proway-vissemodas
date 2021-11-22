@@ -36,6 +36,10 @@ public class EnderecoDTO {
         return listaEnderecos.stream().map(EnderecoDTO::new).collect(Collectors.toList());
     }
 
+    public static Page<EnderecoDTO> converterPaginacao(Page<Endereco>listaEndereco){
+        return listaEndereco.map(EnderecoDTO::new);
+    }
+
 
     public Endereco dtoToEndereco() {
 
@@ -52,7 +56,7 @@ public class EnderecoDTO {
         return endereco;
     }
 
-    /*
+
     public Endereco atualizar(Long id, EnderecoRepository enderecoRepository) {
         Endereco endereco = enderecoRepository.getById(id);
 
@@ -65,6 +69,6 @@ public class EnderecoDTO {
         endereco.setNumero(numero);
 
         return endereco;
-    }*///Comentei, porque entendi do nosso combinado que não iremos alterar endereço, mas apenas cadastrar ou excluir.
+    }
 
 }
