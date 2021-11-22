@@ -4,6 +4,7 @@ package br.com.capgemini.visseModas.models.dtos.form;
 import br.com.capgemini.visseModas.models.entities.ItemPedido;
 import br.com.capgemini.visseModas.models.entities.Pedido;
 import br.com.capgemini.visseModas.models.entities.Produto;
+import br.com.capgemini.visseModas.services.ItemPedidoService;
 import br.com.capgemini.visseModas.services.PedidoService;
 import br.com.capgemini.visseModas.services.ProdutoService;
 import lombok.Setter;
@@ -16,7 +17,7 @@ public class ItemPedidoForm {
     private Long idPedido;
     private Long idProduto;
     private Integer quantidade;
-    //private BigDecimal valorItens;
+    private BigDecimal valorItens;
 
     public ItemPedidoForm() {
 
@@ -24,7 +25,7 @@ public class ItemPedidoForm {
 
 
 
-    public ItemPedido formToItemPedido(ProdutoService produtoService) {
+    public ItemPedido formToItemPedido(ProdutoService produtoService, ItemPedidoService itemPedidoService) {
 
         Produto produto = produtoService.buscarPorId(idProduto);
 
@@ -32,7 +33,7 @@ public class ItemPedidoForm {
 
         itemPedido.setProduto(produto);
         itemPedido.setQuantidade(quantidade);
-        //itemPedido.setValorPorItem(valorItens);
+        itemPedido.setValorPorItem(itemPedidoService.calcularValorPorItem(itemPedido));
 
         return itemPedido;
 
