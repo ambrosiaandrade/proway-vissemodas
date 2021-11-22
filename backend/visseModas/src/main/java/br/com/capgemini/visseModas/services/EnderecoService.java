@@ -1,6 +1,7 @@
 package br.com.capgemini.visseModas.services;
 
 import br.com.capgemini.visseModas.models.dtos.dtos.EnderecoDTO;
+import br.com.capgemini.visseModas.models.dtos.dtos.ProdutoDTO;
 import br.com.capgemini.visseModas.models.entities.Endereco;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.models.repositories.EnderecoRepository;
@@ -24,17 +25,13 @@ public class EnderecoService {
         enderecoRepository.save(endereco);
     }
 
-
-    public ResponseEntity<Endereco> deletar(Long id) {
+    public ResponseEntity<EnderecoDTO> alterar(Long id, EnderecoDTO form) {
 
         Optional<Endereco> optional = enderecoRepository.findById(id);
-
         if (optional.isPresent()) {
-
-            Endereco endereco = optional.get();
-            enderecoRepository.delete(endereco);
-            return ResponseEntity.ok().build();
-
+            Endereco endereco = form.atualizar(id, enderecoRepository);
+            enderecoRepository.save(endereco);
+            return ResponseEntity.ok(new EnderecoDTO(endereco));
         }
 
         return ResponseEntity.notFound().build();
@@ -66,4 +63,9 @@ public class EnderecoService {
         return EnderecoDTO.converter(listaEndereco);
     }
 
+    public Page<EnderecoDTO> listarTudoDTOPaginacao(Pageable paginacao) {
+        //devolve um page ao invés de uma lista
+        Page<Endereco> listaEndereco = enderecoRepository.findAll(paginacao);
+        return EnderecoDTO.converterPaginacao(listaEndereco);
+    }
 }

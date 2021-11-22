@@ -6,20 +6,18 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 @Setter
 public class ClienteForm {
 
-    //validates that the property is not null or empty; can be applied to String, Collection, Map or Array values.
-
-    @NotEmpty(message = "O nome do cliente é obrigatório")
+    @NotBlank(message = "O nome do cliente é obrigatório")
     private String nome;
     @CPF(message = "CPF inválido.")
     private String cpf;
     @CNPJ(message = "CNPJ inválido.")
     private String cnpj;
-    @NotEmpty(message = "O tipo do cliente é obrigatório.")
+    @NotBlank(message = "O tipo do cliente é obrigatório.")
     private String tipoCliente;
 
     private Long idEndereco;

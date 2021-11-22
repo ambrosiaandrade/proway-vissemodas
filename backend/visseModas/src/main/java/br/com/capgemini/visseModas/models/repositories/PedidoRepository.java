@@ -3,7 +3,14 @@ package br.com.capgemini.visseModas.models.repositories;
 import br.com.capgemini.visseModas.models.entities.Pedido;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface PedidoRepository extends JpaRepository<Pedido, Long>  {
+
+//    //Ver se o produto tem associacao
+//    List<Pedido> findByItemPedido
+
+
 
     //@Query("select p from pedido p where p.situacao = :situacao")
     //List<Pedido> findBySituacao(@Param("situacao") Situacao situacao);

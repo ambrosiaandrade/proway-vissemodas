@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ListProdutoComponent } from '../produto/list-produto/list-produto.component';
+import { Produto } from 'src/app/models/produto.model';
 
 @Component({
   selector: 'app-carrinho',
@@ -8,12 +8,36 @@ import { ListProdutoComponent } from '../produto/list-produto/list-produto.compo
   styleUrls: ['./carrinho.component.css'],
 })
 export class CarrinhoComponent implements OnInit {
-  constructor(private _router: Router) {
-  // let listarCarrinho = _produto.carrinho
+  // Vem do localStorage
+  listItensPedido: Produto[] = [];
 
+  constructor(private _router: Router) {
+    // let listarCarrinho = _produto.carrinho
   }
-  
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+    this.buscarItemPedido();
+  }
+
+  buscarItemPedido() {
+    if (localStorage.getItem('list')) {
+      this.listItensPedido = JSON.parse(localStorage.getItem('list') || '{}');
+    } else {
+      this.listItensPedido = [];
+    }
+  }
+
+  removerItemPedido(id: any) {
+    // filter() retorna uma lista que satisfaz a condição,
+    // neste caso, ser diferente do id passado por parâmetro
+    // logo, retorna tudo exceto o que tiver esse id
+    this.listItensPedido = this.listItensPedido.filter(
+      (item) => item.id !== id
+    );
+
+    // Atribuindo essa nova lista filtrada para o localStorage
+    localStorage.setItem('list', JSON.stringify(this.listItensPedido));
+  }
 
   finalizarCompra() {
     // TODO: fazer a implementação

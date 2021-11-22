@@ -8,6 +8,7 @@ import br.com.capgemini.visseModas.services.ClienteService;
 import br.com.capgemini.visseModas.services.EnderecoService;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
 @Setter
 public class PedidoForm {
 
+    @NotBlank(message = "O nome do cliente que está fazendo esse pedido é obrigatório")
     private String nomeCliente;
     private List<ItemPedido> itensPedidos;
     private BigDecimal valorTotal;
