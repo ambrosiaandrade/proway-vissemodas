@@ -3,6 +3,7 @@ package br.com.capgemini.visseModas.models.dtos.dtos;
 import br.com.capgemini.visseModas.models.entities.Endereco;
 import br.com.capgemini.visseModas.models.repositories.EnderecoRepository;
 import lombok.Getter;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,6 +34,10 @@ public class EnderecoDTO {
 
     public static List<EnderecoDTO> converter (List<Endereco> listaEnderecos) {
         return listaEnderecos.stream().map(EnderecoDTO::new).collect(Collectors.toList());
+    }
+
+    public static Page<EnderecoDTO> converterPaginacao(Page<Endereco>listaEndereco){
+        return listaEndereco.map(EnderecoDTO::new);
     }
 
 
