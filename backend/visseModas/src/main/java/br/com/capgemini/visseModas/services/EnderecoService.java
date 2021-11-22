@@ -24,17 +24,13 @@ public class EnderecoService {
         enderecoRepository.save(endereco);
     }
 
-
-    public ResponseEntity<Endereco> deletar(Long id) {
+    public ResponseEntity<EnderecoDTO> alterar(Long id, EnderecoDTO form) {
 
         Optional<Endereco> optional = enderecoRepository.findById(id);
-
         if (optional.isPresent()) {
-
-            Endereco endereco = optional.get();
-            enderecoRepository.delete(endereco);
-            return ResponseEntity.ok().build();
-
+            Endereco endereco = form.atualizar(id, enderecoRepository);
+            enderecoRepository.save(endereco);
+            return ResponseEntity.ok(new EnderecoDTO(endereco));
         }
 
         return ResponseEntity.notFound().build();

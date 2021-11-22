@@ -26,15 +26,7 @@ public class Cliente {
     private String cpf;
     private String cnpj;
 
-    @OneToOne(mappedBy = "cliente", fetch = FetchType.LAZY)
+    @OneToOne
     private Endereco endereco;
-
-    public Cliente(String nome, TipoCliente tipoCliente, String cpf, String cnpj, String email, String senha, Endereco endereco) {
-        this.nome = nome;
-        this.tipoCliente = tipoCliente;
-        this.cpf = cpf;
-        this.cnpj = cnpj;
-        this.endereco = endereco;
-    }
 
 }

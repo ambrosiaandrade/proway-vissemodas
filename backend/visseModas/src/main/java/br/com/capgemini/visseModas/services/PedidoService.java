@@ -52,6 +52,7 @@ public class PedidoService {
 
 
     public void salvar(Pedido pedido){
+        pedido.setSituacao(Situacao.FECHADO);
         pedidoRepository.save(pedido);
     }
 
