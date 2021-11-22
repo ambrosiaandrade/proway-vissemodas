@@ -15,9 +15,12 @@ insert into endereco (cep, estado, cidade, bairro, logradouro, numero) values
 SELECT * FROM endereco;
 SELECT * FROM cliente;
 
--- Clientes
-insert into cliente (cpf, cnpj, nome, tipo_cliente, endereco_id) values ('702.377.314-28', null, 'Jana Ursel', 'FISICA', 1);
-insert into cliente (cpf, cnpj, nome, tipo_cliente, endereco_id) values ('132.548.944-13', null, 'Zayn ad-Din Aliyyah', 'FISICA', 2);
+drop table endereco;
+drop table cliente;
 
-insert into cliente (cpf, cnpj, nome, tipo_cliente, endereco_id) values (null, '00.802.269/0001-91', 'Rivenstorm', 'JURIDICA', 3);
-insert into cliente (cpf, cnpj, nome, tipo_cliente, endereco_id) values (null, '89.607.746/0001-71', 'Dynaworth', 'JURIDICA', 4);
+-- Clientes
+insert into cliente (cpf, cnpj, nome, tipo_cliente, endereco_id) values ('70237731428', null, 'Jana Ursel', 'FISICA', 1);
+insert into cliente (cpf, cnpj, nome, tipo_cliente, endereco_id) values ('13254894413', null, 'Zayn ad-Din Aliyyah', 'FISICA', 2);
+
+insert into cliente (cpf, cnpj, nome, tipo_cliente, endereco_id) values (null, '00802269000191', 'Rivenstorm', 'JURIDICA', 3);
+insert into cliente (cpf, cnpj, nome, tipo_cliente, endereco_id) values (null, '89607746000171', 'Dynaworth', 'JURIDICA', 4);
