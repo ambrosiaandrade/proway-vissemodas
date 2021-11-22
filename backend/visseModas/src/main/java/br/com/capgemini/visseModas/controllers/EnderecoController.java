@@ -30,12 +30,17 @@ public class EnderecoController {
         return ResponseEntity.created(uri).body(new EnderecoDTO(endereco));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<EnderecoDTO> alterar(@PathVariable Long id, @RequestBody @Valid EnderecoDTO form, UriComponentsBuilder uriBuilder ) {
 
-    //deletar
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> remover(@PathVariable Long id) {
-        return service.deletar(id);
+        Endereco endereco = form.dtoToEndereco();
+        service.alterar(id, form);
+
+        URI uri = uriBuilder.path("/clientes/{id}").buildAndExpand(endereco.getId()).toUri();
+        return ResponseEntity.created(uri).body(new EnderecoDTO(endereco));
+
     }
+
 
     //buscar cliente por id
     @GetMapping("/{id}")

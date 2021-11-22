@@ -1,6 +1,5 @@
 package br.com.capgemini.visseModas.controllers;
 
-import br.com.capgemini.visseModas.models.dtos.dtos.PedidoDTO;
 import br.com.capgemini.visseModas.models.dtos.dtos.ProdutoDTO;
 import br.com.capgemini.visseModas.models.dtos.form.ProdutoForm;
 import br.com.capgemini.visseModas.models.dtos.update.ProdutoUpdate;
@@ -11,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -48,10 +48,21 @@ public class ProdutoController {
 
     }
 
-    //deletar
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletar(@PathVariable Long id) {
-        return service.inativar(id); //chamar o deletar e decidir no service se deleta ou nao
+    public ResponseEntity<?> deletar(@PathVariable Long id, UriComponentsBuilder uriBuilder) {
+
+        ResponseEntity resposta = service.deletar(id); //chamar o deletar e decidir no service se deleta ou nao
+        HttpStatus status = resposta.getStatusCode();
+
+        if(status == HttpStatus.BAD_REQUEST){
+
+            Produto produto = service.buscarPorId(id);
+
+            URI uri = uriBuilder.path("/produtos/{id}").buildAndExpand(produto.getId()).toUri();
+            return ResponseEntity.created(uri).body(new ProdutoDTO(produto));
+        }
+
+        return ResponseEntity.ok().build();
     }
 
     //buscar cliente por id
@@ -71,8 +82,8 @@ public class ProdutoController {
         return service.listarTudo();
     }
 
-    @GetMapping("pageable")                     //setando uma ordenacao default, se não passar parametros
-    public Page<ProdutoDTO> listarTudoPaginacao(@PageableDefault(sort="descricao", direction = Sort.Direction.ASC, page=0, size = 10) Pageable paginacao) {
+    @GetMapping("pageable")
+    public Page<ProdutoDTO> listarTudoPaginacao(@PageableDefault(sort="descricao", direction = Sort.Direction.ASC, page=0, size = 8) Pageable paginacao) {
         return service.listarTudoDTOPaginacao(paginacao);
     }
 

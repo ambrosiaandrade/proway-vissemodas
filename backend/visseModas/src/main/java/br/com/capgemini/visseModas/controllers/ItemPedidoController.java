@@ -27,11 +27,11 @@ public class ItemPedidoController {
     @Autowired
     private ProdutoService produtoService;
 
-    @PostMapping("calcularItem")
-    public BigDecimal calcularValorPorItem(@RequestBody ItemPedidoForm form){
-        ItemPedido itemPedido = form.formToItemPedido(produtoService);
-        return itemPedidoService.calcularValorPorItem(itemPedido);
-    }
+//    @PostMapping("calcularItem")
+//    public BigDecimal calcularValorPorItem(@RequestBody ItemPedidoForm form){
+//        //ItemPedido itemPedido = form.formToItemPedido(produtoService);
+//        //return itemPedidoService.calcularValorPorItem(itemPedido);
+//    }
 
     @PostMapping
     public ResponseEntity<ItemPedidoDTO> salvar(@RequestBody ItemPedidoForm form, UriComponentsBuilder uriBuilder) {

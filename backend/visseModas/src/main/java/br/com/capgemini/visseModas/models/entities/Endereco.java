@@ -25,11 +25,10 @@ public class Endereco {
     private String logradouro;
     private Integer numero;
 
-    @OneToOne
-    @JoinColumn(name = "id")
+    @OneToOne(mappedBy = "endereco", fetch = FetchType.EAGER)
     private Cliente cliente;
 
-    //lado mais forte é a tabela que tem que a coluna do relacionamento
+
 
 
 
