@@ -10,6 +10,7 @@ import { ListProdutoComponent } from './views/produto/list-produto/list-produto.
 import { FinalizadoComponent } from './views/finalizado/finalizado.component';
 import { AdminListProdutoComponent } from './views/produto/admin-list-produto/admin-list-produto.component';
 import { HistoryPedidoComponent } from './views/pedido/history-pedido/history-pedido.component';
+import { ChooseClienteComponent } from './views/cliente/choose-cliente/choose-cliente.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'edit-cliente/:id', component: AddClienteComponent }, // editar cliente (não sei se era necessário, mas fiz porque confundi com o edit endereço)
   { path: 'add-endereco', component: AddEnderecoComponent },
   { path: 'edit-endereco/:id', component: AddEnderecoComponent }, // editar endereço (esse era o correto para fazer)
+  { path: 'choose-cliente', component: ChooseClienteComponent },
   { path: 'carrinho', component: CarrinhoComponent },
   { path: 'finalizado', component: FinalizadoComponent },
   { path: 'history-pedido', component: HistoryPedidoComponent },
