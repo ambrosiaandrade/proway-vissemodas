@@ -1,10 +1,15 @@
 package br.com.capgemini.visseModas.controllers;
 
+import br.com.capgemini.visseModas.models.dtos.dtos.ProdutoDTO;
 import br.com.capgemini.visseModas.services.EnderecoService;
 import br.com.capgemini.visseModas.models.dtos.form.EnderecoForm;
 import br.com.capgemini.visseModas.models.dtos.dtos.EnderecoDTO;
 import br.com.capgemini.visseModas.models.entities.Endereco;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -52,6 +57,11 @@ public class EnderecoController {
     @GetMapping
     public List<EnderecoDTO> listarTudo() {
         return service.listarTudoDTO();
+    }
+
+    @GetMapping("pageable")
+    public Page<EnderecoDTO> listarTudoPaginacao(@PageableDefault(sort="descricao", direction = Sort.Direction.ASC, page=0, size = 8) Pageable paginacao) {
+        return service.listarTudoDTOPaginacao(paginacao);
     }
 
 }
