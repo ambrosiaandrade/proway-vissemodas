@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Cliente } from 'src/app/models/cliente.model';
+import { ClienteService } from 'src/app/services/cliente.service';
 
 @Component({
     selector: 'app-add-cliente',
@@ -10,48 +11,32 @@ import { Cliente } from 'src/app/models/cliente.model';
 
 export class ChooseClienteComponent implements OnInit{
 
-    clienteForm: FormGroup;
+    listClientes: Cliente[] = [];
 
-    constructor(
-        private _fb: FormBuilder,
-      ) {
-        this.clienteForm = this._fb.group({
-          // Para cada input do nosso formulário
-          cpf: [''],
-          cnpj: [''],
-        });
+    constructor(private _service: ClienteService){
+       
       }
 
       ngOnInit(): void {
-          this.getOneCliente();
+        this.buscarClientes();
       }
 
       handleTipoCliente(value: boolean) {
         if (value) {
-          this.clienteForm.controls.cnpj.setValue('');
+         
         } else {
-          this.clienteForm.controls.cpf.setValue('');
+          
         }
       }
 
-      getOneCliente() {
-          // opção para dizer se é físico ou jurídico
-        let tipoDoCliente = this.clienteForm.get('tipoCliente')?.value;
-        let CLIENTE: Cliente = {
-            nome: this.clienteForm.get('nome')?.value,
-            tipoCliente: '',
-          };
-        // condição para colocar CPF ou CNPJ, de acordo com o tipo do
-        if (tipoDoCliente) {
-            console.log('>>> CLIENTE FÍSICO');
-            CLIENTE.tipoCliente = 'FISICA';
-            CLIENTE.cpf = this.clienteForm.get('cpf')?.value;
-          } else {
-            console.log('>>> CLIENTE JURÍDICO');
-            CLIENTE.tipoCliente = 'JURIDICA';
-            CLIENTE.cnpj = this.clienteForm.get('cnpj')?.value;
-          }
-          console.log(CLIENTE);
-      } 
+      buscarClientes() {
+          this._service.getClientes().subscribe({
+              next: (data)=> {
+                  this.listClientes = data;
+                  console.log(data)
+              },
+              error: (e) => console.log(e)
+          })
+      }
 }
 

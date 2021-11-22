@@ -27,7 +27,4 @@ export class ClienteService {
   getOneCliente (id: any):Observable<any>{
     return this._http.get(`${this.url}/${id}`);
   }
-
-  
-
 }
