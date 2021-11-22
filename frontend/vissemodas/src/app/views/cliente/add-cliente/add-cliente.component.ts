@@ -92,7 +92,11 @@ export class AddClienteComponent implements OnInit {
         this._toastr.success('Cadastrado com sucesso', 'Cliente');
         this._router.navigate(['']);
       },
-      error: (e) => console.log(e),
+      error: (e) => {
+        console.log(e);
+        console.log('TESTANDO HttpErrorResponse');
+        console.log(e.error);
+      },
     });
   }
 }

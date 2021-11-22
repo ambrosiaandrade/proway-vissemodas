@@ -50,6 +50,11 @@ img {
   margin-right: 40px !important;
 }
 
+.fa-gear {
+  font-size: 3.5em;
+  color: white;
+}
+
 /* Responsividade */
 
 @media only screen and (max-width: 799px) {
