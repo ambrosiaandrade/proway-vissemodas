@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Produto } from 'src/app/models/produto.model';
-import { ItemPedidoService } from 'src/app/services/item-pedido.service';
-import { ListProdutoComponent } from '../produto/list-produto/list-produto.component';
 
 @Component({
   selector: 'app-carrinho',

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemPedidoService } from 'src/app/services/item-pedido.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +6,7 @@ import { ItemPedidoService } from 'src/app/services/item-pedido.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private _serviceItemPedido: ItemPedidoService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this._serviceItemPedido.testingItemPedido();
-  }
+  ngOnInit(): void {}
 }
