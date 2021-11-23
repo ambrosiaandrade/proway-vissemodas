@@ -30,4 +30,13 @@ export class ClienteService {
   deleteCliente(id: any): Observable<any> {
     return this._http.delete(`${this.url}/${id}`);
   }
+
+  getOneCliente(id: any): Observable<any> {
+    return this._http.get(`${this.url}/${id}`);
+  }
+
+  editCliente(id: any, cliente: Cliente): Observable<any> {
+    return this._http.post(`${this.url}/${id}`, cliente);
+  }
+
 }

@@ -2,16 +2,19 @@
   <div class="col-lg-6 offset-lg-3">
     <div class="card">
       <h5 class="title">Meu carrinho</h5>
-      <div class="card-body">
+      <div class="card-body" *ngIf="listItensPedido.length > 0">
         <h6>PRODUTO</h6>
         <!--
           TODO: fazer o loop
         -->
-        <div class="row align-items-center text-center mb-2">
+        <div
+          class="row align-items-center text-center mb-2"
+          *ngFor="let item of listItensPedido"
+        >
           <div class="col-lg-8 text-start">
-            <img src="../../../assets/produtos/camisa-2.png" alt="camisa" />
+            <img [src]="item.imagem" [alt]="item.descricao" />
             <!-- descricao -->
-            <span> Camisa listrada colorida</span>
+            <span> {{ item.descricao }}</span>
           </div>
           <div class="col-2">
             <h6>QTD</h6>
@@ -22,13 +25,16 @@
               id="inputQtd"
               min="1"
               value="1"
+              #qtd
             />
-            <button class="btnExcluir">Excluir</button>
+            <button class="btnExcluir" (click)="removerItemPedido(item.id)">
+              Excluir
+            </button>
           </div>
           <div class="col-2">
             <!-- valorUnitario -->
             <h6>Valor</h6>
-            R$ 00,00
+            {{ item.valorUnitario | currency: "BRL" }}
           </div>
         </div>
       </div>
@@ -36,9 +42,24 @@
       <!--
         TODO: implementar o método e fazer o route 
       -->
-      <button (click)="finalizarCompra()" id="btnFinalizarCompra">
+      <button
+        (click)="finalizarCompra()"
+        id="btnFinalizarCompra"
+        *ngIf="listItensPedido.length > 0"
+      >
         Finalizar
       </button>
+
+      <div class="container" *ngIf="listItensPedido.length == 0">
+        <div class="card">
+          <div class="card-body text-center">
+            <h5>Não há produtos adicionados ao carrinho</h5>
+            <button class="btn mt-5" routerLink="/" id="btnInicio">
+              Início
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

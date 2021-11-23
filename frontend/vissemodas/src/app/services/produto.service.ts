@@ -11,7 +11,7 @@ export class ProdutoService {
 
   constructor(private _http: HttpClient) {}
 
-  getOneProduto(id: any): Observable<any> {
+  getOneProduto(id: any): Observable<any> { 
     return this._http.get(`${this.url}/${id}`);
   }
 
