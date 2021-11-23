@@ -1,5 +1,7 @@
 package br.com.capgemini.visseModas.controllers;
 
+import br.com.capgemini.visseModas.models.dtos.response.ClienteDTO;
+import br.com.capgemini.visseModas.models.entities.Cliente;
 import br.com.capgemini.visseModas.services.EnderecoService;
 import br.com.capgemini.visseModas.models.dtos.request_form.EnderecoForm;
 import br.com.capgemini.visseModas.models.dtos.response.EnderecoDTO;
@@ -39,26 +41,21 @@ public class EnderecoController {
         URI uri = uriBuilder.path("/enderecos/{id}").buildAndExpand(endereco.getId()).toUri();
         return ResponseEntity.created(uri).body(new EnderecoDTO(endereco));
 
-//        Optional<Endereco> optional = enderecoRepository.findById(id);
-//        if (optional.isPresent()) {
-//            Endereco endereco = form.atualizar(id, enderecoRepository);
-//            enderecoRepository.save(endereco);
-//            return ResponseEntity.ok(new EnderecoDTO(endereco));
-//        }
-//
-//        return ResponseEntity.notFound().build();
-
-
     }
 
-
-    //buscar cliente por id
     @GetMapping("/{id}")
     public ResponseEntity<EnderecoDTO> detalhar(@PathVariable Long id) {
-        return service.detalhar(id);
+
+        Endereco endereco = service.buscarPorId(id);
+
+        if(endereco != null){
+            return ResponseEntity.ok(new EnderecoDTO(endereco));
+        }
+
+        return ResponseEntity.notFound().build();
+
     }
 
-    //listar tudo
     @GetMapping
     public List<EnderecoDTO> listarTudo() {
         return service.listarTudoDTO();

@@ -13,12 +13,11 @@ import java.util.Optional;
 @Service
 public class EnderecoService {
 
-    @Autowired // injeção de dependência
+    @Autowired
     private EnderecoRepository enderecoRepository;
 
-
-    public void salvar(Endereco endereco) {
-        enderecoRepository.save(endereco);
+    public Endereco salvar(Endereco endereco) {
+        return enderecoRepository.save(endereco);
     }
 
     public Endereco alterar(Long id, EnderecoDTO dto) {

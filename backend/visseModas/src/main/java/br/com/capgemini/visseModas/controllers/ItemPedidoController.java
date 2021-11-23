@@ -32,7 +32,7 @@ public class ItemPedidoController {
         ItemPedido itemPedido = form.formToItemPedido(produtoService, itemPedidoService);
         itemPedidoService.salvar(itemPedido);
 
-        URI uri = uriBuilder.path("/itempedido/{id}").buildAndExpand(itemPedido.getId()).toUri();
+        URI uri = uriBuilder.path("/itemPedido/{id}").buildAndExpand(itemPedido.getId()).toUri();
         return ResponseEntity.created(uri).body(new ItemPedidoDTO(itemPedido));
     }
 

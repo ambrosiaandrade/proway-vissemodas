@@ -2,7 +2,6 @@ package br.com.capgemini.visseModas.controllers;
 
 import br.com.capgemini.visseModas.models.dtos.response.ProdutoDTO;
 import br.com.capgemini.visseModas.models.dtos.request_form.ProdutoForm;
-import br.com.capgemini.visseModas.models.dtos.update.ProdutoUpdate;
 import br.com.capgemini.visseModas.services.ProdutoService;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +36,10 @@ public class ProdutoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProdutoDTO> alterar(@PathVariable Long id, @RequestBody @Valid ProdutoUpdate form, UriComponentsBuilder uriBuilder ) {
+    public ResponseEntity<ProdutoDTO> alterar(@PathVariable Long id, @RequestBody @Valid ProdutoDTO produtoDTO, UriComponentsBuilder uriBuilder ) {
 
-        Produto produto = form.produtoUpdateToProduto();
-        //produto.setId(id);
-        produto = service.alterar(id, form);
+        Produto produto = produtoDTO.converteProdutoDTOParaProduto();
+        produto = service.alterar(id, produtoDTO);
 
         URI uri = uriBuilder.path("/produtos/{id}").buildAndExpand(produto.getId()).toUri();
         return ResponseEntity.created(uri).body(new ProdutoDTO(produto));
@@ -65,13 +63,19 @@ public class ProdutoController {
         return ResponseEntity.ok().build();
     }
 
-    //buscar produto por id
     @GetMapping("/{id}")
     public ResponseEntity<ProdutoDTO> detalhar(@PathVariable Long id) {
-        return service.detalhar(id);
+
+        Produto produto = service.buscarPorId(id);
+
+        if(produto != null){
+            return ResponseEntity.ok(new ProdutoDTO(produto));
+        }
+
+        return ResponseEntity.notFound().build();
+
     }
 
-    //listar tudo
     @GetMapping
     public List<ProdutoDTO> listarTudoAtivo() {
         return service.listarTudoAtivo();

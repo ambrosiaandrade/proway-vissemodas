@@ -2,6 +2,7 @@ package br.com.capgemini.visseModas.services;
 
 import br.com.capgemini.visseModas.models.dtos.response.ProdutoDTO;
 import br.com.capgemini.visseModas.models.dtos.update.ProdutoUpdate;
+import br.com.capgemini.visseModas.models.entities.Cliente;
 import br.com.capgemini.visseModas.models.entities.ItemPedido;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.models.repositories.ItemPedidoRepository;
@@ -25,16 +26,16 @@ public class ProdutoService {
     @Autowired
     private ItemPedidoRepository itemPedidoRepository;
 
-    public void salvar(Produto produto){
-        produtoRepository.save(produto);
+    public Produto salvar(Produto produto){
+       return produtoRepository.save(produto);
     }
 
-    public Produto alterar(Long id, ProdutoUpdate form) {
+    public Produto alterar(Long id, ProdutoDTO produtoDTO) {
 
         Optional<Produto> optional =  produtoRepository.findById(id);
         if (optional.isPresent()) {
 
-            Produto produto = form.atualizar(id, produtoRepository);
+            Produto produto = produtoDTO.atualizarProduto(id, produtoRepository);
             produtoRepository.save(produto);
             return produto;
         }
@@ -63,13 +64,15 @@ public class ProdutoService {
     }
 
 
-    public ResponseEntity<ProdutoDTO> detalhar(Long id) {
-        Optional<Produto> optional = produtoRepository.findById(id);
-        if (optional.isPresent()) {
-            return ResponseEntity.ok(new ProdutoDTO(optional.get()));
+    public Produto buscarPorId(Long id) {
+
+        Optional<Produto> produtoOptional = produtoRepository.findById(id);
+        if (produtoOptional.isPresent()) {
+            return produtoOptional.get();
         }
 
-        return ResponseEntity.notFound().build();
+        return null;
+
     }
 
     public List<ProdutoDTO> listarTudo(){
@@ -83,14 +86,9 @@ public class ProdutoService {
         return ProdutoDTO.converteListaProdutoParaListaProdutoDTO(listaProdutos);
     }
 
-
-    public Produto buscarPorId(Long id) {
-        Optional<Produto> optional = produtoRepository.findById(id);
-        if (optional.isPresent()) {
-            return optional.get();
-        }
-
-        return null;
+    public Page<ProdutoDTO> listarTudoDTOPaginacao(Pageable paginacao) {
+        Page<Produto> listaProdutos = produtoRepository.findAll(paginacao);
+        return ProdutoDTO.converteListaProdutoParaListaProdutoDTOPaginacao(listaProdutos);
     }
 
     //metodo para inativar produto
@@ -99,11 +97,7 @@ public class ProdutoService {
         produtoRepository.save(produto);
     }
 
-    public Page<ProdutoDTO> listarTudoDTOPaginacao(Pageable paginacao) {
-        //devolve um page ao invés de uma lista
-        Page<Produto> listaProdutos = produtoRepository.findAll(paginacao);
-        return ProdutoDTO.converteListaProdutoParaListaProdutoDTOPaginacao(listaProdutos);
-    }
+
 
 
 }
