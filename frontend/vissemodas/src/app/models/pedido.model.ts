@@ -3,8 +3,8 @@ import { ItemPedido } from './itemPedido.model';
 export class Pedido {
   id?: number;
   data?: Date;
-  idCliente: number;
-  idEndereco: number;
+  idCliente: number | undefined;
+  idEndereco: number | undefined;
   itensPedido: ItemPedido[];
   situacao: string;
   valorTotal: number;

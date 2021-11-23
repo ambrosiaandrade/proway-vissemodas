@@ -4,6 +4,7 @@ import { ItemPedido } from 'src/app/models/itemPedido.model';
 import { Produto } from 'src/app/models/produto.model';
 import { ToastrService } from 'ngx-toastr';
 import { Pedido } from 'src/app/models/pedido.model';
+import { Cliente } from 'src/app/models/cliente.model';
 
 @Component({
   selector: 'app-carrinho',
@@ -39,6 +40,14 @@ export class CarrinhoComponent implements OnInit {
   count_valorTotal: number = 0;
   count_desconto: number = 0;
 
+  // Cliente selecionado do 'choose-cliente'
+  sessionCliente: Cliente = {
+    nome: '',
+    tipoCliente: '',
+  };
+  // Boolean para verificar se já existe um cliente
+  hasCliente: boolean = false;
+
   // Moldando o pedido para enviar para o backend
   pedido: Pedido = {
     idCliente: 0,
@@ -50,10 +59,14 @@ export class CarrinhoComponent implements OnInit {
     percentualDesconto: 0,
   };
 
+  // Texto do botão, 'finalizar' ou 'escolher cliente'
+  botaoTexto: String = 'Finalizar';
+
   constructor(private _router: Router, private _toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.buscarItemPedido();
+    this.buscarCliente();
     this.cleanCount();
   }
 
@@ -78,6 +91,21 @@ export class CarrinhoComponent implements OnInit {
       console.log('itensPedido', this.itensPedido);
     } else {
       this.listProdutos = [];
+    }
+  }
+
+  buscarCliente() {
+    if (localStorage.getItem('BD')) {
+      this.hasCliente = true;
+      this.botaoTexto = 'Finalizar';
+      this.sessionCliente = JSON.parse(localStorage.getItem('client') || '{}');
+    } else {
+      this.hasCliente = false;
+      this.botaoTexto = 'Selecionar cliente';
+      this.sessionCliente = {
+        nome: '',
+        tipoCliente: '',
+      };
     }
   }
 
@@ -142,6 +170,8 @@ export class CarrinhoComponent implements OnInit {
     this.pedido.quantidadeTotal = this.count_qtdTotal;
     this.pedido.percentualDesconto = this.count_desconto;
 
+    this.pedido.idCliente = this.sessionCliente.id;
+
     // todo: Enviar para o backend
 
     // Testando como está o pedido
@@ -153,5 +183,17 @@ export class CarrinhoComponent implements OnInit {
     // Todo: limpar o localStorage depois de enviar o pedido
 
     this._router.navigate(['/finalizado']);
+  }
+
+  // Verifica se há cliente ou não
+  // Caso não haja, fazer o 'choose-cliente'
+  // Caso sim, finalizar a compra
+  handleCompra() {
+    if (this.hasCliente) {
+      // TODO: terminar de implementar
+      this.finalizarCompra();
+    } else {
+      this._router.navigate(['choose-cliente']);
+    }
   }
 }

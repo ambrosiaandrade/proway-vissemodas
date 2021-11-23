@@ -47,11 +47,11 @@
         TODO: implementar o método e fazer o route 
       -->
       <button
-        (click)="finalizarCompra()"
+        (click)="handleCompra()"
         id="btnFinalizarCompra"
         *ngIf="itensPedido.length > 0"
       >
-        Finalizar
+        {{ botaoTexto }}
       </button>
 
       <div class="container" *ngIf="itensPedido.length == 0">
