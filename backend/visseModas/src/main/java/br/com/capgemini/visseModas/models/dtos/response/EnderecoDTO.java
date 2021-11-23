@@ -3,7 +3,6 @@ package br.com.capgemini.visseModas.models.dtos.response;
 import br.com.capgemini.visseModas.models.entities.Endereco;
 import br.com.capgemini.visseModas.models.repositories.EnderecoRepository;
 import lombok.Getter;
-import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,16 +31,11 @@ public class EnderecoDTO {
         this.numero = endereco.getNumero();
     }
 
-    public static List<EnderecoDTO> converter (List<Endereco> listaEnderecos) {
+    public static List<EnderecoDTO> converteListaEnderecoParaListaEnderecoDTO(List<Endereco> listaEnderecos) {
         return listaEnderecos.stream().map(EnderecoDTO::new).collect(Collectors.toList());
     }
 
-    public static Page<EnderecoDTO> converterPaginacao(Page<Endereco>listaEndereco){
-        return listaEndereco.map(EnderecoDTO::new);
-    }
-
-
-    public Endereco dtoToEndereco() {
+    public Endereco converteEnderecoDTOParaEndereco() {
 
         Endereco endereco = new Endereco();
 
@@ -57,7 +51,8 @@ public class EnderecoDTO {
     }
 
 
-    public Endereco atualizar(Long id, EnderecoRepository enderecoRepository) {
+    public Endereco atualizarEndereco(Long id, EnderecoRepository enderecoRepository) {
+
         Endereco endereco = enderecoRepository.getById(id);
 
         endereco.setId(id);

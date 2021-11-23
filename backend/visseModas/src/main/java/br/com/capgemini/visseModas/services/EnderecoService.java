@@ -4,8 +4,6 @@ import br.com.capgemini.visseModas.models.dtos.response.EnderecoDTO;
 import br.com.capgemini.visseModas.models.entities.Endereco;
 import br.com.capgemini.visseModas.models.repositories.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +13,11 @@ import java.util.Optional;
 @Service
 public class EnderecoService {
 
-    @Autowired // injeção de dependência
+    @Autowired
     private EnderecoRepository enderecoRepository;
 
-
-    public void salvar(Endereco endereco) {
-        enderecoRepository.save(endereco);
+    public Endereco salvar(Endereco endereco) {
+        return enderecoRepository.save(endereco);
     }
 
     public Endereco alterar(Long id, EnderecoDTO dto) {
@@ -28,7 +25,7 @@ public class EnderecoService {
         Optional<Endereco> optional = enderecoRepository.findById(id);
 
         if (optional.isPresent()) {
-            Endereco endereco = dto.atualizar(id, enderecoRepository);
+            Endereco endereco = dto.atualizarEndereco(id, enderecoRepository);
             enderecoRepository.save(endereco);
             return endereco;
         }
@@ -59,12 +56,7 @@ public class EnderecoService {
 
     public List<EnderecoDTO> listarTudoDTO() {
         List<Endereco> listaEndereco = enderecoRepository.findAll();
-        return EnderecoDTO.converter(listaEndereco);
+        return EnderecoDTO.converteListaEnderecoParaListaEnderecoDTO(listaEndereco);
     }
 
-    public Page<EnderecoDTO> listarTudoDTOPaginacao(Pageable paginacao) {
-        //devolve um page ao invés de uma lista
-        Page<Endereco> listaEndereco = enderecoRepository.findAll(paginacao);
-        return EnderecoDTO.converterPaginacao(listaEndereco);
-    }
 }
