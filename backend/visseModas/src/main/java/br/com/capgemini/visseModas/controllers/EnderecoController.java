@@ -1,9 +1,8 @@
 package br.com.capgemini.visseModas.controllers;
 
-import br.com.capgemini.visseModas.models.dtos.dtos.ProdutoDTO;
 import br.com.capgemini.visseModas.services.EnderecoService;
-import br.com.capgemini.visseModas.models.dtos.form.EnderecoForm;
-import br.com.capgemini.visseModas.models.dtos.dtos.EnderecoDTO;
+import br.com.capgemini.visseModas.models.dtos.request_form.EnderecoForm;
+import br.com.capgemini.visseModas.models.dtos.response.EnderecoDTO;
 import br.com.capgemini.visseModas.models.entities.Endereco;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,7 +16,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/enderecos")

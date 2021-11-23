@@ -1,4 +1,4 @@
-package br.com.capgemini.visseModas.models.dtos.form;
+package br.com.capgemini.visseModas.models.dtos.request_form;
 
 import br.com.capgemini.visseModas.models.entities.*;
 import br.com.capgemini.visseModas.services.EnderecoService;

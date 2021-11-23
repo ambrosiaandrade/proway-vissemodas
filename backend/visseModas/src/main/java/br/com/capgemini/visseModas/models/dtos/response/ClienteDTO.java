@@ -1,9 +1,7 @@
-package br.com.capgemini.visseModas.models.dtos.dtos;
+package br.com.capgemini.visseModas.models.dtos.response;
 
 import br.com.capgemini.visseModas.models.entities.Cliente;
-import br.com.capgemini.visseModas.models.entities.Endereco;
 import br.com.capgemini.visseModas.models.entities.TipoCliente;
-import br.com.capgemini.visseModas.services.EnderecoService;
 import lombok.Getter;
 import org.springframework.data.domain.Page;
 

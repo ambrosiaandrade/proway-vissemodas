@@ -1,6 +1,6 @@
 package br.com.capgemini.visseModas.controllers;
-import br.com.capgemini.visseModas.models.dtos.dtos.PedidoDTO;
-import br.com.capgemini.visseModas.models.dtos.form.PedidoForm;
+import br.com.capgemini.visseModas.models.dtos.response.PedidoDTO;
+import br.com.capgemini.visseModas.models.dtos.request_form.PedidoForm;
 import br.com.capgemini.visseModas.models.repositories.ItemPedidoRepository;
 import br.com.capgemini.visseModas.services.ClienteService;
 import br.com.capgemini.visseModas.services.PedidoService;

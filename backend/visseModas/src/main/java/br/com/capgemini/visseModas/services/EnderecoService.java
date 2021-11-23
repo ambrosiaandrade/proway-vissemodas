@@ -1,9 +1,7 @@
 package br.com.capgemini.visseModas.services;
 
-import br.com.capgemini.visseModas.models.dtos.dtos.EnderecoDTO;
-import br.com.capgemini.visseModas.models.dtos.dtos.ProdutoDTO;
+import br.com.capgemini.visseModas.models.dtos.response.EnderecoDTO;
 import br.com.capgemini.visseModas.models.entities.Endereco;
-import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.models.repositories.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

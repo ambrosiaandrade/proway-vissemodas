@@ -1,8 +1,8 @@
 package br.com.capgemini.visseModas.controllers;
 
 import br.com.capgemini.visseModas.services.ClienteService;
-import br.com.capgemini.visseModas.models.dtos.form.ClienteForm;
-import br.com.capgemini.visseModas.models.dtos.dtos.ClienteDTO;
+import br.com.capgemini.visseModas.models.dtos.request_form.ClienteForm;
+import br.com.capgemini.visseModas.models.dtos.response.ClienteDTO;
 import br.com.capgemini.visseModas.models.entities.Cliente;
 import br.com.capgemini.visseModas.services.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,14 +1,11 @@
-package br.com.capgemini.visseModas.models.dtos.form;
+package br.com.capgemini.visseModas.models.dtos.request_form;
 
 
 import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.models.repositories.ProdutoRepository;
 import lombok.Data;
-import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Data

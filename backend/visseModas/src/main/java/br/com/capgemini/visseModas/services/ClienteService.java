@@ -1,6 +1,6 @@
 package br.com.capgemini.visseModas.services;
 
-import br.com.capgemini.visseModas.models.dtos.dtos.ClienteDTO;
+import br.com.capgemini.visseModas.models.dtos.response.ClienteDTO;
 import br.com.capgemini.visseModas.models.entities.Cliente;
 import br.com.capgemini.visseModas.models.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;

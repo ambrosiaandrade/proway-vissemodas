@@ -1,9 +1,8 @@
 package br.com.capgemini.visseModas.controllers;
 
-import br.com.capgemini.visseModas.models.dtos.dtos.ItemPedidoDTO;
-import br.com.capgemini.visseModas.models.dtos.form.ItemPedidoForm;
+import br.com.capgemini.visseModas.models.dtos.response.ItemPedidoDTO;
+import br.com.capgemini.visseModas.models.dtos.request_form.ItemPedidoForm;
 import br.com.capgemini.visseModas.models.entities.ItemPedido;
-import br.com.capgemini.visseModas.models.entities.Pedido;
 import br.com.capgemini.visseModas.services.ItemPedidoService;
 import br.com.capgemini.visseModas.services.PedidoService;
 import br.com.capgemini.visseModas.services.ProdutoService;
