@@ -4,6 +4,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from 'src/app/models/cliente.model';
 import { ClienteService } from 'src/app/services/cliente.service';
+import { ToastrService } from 'ngx-toastr';
+import { EnderecoService } from '../../../services/endereco.service';
+import { Endereco } from 'src/app/models/endereco.model';
 
 @Component({
   selector: 'app-choose-cliente',
@@ -11,23 +14,34 @@ import { ClienteService } from 'src/app/services/cliente.service';
   styleUrls: ['./choose-cliente.component.css'],
 })
 export class ChooseClienteComponent implements OnInit {
-  public validacaoForm: FormGroup;
+  validacaoForm: FormGroup;
   listClientes: Cliente[] = [];
 
-  public documento: string = '';
-  public mostrarCliente: Cliente = {
+  documento: string = '';
+  mostrarCliente: Cliente = {
     nome: '',
     tipoCliente: '',
     idEndereco: 0,
   };
+  enderecoCliente: Endereco = {
+    cep: '',
+    estado: '',
+    cidade: '',
+    bairro: '',
+    logradouro: '',
+    numero: 0,
+  };
 
   tipoCliente: boolean = true;
+  botaoTexto: string = 'Buscar';
 
   constructor(
     private _service: ClienteService,
+    private _serviceEndereco: EnderecoService,
     private route: ActivatedRoute,
     private router: Router,
-    private _fb: FormBuilder
+    private _fb: FormBuilder,
+    private _toastr: ToastrService
   ) {
     this.validacaoForm = _fb.group({
       cpf: [''],
@@ -53,6 +67,13 @@ export class ChooseClienteComponent implements OnInit {
         this.listClientes = data;
         console.log(data);
       },
+      error: (e) => console.log(e),
+    });
+  }
+
+  buscarEnderecoCliente(id: number | undefined) {
+    this._serviceEndereco.getOneEndereco(id).subscribe({
+      next: (data) => (this.enderecoCliente = data),
       error: (e) => console.log(e),
     });
   }
@@ -85,7 +106,17 @@ export class ChooseClienteComponent implements OnInit {
     console.log('mostrarCliente', this.mostrarCliente);
   }
 
-  filtrarCliente() {
+  hasCliente(): boolean {
+    if (this.mostrarCliente.nome.length > 0) {
+      this.botaoTexto = 'Continuar compra';
+      this.buscarEnderecoCliente(this.mostrarCliente.idEndereco);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  handleCliente() {
     this.validacaoForm.patchValue({
       cpf: this.validacaoForm.get('cpf')?.value,
       cnpj: this.validacaoForm.get('cnpj')?.value,
@@ -98,7 +129,14 @@ export class ChooseClienteComponent implements OnInit {
     }
 
     this.buscarClientePeloDocumento(this.documento);
-    localStorage.setItem("BD", JSON.stringify(this.mostrarCliente));
+
+    // Antes de salvar no localStorage verificar se existe o cliente
+    if (this.hasCliente()) {
+      localStorage.setItem('client', JSON.stringify(this.mostrarCliente));
+    } else {
+      this._toastr.error('Inválido', 'Cliente');
+    }
+
     this.validacaoForm.reset();
   }
 }
