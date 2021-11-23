@@ -2,23 +2,24 @@
   <div class="col-lg-6 offset-lg-3">
     <div class="card">
       <h5 class="title">Meu carrinho</h5>
-      <div class="card-body" *ngIf="listItensPedido.length > 0">
+      <div class="card-body" *ngIf="itensPedido.length > 0">
         <h6>PRODUTO</h6>
         <!--
           TODO: fazer o loop
         -->
         <div
           class="row align-items-center text-center mb-2"
-          *ngFor="let item of listItensPedido"
+          *ngFor="let item of itensPedido"
         >
           <div class="col-lg-8 text-start">
-            <img [src]="item.imagem" [alt]="item.descricao" />
+            <img [src]="item.produto.imagem" [alt]="item.produto.descricao" />
             <!-- descricao -->
-            <span> {{ item.descricao }}</span>
+            <span> {{ item.produto.descricao }}</span>
           </div>
           <div class="col-2">
             <h6>QTD</h6>
             <input
+              (change)="handleChangeQTD(qtd.value, item.produto.id)"
               class="w-100"
               type="number"
               name="inputQtd"
@@ -27,14 +28,17 @@
               value="1"
               #qtd
             />
-            <button class="btnExcluir" (click)="removerItemPedido(item.id)">
+            <button
+              class="btnExcluir"
+              (click)="removerItemPedido(item.produto.id)"
+            >
               Excluir
             </button>
           </div>
           <div class="col-2">
             <!-- valorUnitario -->
             <h6>Valor</h6>
-            {{ item.valorUnitario | currency: "BRL" }}
+            {{ item.valorPorItem * item.quantidade | currency: "BRL" }}
           </div>
         </div>
       </div>
@@ -45,12 +49,12 @@
       <button
         (click)="finalizarCompra()"
         id="btnFinalizarCompra"
-        *ngIf="listItensPedido.length > 0"
+        *ngIf="itensPedido.length > 0"
       >
         Finalizar
       </button>
 
-      <div class="container" *ngIf="listItensPedido.length == 0">
+      <div class="container" *ngIf="itensPedido.length == 0">
         <div class="card">
           <div class="card-body text-center">
             <h5>Não há produtos adicionados ao carrinho</h5>
