@@ -7,16 +7,22 @@ import br.com.capgemini.visseModas.services.ProdutoService;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Setter
 @Getter
 public class ItemPedidoForm {
 
+    @NotNull
     private Long idPedido;
+    @NotNull
     private Long idProduto;
-    //@Min() //todo pesquisar
+    @Min(1) //todo pesquisar
     private Integer quantidade;
+    @Digits(integer=9, fraction=2)
     private BigDecimal valorTotalItem;
 
     public ItemPedidoForm() {
