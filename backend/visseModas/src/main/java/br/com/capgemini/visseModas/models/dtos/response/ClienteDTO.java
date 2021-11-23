@@ -42,7 +42,7 @@ public class ClienteDTO {
     }
 
 
-    public Cliente converteDTOParaCliente() {
+    public Cliente converteClienteDTOParaCliente() {
 
         Cliente cliente = new Cliente();
 
@@ -51,7 +51,7 @@ public class ClienteDTO {
         cliente.setTipoCliente(TipoCliente.valueOf(tipoCliente));
         cliente.setCpf(cpf);
         cliente.setCnpj(cnpj);
-        cliente.setEndereco(enderecoDTO.dtoToEndereco());
+        cliente.setEndereco(enderecoDTO.converteEnderecoDTOParaEndereco());
 
         return cliente;
     }

@@ -33,7 +33,7 @@ public class ProdutoDTO {
         this.status = produto.getStatus();
     }
 
-    public Produto converteDTOParaProduto() {
+    public Produto converteProdutoDTOParaProduto() {
 
         Produto produto = new Produto();
 
@@ -48,7 +48,7 @@ public class ProdutoDTO {
     }
 
 
-    public Produto atualizar(Long id, ProdutoRepository produtoRepository) {
+    public Produto atualizarProduto(Long id, ProdutoRepository produtoRepository) {
 
         Produto produto = produtoRepository.getById(id);
 
@@ -62,12 +62,11 @@ public class ProdutoDTO {
     }
 
 
-    // Método que converte a entidade para DTO
-    public static List<ProdutoDTO> converter(List<Produto> produtos){
+    public static List<ProdutoDTO> converteListaProdutoParaListaProdutoDTO(List<Produto> produtos){
         return produtos.stream().map(ProdutoDTO::new).collect(Collectors.toList());
     }
 
-    public static Page<ProdutoDTO> converterPaginacao(Page<Produto> listaProdutos){
+    public static Page<ProdutoDTO> converteListaProdutoParaListaProdutoDTOPaginacao(Page<Produto> listaProdutos){
         return listaProdutos.map(ProdutoDTO::new);
     }
 

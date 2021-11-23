@@ -1,6 +1,7 @@
 package br.com.capgemini.visseModas.services;
 
 import br.com.capgemini.visseModas.models.dtos.response.ItemPedidoDTO;
+import br.com.capgemini.visseModas.models.entities.Cliente;
 import br.com.capgemini.visseModas.models.entities.ItemPedido;
 import br.com.capgemini.visseModas.models.entities.Pedido;
 import br.com.capgemini.visseModas.models.entities.Produto;
@@ -53,28 +54,23 @@ public class ItemPedidoService {
         return item.getPedido().getListaItens();
     }
 
-
-    public void salvar(ItemPedido itemPedido){
-        itemPedidoRepository.save(itemPedido);
+    public ItemPedido salvar(ItemPedido itemPedido){
+       return itemPedidoRepository.save(itemPedido);
     }
 
-    public ResponseEntity<ItemPedidoDTO> detalhar(Long id){
+    public ItemPedido detalhar(Long id){
+
         Optional<ItemPedido> itemPedidoOptional = itemPedidoRepository.findById(id);
-        if(itemPedidoOptional.isPresent()){
-            return ResponseEntity.ok(new ItemPedidoDTO(itemPedidoOptional.get()));
+        if (itemPedidoOptional.isPresent()) {
+            return itemPedidoOptional.get();
         }
-        return ResponseEntity.notFound().build();
+
+        return null;
     }
 
     public List<ItemPedidoDTO> listarTudoDTO(Long idPedido){
         List<ItemPedido> listaItemPedido = itemPedidoRepository.findByPedidoId(idPedido);
-        return ItemPedidoDTO.converter(listaItemPedido);
+        return ItemPedidoDTO.converteListaItemPedidoParaListaItemPedidoDTO(listaItemPedido);
     }
 
-    //todo ajustar
-//    public Page<ItemPedidoDTO> listarTudoDTOPaginacao(Pageable paginacao) {
-//        Page<ItemPedido> listaItemPedido = itemPedidoRepository.findAll(paginacao);
-//        return ItemPedidoDTO.converterPaginacao(listaItemPedido);
-//    }
-//
 }
