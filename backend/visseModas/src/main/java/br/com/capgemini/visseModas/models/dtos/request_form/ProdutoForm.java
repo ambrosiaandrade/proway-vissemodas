@@ -41,7 +41,7 @@ public class ProdutoForm {
     }
 
 
-    public Produto atualizar(Long id, ProdutoRepository produtoRepository) {
+    public Produto atualizarProduto(Long id, ProdutoRepository produtoRepository) {
 
             Produto produto = produtoRepository.getById(id);
 

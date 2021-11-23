@@ -28,7 +28,7 @@ public class ClienteForm {
     }
 
     //pega os dados do DTO e cria em um cliente
-    public Cliente formToCliente(EnderecoService enderecoService) {
+    public Cliente converteFormClienteParaCliente(EnderecoService enderecoService) {
 
         Endereco endereco = enderecoService.buscarPorId(idEndereco);
 
