@@ -33,22 +33,40 @@ public class ItemPedidoDTO {
         this.valorTotal = itemPedido.getValorPorItem();
     }
 
-    public static List<ItemPedidoDTO> converter (List<ItemPedido> listaItemPedido){
+    public static List<ItemPedidoDTO> converteListaItemPedidoParaListaItemPedidoDTO(List<ItemPedido> listaItemPedido){
         return listaItemPedido.stream().map(ItemPedidoDTO::new).collect(Collectors.toList());
     }
 
-    public List<ItemPedido> converterListaItemPedidoDTOParaListaItemPedido(ProdutoService produtoService, PedidoService pedidoService, List<ItemPedidoForm> lista) {
+//    public List<ItemPedido> converterListaItemPedidoDTOParaListaItemPedido(ProdutoService produtoService, PedidoService pedidoService, List<ItemPedidoForm> lista) {
+//
+//        Produto produto = produtoService.buscarPorId(idProduto);
+//        Pedido pedido = pedidoService.buscarPorId(idPedido);
+//
+//        ItemPedido itemPedido = new ItemPedido();
+//
+//        List<ItemPedido> listaItens = lista.stream()
+//                .map(itemPedidoForm -> {
+//                    itemPedido.setProduto(produto);
+//                    itemPedido.setPedido(pedido);
+//                    itemPedido.setQuantidade(quantidade);
+//                    return itemPedido;
+//                }).collect(Collectors.toList());
+//
+//        return listaItens;
+//
+//    }
 
-        Produto produto = produtoService.buscarPorId(idProduto);
-        Pedido pedido = pedidoService.buscarPorId(idPedido);
-
-        ItemPedido itemPedido = new ItemPedido();
+    public List<ItemPedido> converterListaItemPedidoDTOParaListaItemPedido(ProdutoService produtoService, Pedido pedido, List<ItemPedidoForm> lista) {
 
         List<ItemPedido> listaItens = lista.stream()
                 .map(itemPedidoForm -> {
-                    itemPedido.setProduto(produto);
+
+                    ItemPedido itemPedido = new ItemPedido();
+
+                    itemPedido.setProduto(produtoService.buscarPorId(itemPedidoForm.getIdProduto()));
                     itemPedido.setPedido(pedido);
-                    itemPedido.setQuantidade(quantidade);
+                    itemPedido.setQuantidade(itemPedidoForm.getQuantidade());
+                    itemPedido.setValorPorItem(itemPedidoForm.getValorTotalItem());
                     return itemPedido;
                 }).collect(Collectors.toList());
 

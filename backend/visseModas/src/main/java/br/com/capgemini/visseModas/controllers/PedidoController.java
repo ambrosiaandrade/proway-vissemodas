@@ -47,7 +47,7 @@ public class PedidoController {
     @PostMapping
     public ResponseEntity<PedidoDTO> salvar(@RequestBody @Valid PedidoForm form, UriComponentsBuilder uriBuilder) {
 
-        Pedido pedido = form.formToPedido(clienteService, produtoService, pedidoService);
+        Pedido pedido = form.convertePedidoFormParaPedido(clienteService, produtoService, pedidoService);
         pedidoService.salvar(pedido);
 
         URI uri = uriBuilder.path("/clientes/{id}").buildAndExpand(pedido.getId()).toUri();

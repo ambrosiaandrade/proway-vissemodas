@@ -56,7 +56,7 @@ public class PedidoService {
         if(optional.isPresent()){
 
             Pedido pedido = optional.get();
-            pedido.setSituacao(Situacao.CANCELADO);
+            //pedido.setSituacao(Situacao.CANCELADO);
             pedidoRepository.save(pedido);
             return ResponseEntity.ok().build();
         }
@@ -75,7 +75,7 @@ public class PedidoService {
 
     public List<PedidoDTO> listarTudoDTO(){
         List<Pedido> listaPedidos = pedidoRepository.findAll();
-        return PedidoDTO.converter(listaPedidos);
+        return PedidoDTO.converteListaPedidoParaListaPedidoDTO(listaPedidos);
     }
 
 //    public List<PedidoDTO> listarTudoPersonalizada(){
@@ -104,7 +104,7 @@ public class PedidoService {
     public Page<PedidoDTO> listarTudoDTOPaginacao(Pageable paginacao) {
         //devolve um page ao invés de uma lista
         Page<Pedido> listaPedidos = pedidoRepository.findAll(paginacao);
-        return PedidoDTO.converterPaginacao(listaPedidos);
+        return PedidoDTO.converteListaPedidoParaListaPedidoDTOPaginacao(listaPedidos);
     }
 
 }

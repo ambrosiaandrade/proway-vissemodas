@@ -1,4 +1,4 @@
-package br.com.capgemini.visseModas.configs;
+package br.com.capgemini.visseModas.configs.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

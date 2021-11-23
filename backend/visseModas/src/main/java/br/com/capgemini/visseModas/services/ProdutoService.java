@@ -74,13 +74,13 @@ public class ProdutoService {
 
     public List<ProdutoDTO> listarTudo(){
         List<Produto> listaProdutos = produtoRepository.findAll();
-        return ProdutoDTO.converter(listaProdutos);
+        return ProdutoDTO.converteListaProdutoParaListaProdutoDTO(listaProdutos);
     }
 
     // Não deve ser possível adicionar um produto desativado em um pedido
     public List<ProdutoDTO> listarTudoAtivo(){
         List<Produto> listaProdutos = produtoRepository.findByStatus(true);
-        return ProdutoDTO.converter(listaProdutos);
+        return ProdutoDTO.converteListaProdutoParaListaProdutoDTO(listaProdutos);
     }
 
 
@@ -102,7 +102,7 @@ public class ProdutoService {
     public Page<ProdutoDTO> listarTudoDTOPaginacao(Pageable paginacao) {
         //devolve um page ao invés de uma lista
         Page<Produto> listaProdutos = produtoRepository.findAll(paginacao);
-        return ProdutoDTO.converterPaginacao(listaProdutos);
+        return ProdutoDTO.converteListaProdutoParaListaProdutoDTOPaginacao(listaProdutos);
     }
 
 

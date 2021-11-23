@@ -29,9 +29,9 @@ public class ClienteController {
 
 
     @PostMapping
-    public ResponseEntity<ClienteDTO> salvar(@RequestBody @Valid ClienteForm form, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<ClienteDTO> salvar(@RequestBody @Valid ClienteForm clienteForm, UriComponentsBuilder uriBuilder) {
 
-        Cliente cliente = form.formToCliente(enderecoService);
+        Cliente cliente = clienteForm.converteFormClienteParaCliente(enderecoService);
         service.salvar(cliente);
 
         URI uri = uriBuilder.path("/clientes/{id}").buildAndExpand(cliente.getId()).toUri();
@@ -40,7 +40,14 @@ public class ClienteController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ClienteDTO> detalhar(@PathVariable Long id) {
-        return service.detalhar(id);
+
+        Cliente cliente = service.buscarPorId(id);
+
+        if(cliente != null){
+            return ResponseEntity.ok(new ClienteDTO(cliente));
+        }
+
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping
@@ -48,7 +55,6 @@ public class ClienteController {
         return service.listarTudoDTO();
     }
 
-    //se não obrigatorio
     @GetMapping("pageable")                     //setando uma ordenacao default, se não passar parametros
     public Page<ClienteDTO> listarTudoPaginacao(@PageableDefault(sort="nome", direction = Sort.Direction.ASC, page=0, size = 10) Pageable paginacao) {
         return service.listarTudoDTOPaginacao(paginacao);

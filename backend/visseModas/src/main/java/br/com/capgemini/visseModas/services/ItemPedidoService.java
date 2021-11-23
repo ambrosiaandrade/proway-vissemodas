@@ -53,7 +53,6 @@ public class ItemPedidoService {
         return item.getPedido().getListaItens();
     }
 
-
     public void salvar(ItemPedido itemPedido){
         itemPedidoRepository.save(itemPedido);
     }
@@ -68,7 +67,7 @@ public class ItemPedidoService {
 
     public List<ItemPedidoDTO> listarTudoDTO(Long idPedido){
         List<ItemPedido> listaItemPedido = itemPedidoRepository.findByPedidoId(idPedido);
-        return ItemPedidoDTO.converter(listaItemPedido);
+        return ItemPedidoDTO.converteListaItemPedidoParaListaItemPedidoDTO(listaItemPedido);
     }
 
     //todo ajustar
