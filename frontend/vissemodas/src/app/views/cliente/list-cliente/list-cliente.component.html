@@ -15,7 +15,7 @@
                 <tr 
                 *ngFor="let cliente of listaClientes">
                 <td>
-                    <a [routerLink]="['/edit-cliente', cliente.id]">
+                    <a [routerLink]="['/edit-endereco', cliente.id]">
                        Editar {{ cliente.id }} </a>
                 </td>
                 <td *ngIf="cliente.cpf">{{ cliente.cpf }}</td>
