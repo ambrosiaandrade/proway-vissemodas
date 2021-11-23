@@ -77,7 +77,6 @@ export class AddClienteComponent implements OnInit {
     let CLIENTE: Cliente = {
       nome: this.clienteForm.get('nome')?.value,
       tipoCliente: '',
-      idEndereco: this.idEndereco,
     };
 
     if ( this.id !== null ) { 
