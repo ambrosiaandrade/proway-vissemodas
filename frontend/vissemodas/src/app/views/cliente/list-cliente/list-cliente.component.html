@@ -18,8 +18,8 @@
                     <a [routerLink]="['/edit-cliente', cliente.id]">
                        Editar {{ cliente.id }} </a>
                 </td>
-                <td class="text-start" *ngIf="cliente.cpf">{{ cliente.cpf }}</td>
-                <td class="text-start" *ngIf="cliente.cnpj">{{ cliente.cnpj }}</td>
+                <td *ngIf="cliente.cpf">{{ cliente.cpf }}</td>
+                <td *ngIf="cliente.cnpj">{{ cliente.cnpj }}</td>
                 <td> {{ cliente.nome }} </td>
                 <td> {{ cliente.tipoCliente }} </td>
                 </tr>
