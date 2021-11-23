@@ -68,8 +68,8 @@ public class ItemPedidoService {
         return ResponseEntity.notFound().build();
     }
 
-    public List<ItemPedidoDTO> listarTudoDTO(Pedido pedido){
-        List<ItemPedido> listaItemPedido = itemPedidoRepository.findByPedidoId(pedido.getId());
+    public List<ItemPedidoDTO> listarTudoDTO(Long idPedido){
+        List<ItemPedido> listaItemPedido = itemPedidoRepository.findByPedidoId(idPedido);
         return ItemPedidoDTO.converter(listaItemPedido);
     }
 

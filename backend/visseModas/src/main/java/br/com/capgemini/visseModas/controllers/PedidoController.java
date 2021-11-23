@@ -1,9 +1,6 @@
 package br.com.capgemini.visseModas.controllers;
-import br.com.capgemini.visseModas.models.dtos.dtos.ItemPedidoDTO;
 import br.com.capgemini.visseModas.models.dtos.dtos.PedidoDTO;
-import br.com.capgemini.visseModas.models.dtos.form.ItemPedidoForm;
 import br.com.capgemini.visseModas.models.dtos.form.PedidoForm;
-import br.com.capgemini.visseModas.models.entities.ItemPedido;
 import br.com.capgemini.visseModas.models.repositories.ItemPedidoRepository;
 import br.com.capgemini.visseModas.services.ClienteService;
 import br.com.capgemini.visseModas.services.PedidoService;
@@ -35,22 +32,22 @@ public class PedidoController {
     @Autowired
     private ItemPedidoRepository itemPedidoRepository;
 
-    @PostMapping("/addItem")
-    public ResponseEntity<PedidoDTO> addItem(@RequestBody @Valid ItemPedidoForm itemPedidoForm, UriComponentsBuilder uriBuilder) {
-
-        ItemPedido itemPedido = itemPedidoForm.formToItemPedido(produtoService, pedidoService);
-        pedidoService.adicionarItem(itemPedido);
-
-        Pedido pedido = pedidoService.buscarPorId(itemPedido.getPedido().getId());
-
-        URI uri = uriBuilder.path("/addItem").buildAndExpand(pedido.getId()).toUri();
-        return ResponseEntity.created(uri).body(new PedidoDTO(pedido));
-    }
+//    @PostMapping("/addItem")
+//    public ResponseEntity<PedidoDTO> addItem(@RequestBody @Valid ItemPedidoForm itemPedidoForm, UriComponentsBuilder uriBuilder) {
+//
+//        ItemPedido itemPedido = itemPedidoForm.formToItemPedido(produtoService, pedidoService);
+//        pedidoService.adicionarItem(itemPedido);
+//
+//        Pedido pedido = pedidoService.buscarPorId(itemPedido.getPedido().getId());
+//
+//        URI uri = uriBuilder.path("/addItem").buildAndExpand(pedido.getId()).toUri();
+//        return ResponseEntity.created(uri).body(new PedidoDTO(pedido));
+//    }
 
     @PostMapping
     public ResponseEntity<PedidoDTO> salvar(@RequestBody @Valid PedidoForm form, UriComponentsBuilder uriBuilder) {
 
-        Pedido pedido = form.formToPedido(clienteService);
+        Pedido pedido = form.formToPedido(clienteService, produtoService, pedidoService);
         pedidoService.salvar(pedido);
 
         URI uri = uriBuilder.path("/clientes/{id}").buildAndExpand(pedido.getId()).toUri();

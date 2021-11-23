@@ -17,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/enderecos")
@@ -39,10 +40,20 @@ public class EnderecoController {
     public ResponseEntity<EnderecoDTO> alterar(@PathVariable Long id, @RequestBody @Valid EnderecoDTO form, UriComponentsBuilder uriBuilder ) {
 
         Endereco endereco = form.dtoToEndereco();
-        service.alterar(id, form);
+        endereco = service.alterar(id, form);
 
-        URI uri = uriBuilder.path("/clientes/{id}").buildAndExpand(endereco.getId()).toUri();
+        URI uri = uriBuilder.path("/enderecos/{id}").buildAndExpand(endereco.getId()).toUri();
         return ResponseEntity.created(uri).body(new EnderecoDTO(endereco));
+
+//        Optional<Endereco> optional = enderecoRepository.findById(id);
+//        if (optional.isPresent()) {
+//            Endereco endereco = form.atualizar(id, enderecoRepository);
+//            enderecoRepository.save(endereco);
+//            return ResponseEntity.ok(new EnderecoDTO(endereco));
+//        }
+//
+//        return ResponseEntity.notFound().build();
+
 
     }
 

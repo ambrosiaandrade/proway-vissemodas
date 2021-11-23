@@ -1,8 +1,10 @@
 package br.com.capgemini.visseModas.controllers;
 
+import br.com.capgemini.visseModas.models.dtos.dtos.EnderecoDTO;
 import br.com.capgemini.visseModas.models.dtos.dtos.ProdutoDTO;
 import br.com.capgemini.visseModas.models.dtos.form.ProdutoForm;
 import br.com.capgemini.visseModas.models.dtos.update.ProdutoUpdate;
+import br.com.capgemini.visseModas.models.entities.Endereco;
 import br.com.capgemini.visseModas.services.ProdutoService;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +42,8 @@ public class ProdutoController {
     public ResponseEntity<ProdutoDTO> alterar(@PathVariable Long id, @RequestBody @Valid ProdutoUpdate form, UriComponentsBuilder uriBuilder ) {
 
         Produto produto = form.produtoUpdateToProduto();
-        produto.setId(id);
-        service.alterar(id, form);
+        //produto.setId(id);
+        produto = service.alterar(id, form);
 
         URI uri = uriBuilder.path("/produtos/{id}").buildAndExpand(produto.getId()).toUri();
         return ResponseEntity.created(uri).body(new ProdutoDTO(produto));

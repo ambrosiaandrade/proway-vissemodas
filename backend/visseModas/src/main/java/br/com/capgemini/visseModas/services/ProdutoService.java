@@ -2,6 +2,7 @@ package br.com.capgemini.visseModas.services;
 
 import br.com.capgemini.visseModas.models.dtos.dtos.ProdutoDTO;
 import br.com.capgemini.visseModas.models.dtos.update.ProdutoUpdate;
+import br.com.capgemini.visseModas.models.entities.Endereco;
 import br.com.capgemini.visseModas.models.entities.ItemPedido;
 import br.com.capgemini.visseModas.models.entities.Pedido;
 import br.com.capgemini.visseModas.models.entities.Produto;
@@ -32,17 +33,16 @@ public class ProdutoService {
         produtoRepository.save(produto);
     }
 
-    public ResponseEntity<ProdutoUpdate> alterar(Long id, ProdutoUpdate form) {
+    public Produto alterar(Long id, ProdutoUpdate form) {
 
         Optional<Produto> optional =  produtoRepository.findById(id);
         if (optional.isPresent()) {
 
             Produto produto = form.atualizar(id, produtoRepository);
             produtoRepository.save(produto);
-            return ResponseEntity.ok(new ProdutoUpdate(produto));
+            return produto;
         }
-
-        return ResponseEntity.notFound().build();
+        return null;
     }
 
     //TODO Não deve ser possível excluir um produto se ele estiver associado a algum pedido
