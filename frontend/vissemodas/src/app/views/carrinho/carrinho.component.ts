@@ -5,6 +5,7 @@ import { Produto } from 'src/app/models/produto.model';
 import { ToastrService } from 'ngx-toastr';
 import { Pedido } from 'src/app/models/pedido.model';
 import { Cliente } from 'src/app/models/cliente.model';
+import { PedidoService } from 'src/app/services/pedido.service';
 
 @Component({
   selector: 'app-carrinho',
@@ -62,7 +63,11 @@ export class CarrinhoComponent implements OnInit {
   // Texto do botão, 'finalizar' ou 'escolher cliente'
   botaoTexto: String = 'Finalizar';
 
-  constructor(private _router: Router, private _toastr: ToastrService) {}
+  constructor(
+    private _router: Router,
+    private _toastr: ToastrService,
+    private _servicePedido: PedidoService
+  ) {}
 
   ngOnInit(): void {
     this.buscarItemPedido();
@@ -95,7 +100,7 @@ export class CarrinhoComponent implements OnInit {
   }
 
   buscarCliente() {
-    if (localStorage.getItem('BD')) {
+    if (localStorage.getItem('client')) {
       this.hasCliente = true;
       this.botaoTexto = 'Finalizar';
       this.sessionCliente = JSON.parse(localStorage.getItem('client') || '{}');
@@ -160,19 +165,22 @@ export class CarrinhoComponent implements OnInit {
   finalizarCompra() {
     this.setCountValues();
 
-    // todo: quem é o idCliente?
-    // todo: qual o idEndereco do cliente?
-
     this.pedido.itensPedido = this.itensPedido;
     this.pedido.situacao = 'ABERTO';
 
-    this.pedido.valorTotal = this.count_valorTotal;
     this.pedido.quantidadeTotal = this.count_qtdTotal;
     this.pedido.percentualDesconto = this.count_desconto;
+    this.pedido.valorTotal =
+      this.count_valorTotal - this.count_valorTotal * this.count_desconto;
 
     this.pedido.idCliente = this.sessionCliente.id;
+    this.pedido.idEndereco = this.sessionCliente.idEndereco;
 
     // todo: Enviar para o backend
+    this._servicePedido.postPedido(this.pedido).subscribe({
+      next: (data) => console.log(data),
+      error: (e) => console.log(e),
+    });
 
     // Testando como está o pedido
     console.log('pedido', this.pedido);
@@ -181,6 +189,7 @@ export class CarrinhoComponent implements OnInit {
     this.cleanCount();
 
     // Todo: limpar o localStorage depois de enviar o pedido
+    localStorage.clear();
 
     this._router.navigate(['/finalizado']);
   }

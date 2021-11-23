@@ -38,8 +38,8 @@ export class ChooseClienteComponent implements OnInit {
   constructor(
     private _service: ClienteService,
     private _serviceEndereco: EnderecoService,
-    private route: ActivatedRoute,
-    private router: Router,
+    private _route: ActivatedRoute,
+    private _router: Router,
     private _fb: FormBuilder,
     private _toastr: ToastrService
   ) {
@@ -117,26 +117,31 @@ export class ChooseClienteComponent implements OnInit {
   }
 
   handleCliente() {
-    this.validacaoForm.patchValue({
-      cpf: this.validacaoForm.get('cpf')?.value,
-      cnpj: this.validacaoForm.get('cnpj')?.value,
-    });
+    // Se não tem cliente, buscar cliente
+    if (!this.hasCliente()) {
+      this.validacaoForm.patchValue({
+        cpf: this.validacaoForm.get('cpf')?.value,
+        cnpj: this.validacaoForm.get('cnpj')?.value,
+      });
 
-    if (this.tipoCliente) {
-      this.documento = this.validacaoForm.controls.cpf.value;
+      if (this.tipoCliente) {
+        this.documento = this.validacaoForm.controls.cpf.value;
+      } else {
+        this.documento = this.validacaoForm.controls.cnpj.value;
+      }
+
+      this.buscarClientePeloDocumento(this.documento);
+
+      // Antes de salvar no localStorage verificar se existe o cliente
+      if (this.hasCliente()) {
+        localStorage.setItem('client', JSON.stringify(this.mostrarCliente));
+      } else {
+        this._toastr.error('Inválido', 'Cliente');
+      }
+
+      this.validacaoForm.reset();
     } else {
-      this.documento = this.validacaoForm.controls.cnpj.value;
+      this._router.navigate(['carrinho']);
     }
-
-    this.buscarClientePeloDocumento(this.documento);
-
-    // Antes de salvar no localStorage verificar se existe o cliente
-    if (this.hasCliente()) {
-      localStorage.setItem('client', JSON.stringify(this.mostrarCliente));
-    } else {
-      this._toastr.error('Inválido', 'Cliente');
-    }
-
-    this.validacaoForm.reset();
   }
 }
