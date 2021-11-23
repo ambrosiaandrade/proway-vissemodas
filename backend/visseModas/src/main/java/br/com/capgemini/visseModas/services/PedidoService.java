@@ -48,9 +48,6 @@ public class PedidoService {
         return item.getPedido().getListaItens();
     }
 
-
-
-
     public void salvar(Pedido pedido){
         pedido.setSituacao(Situacao.FECHADO);
         pedidoRepository.save(pedido);

@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Setter
 public class ClienteForm {
@@ -19,7 +20,7 @@ public class ClienteForm {
     private String cnpj;
     @NotBlank(message = "O tipo do cliente é obrigatório.")
     private String tipoCliente;
-
+    @NotNull
     private Long idEndereco;
 
     public ClienteForm(){
@@ -42,12 +43,6 @@ public class ClienteForm {
         return cliente;
     }
 
-//    //TODO ver esse metodo
-//    //metodo que devolve com cliente completo, com a lista de enderecos para popular a view
-//    public Cliente converter(EnderecoRepository enderecoRepository){
-//        List<Endereco> listaEnderecos = enderecoRepository.findByClienteNome(nome);
-//        return new Cliente(nome, TipoCliente.valueOf(documento), tipoCliente, email, senha, listaEnderecos);
-//    }
 
 
 }

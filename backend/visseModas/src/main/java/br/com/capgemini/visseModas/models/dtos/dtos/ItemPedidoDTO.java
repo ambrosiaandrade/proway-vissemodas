@@ -1,6 +1,11 @@
 package br.com.capgemini.visseModas.models.dtos.dtos;
 
+import br.com.capgemini.visseModas.models.dtos.form.ItemPedidoForm;
 import br.com.capgemini.visseModas.models.entities.ItemPedido;
+import br.com.capgemini.visseModas.models.entities.Pedido;
+import br.com.capgemini.visseModas.models.entities.Produto;
+import br.com.capgemini.visseModas.services.PedidoService;
+import br.com.capgemini.visseModas.services.ProdutoService;
 import lombok.Getter;
 import org.springframework.data.domain.Page;
 
@@ -33,21 +38,24 @@ public class ItemPedidoDTO {
         return listaItemPedido.stream().map(ItemPedidoDTO::new).collect(Collectors.toList());
     }
 
-    public static Page<ItemPedidoDTO> converterPaginacao(Page<ItemPedido> listaItemPedido) {
-        return listaItemPedido.map(ItemPedidoDTO::new);
+    public List<ItemPedido> converterListaItemPedidoDTOParaListaItemPedido(ProdutoService produtoService, PedidoService pedidoService, List<ItemPedidoForm> lista) {
+
+        Produto produto = produtoService.buscarPorId(idProduto);
+        Pedido pedido = pedidoService.buscarPorId(idPedido);
+
+        ItemPedido itemPedido = new ItemPedido();
+
+        List<ItemPedido> listaItens = lista.stream()
+                .map(itemPedidoForm -> {
+                    itemPedido.setProduto(produto);
+                    itemPedido.setPedido(pedido);
+                    itemPedido.setQuantidade(quantidade);
+                    return itemPedido;
+                }).collect(Collectors.toList());
+
+        return listaItens;
+
     }
 
-//    public ItemPedido dtoToItemPedido(Pedido pedido, Produto produto){
-//
-//        ItemPedido itemPedido = new ItemPedido(quantidade, pedido, produto);
-//
-//        itemPedido.setId(id);
-//        itemPedido.setProduto(produto);
-//        itemPedido.setPedido(pedido);
-//        itemPedido.setQuantidade(quantidade);
-//        itemPedido.setValorItem(valorTotal);
-//
-//        return itemPedido;
-//    }
 
 }

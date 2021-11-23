@@ -34,7 +34,7 @@ public class EnderecoController {
     public ResponseEntity<EnderecoDTO> alterar(@PathVariable Long id, @RequestBody @Valid EnderecoDTO form, UriComponentsBuilder uriBuilder ) {
 
         Endereco endereco = form.dtoToEndereco();
-        service.alterar(id, form);
+        //endereco = service.alterar(id, form);
 
         URI uri = uriBuilder.path("/clientes/{id}").buildAndExpand(endereco.getId()).toUri();
         return ResponseEntity.created(uri).body(new EnderecoDTO(endereco));
