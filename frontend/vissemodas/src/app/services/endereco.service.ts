@@ -26,4 +26,8 @@ export class EnderecoService {
   deleteEndereco(id: any): Observable<any> {
     return this._http.delete(`${this.url}/${id}`);
   }
+
+  putEndereco(id: any, endereco: Endereco): Observable<any> {
+    return this._http.put(`${this.url}/${id}`, endereco);
+  }
 }
