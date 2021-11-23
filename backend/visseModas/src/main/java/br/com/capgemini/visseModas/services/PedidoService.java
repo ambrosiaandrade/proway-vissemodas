@@ -1,8 +1,6 @@
 package br.com.capgemini.visseModas.services;
 
-import br.com.capgemini.visseModas.models.dtos.dtos.ClienteDTO;
-import br.com.capgemini.visseModas.models.dtos.dtos.PedidoDTO;
-import br.com.capgemini.visseModas.models.entities.Cliente;
+import br.com.capgemini.visseModas.models.dtos.response.PedidoDTO;
 import br.com.capgemini.visseModas.models.entities.ItemPedido;
 import br.com.capgemini.visseModas.models.entities.Pedido;
 import br.com.capgemini.visseModas.models.entities.Situacao;
@@ -14,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 

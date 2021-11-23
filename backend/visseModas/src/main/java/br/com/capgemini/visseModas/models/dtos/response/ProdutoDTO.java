@@ -1,6 +1,5 @@
-package br.com.capgemini.visseModas.models.dtos.dtos;
+package br.com.capgemini.visseModas.models.dtos.response;
 
-import br.com.capgemini.visseModas.models.entities.Pedido;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.models.repositories.ProdutoRepository;
 import lombok.Getter;

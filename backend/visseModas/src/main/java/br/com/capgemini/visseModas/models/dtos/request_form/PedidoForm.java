@@ -1,22 +1,15 @@
-package br.com.capgemini.visseModas.models.dtos.form;
+package br.com.capgemini.visseModas.models.dtos.request_form;
 
-import br.com.capgemini.visseModas.models.dtos.dtos.ItemPedidoDTO;
-import br.com.capgemini.visseModas.models.dtos.dtos.PedidoDTO;
 import br.com.capgemini.visseModas.models.entities.Cliente;
-import br.com.capgemini.visseModas.models.entities.Endereco;
-import br.com.capgemini.visseModas.models.entities.ItemPedido;
 import br.com.capgemini.visseModas.models.entities.Pedido;
 import br.com.capgemini.visseModas.services.ClienteService;
-import br.com.capgemini.visseModas.services.EnderecoService;
 import br.com.capgemini.visseModas.services.PedidoService;
 import br.com.capgemini.visseModas.services.ProdutoService;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Setter
 public class PedidoForm {

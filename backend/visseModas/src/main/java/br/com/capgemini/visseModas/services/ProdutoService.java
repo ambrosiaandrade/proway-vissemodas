@@ -1,10 +1,8 @@
 package br.com.capgemini.visseModas.services;
 
-import br.com.capgemini.visseModas.models.dtos.dtos.ProdutoDTO;
+import br.com.capgemini.visseModas.models.dtos.response.ProdutoDTO;
 import br.com.capgemini.visseModas.models.dtos.update.ProdutoUpdate;
-import br.com.capgemini.visseModas.models.entities.Endereco;
 import br.com.capgemini.visseModas.models.entities.ItemPedido;
-import br.com.capgemini.visseModas.models.entities.Pedido;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.models.repositories.ItemPedidoRepository;
 import br.com.capgemini.visseModas.models.repositories.ProdutoRepository;
@@ -15,10 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
-import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
-import java.util.Properties;
 
 @Service
 public class ProdutoService {

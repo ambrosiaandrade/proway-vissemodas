@@ -23,7 +23,7 @@ public class Endereco {
     private String cidade;
     private String bairro;
     private String logradouro;
-    private Integer numero;
+    private Integer numero = 0;
 
     @OneToOne(mappedBy = "endereco", fetch = FetchType.EAGER)
     private Cliente cliente;

@@ -1,10 +1,8 @@
 package br.com.capgemini.visseModas.controllers;
 
-import br.com.capgemini.visseModas.models.dtos.dtos.EnderecoDTO;
-import br.com.capgemini.visseModas.models.dtos.dtos.ProdutoDTO;
-import br.com.capgemini.visseModas.models.dtos.form.ProdutoForm;
+import br.com.capgemini.visseModas.models.dtos.response.ProdutoDTO;
+import br.com.capgemini.visseModas.models.dtos.request_form.ProdutoForm;
 import br.com.capgemini.visseModas.models.dtos.update.ProdutoUpdate;
-import br.com.capgemini.visseModas.models.entities.Endereco;
 import br.com.capgemini.visseModas.services.ProdutoService;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import org.springframework.beans.factory.annotation.Autowired;

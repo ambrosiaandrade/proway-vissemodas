@@ -1,9 +1,7 @@
-package br.com.capgemini.visseModas.models.dtos.dtos;
+package br.com.capgemini.visseModas.models.dtos.response;
 
 import br.com.capgemini.visseModas.models.entities.*;
-import br.com.capgemini.visseModas.models.repositories.ItemPedidoRepository;
 import lombok.Getter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;

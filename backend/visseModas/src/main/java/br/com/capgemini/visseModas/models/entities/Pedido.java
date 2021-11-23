@@ -35,7 +35,7 @@ public class Pedido {
 
     private BigDecimal valorTotal = BigDecimal.ZERO;
     private Integer quantidadeTotal;
-    private Double percentualDesconto;
+    private Double percentualDesconto = 0.0;
 
 
 

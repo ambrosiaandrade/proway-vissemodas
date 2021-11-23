@@ -1,13 +1,12 @@
-package br.com.capgemini.visseModas.models.dtos.dtos;
+package br.com.capgemini.visseModas.models.dtos.response;
 
-import br.com.capgemini.visseModas.models.dtos.form.ItemPedidoForm;
+import br.com.capgemini.visseModas.models.dtos.request_form.ItemPedidoForm;
 import br.com.capgemini.visseModas.models.entities.ItemPedido;
 import br.com.capgemini.visseModas.models.entities.Pedido;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.services.PedidoService;
 import br.com.capgemini.visseModas.services.ProdutoService;
 import lombok.Getter;
-import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;
 import java.util.List;

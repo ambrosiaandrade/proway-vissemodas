@@ -1,5 +1,6 @@
 package br.com.capgemini.visseModas.models.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class ItemPedido {
 
@@ -26,12 +28,6 @@ public class ItemPedido {
     private Integer quantidade;
     private BigDecimal valorPorItem = BigDecimal.ZERO;
 
-    public ItemPedido(int quantidade, Pedido pedido, Produto produto){
-        this.quantidade = quantidade;
-        this.pedido = pedido;
-        this.valorPorItem = produto.getValorUnitario();
-        this.produto = produto;
-    }
 
 
 
