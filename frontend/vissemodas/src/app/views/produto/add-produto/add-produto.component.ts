@@ -69,7 +69,7 @@ export class AddProdutoComponent implements OnInit {
     } else {
       this._service.postProduto(PRODUTO).subscribe({
         next: (data) => {
-          console.log('Produto cadastrado');
+          console.log('Produto cadastrado'); 
           this._toastr.success('Cadastrado com sucesso', 'Produto');
           this._router.navigate(['']);
         },
