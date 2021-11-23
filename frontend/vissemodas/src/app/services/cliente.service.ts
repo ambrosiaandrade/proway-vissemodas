@@ -34,4 +34,9 @@ export class ClienteService {
   getOneCliente(id: any): Observable<any> {
     return this._http.get(`${this.url}/${id}`);
   }
+
+  editCliente(id: any, cliente: Cliente): Observable<any> {
+    return this._http.post(`${this.url}/${id}`, cliente);
+  }
+
 }

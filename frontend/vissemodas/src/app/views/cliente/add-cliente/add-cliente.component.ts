@@ -19,7 +19,7 @@ export class AddClienteComponent implements OnInit {
   listEnderecos: Endereco[] = [];
 
   title: string = 'Fazer';
-  btn_text: string = 'Fazer';
+  btn_text: string = 'Cadastrar';
   id: any;
 
   constructor(
@@ -37,6 +37,7 @@ export class AddClienteComponent implements OnInit {
       nome: ['', Validators.required],
       status: ['', Validators.required],
       tipoCliente: ['', Validators.required],
+      idEndereco: ['']
     });
     this.id = this._aRouter.snapshot.paramMap.get('id');
   }
