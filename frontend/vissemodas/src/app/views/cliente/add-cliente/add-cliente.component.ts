@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Cliente } from 'src/app/models/cliente.model';
-import { Endereco } from 'src/app/models/endereco.model';
+import { Endereco } from 'src/app/models/endereco.model'; 
 import { ClienteService } from 'src/app/services/cliente.service';
 import { EnderecoService } from 'src/app/services/endereco.service';
 
@@ -80,30 +80,40 @@ export class AddClienteComponent implements OnInit {
       idEndereco: this.idEndereco,
     };
 
-    // Atribuindo o restante dos valores de acordo com o tipo de cliente
+    if ( this.id !== null ) { 
+      // Atualizar cliente
+      this._service.editCliente(this.id, CLIENTE).subscribe({
+        next: (data) => {
+          this._toastr.info('Editado com sucesso', 'Cliente');
+          this._router.navigate(['/list-cliente']);
+        },
+        error: (e) => console.log(e),
+      });
+    } else {
+      // Atribuindo o restante dos valores de acordo com o tipo de cliente
     if (tipoDoCliente) {
       //  console.log('>>> CLIENTE FÍSICO');
-      CLIENTE.tipoCliente = 'FISICA';
+      CLIENTE.tipoCliente = 'FÍSICA';
       CLIENTE.cpf = this.clienteForm.get('cpf')?.value;
     } else {
       //  console.log('>>> CLIENTE JURÍDICO');
-      CLIENTE.tipoCliente = 'JURIDICA';
+      CLIENTE.tipoCliente = 'JURÍDICA';
       CLIENTE.cnpj = this.clienteForm.get('cnpj')?.value;
     }
-
-    // console.log(CLIENTE);
-
-    this._service.postCliente(CLIENTE).subscribe({
-      next: (data) => {
-        console.log('Cliente cadastrado');
-        this._toastr.success('Cadastrado com sucesso', 'Cliente');
-        this._router.navigate(['']);
-      },
-      error: (e) => {
-        this._toastr.error(e, 'Cliente');
-      },
-    });
-  }
+  } 
+  
+  this._service.postCliente(CLIENTE).subscribe({
+    next: (data) => {
+      console.log('Cliente cadastrado');
+      this._toastr.success('Cadastrado com sucesso', 'Cliente');
+      this._router.navigate(['']);
+    },
+    error: (e) => {
+      this._toastr.error(e, 'Cliente');
+    },
+  });
+}
+    
 
   isEditing() {
     if (this.id !== null) {
@@ -112,7 +122,7 @@ export class AddClienteComponent implements OnInit {
 
       this._service.getOneCliente(this.id).subscribe({
         next: (data) => {
-          // Atualizando os valores no produtoForm
+          // Atualizando os valores no clienteForm
           this.clienteForm.patchValue({
             cpf: data.cpf,
             cnpj: data.cnpj,

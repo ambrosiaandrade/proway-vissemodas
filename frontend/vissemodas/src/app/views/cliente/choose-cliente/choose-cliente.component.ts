@@ -98,5 +98,7 @@ export class ChooseClienteComponent implements OnInit {
     }
 
     this.buscarClientePeloDocumento(this.documento);
+    localStorage.setItem("BD", JSON.stringify(this.mostrarCliente));
+    this.validacaoForm.reset();
   }
 }
