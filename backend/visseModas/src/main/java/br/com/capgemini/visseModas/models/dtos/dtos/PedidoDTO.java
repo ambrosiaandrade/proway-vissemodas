@@ -18,7 +18,8 @@ public class PedidoDTO {
 
     private Long id;
     private LocalDate data;
-    private Long idCliente;
+    private String nomeCliente;
+    //private ClienteDTO clienteDTO;
     private Situacao situacao;
     private BigDecimal valorTotal;
     private Integer quantidadeTotal;
@@ -33,7 +34,10 @@ public class PedidoDTO {
 
         this.id = pedido.getId();
         this.data = pedido.getData();
-        this.idCliente = pedido.getCliente().getId();
+
+        //clienteDTO = new ClienteDTO(pedido.getCliente());
+        nomeCliente = pedido.getCliente().getNome();
+
         this.situacao = pedido.getSituacao();
         this.valorTotal = pedido.getValorTotal();
         this.quantidadeTotal = pedido.getQuantidadeTotal();

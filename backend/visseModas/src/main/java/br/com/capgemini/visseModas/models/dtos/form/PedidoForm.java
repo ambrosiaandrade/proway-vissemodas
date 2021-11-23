@@ -21,10 +21,6 @@ import java.util.stream.Collectors;
 @Setter
 public class PedidoForm {
 
-    @NotBlank(message = "O nome do cliente que está fazendo esse pedido é obrigatório")
-    private String nomeCliente;
-    private List<ItemPedido> itensPedidos;
-
     private Long idCliente;
     private Double percentualDesconto;
     private BigDecimal valorTotal;

@@ -19,7 +19,7 @@ public class ItemPedidoForm {
 
     private Long idPedido;
     private Long idProduto;
-    @Min(1) //todo pesquisar
+    //@Min() //todo pesquisar
     private Integer quantidade;
     private BigDecimal valorTotalItem;
 
