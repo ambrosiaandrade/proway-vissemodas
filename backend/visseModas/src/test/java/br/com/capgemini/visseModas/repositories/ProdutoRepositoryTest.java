@@ -2,8 +2,6 @@ package br.com.capgemini.visseModas.repositories;
 
 import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.models.repositories.ProdutoRepository;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
@@ -17,7 +15,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -45,7 +42,6 @@ public class ProdutoRepositoryTest {
         List<Produto> banco = produtoRepository.findByStatus(true);
         List<String> atual = Arrays.asList(p1.getDescricao());
         List<String> listaBanco = new ArrayList<>();
-
 
         for (Produto p : banco) {
            listaBanco = Arrays.asList(p.getDescricao());

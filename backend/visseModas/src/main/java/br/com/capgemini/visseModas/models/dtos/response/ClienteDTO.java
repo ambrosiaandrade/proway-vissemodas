@@ -1,9 +1,7 @@
-package br.com.capgemini.visseModas.models.dtos.dtos;
+package br.com.capgemini.visseModas.models.dtos.response;
 
 import br.com.capgemini.visseModas.models.entities.Cliente;
-import br.com.capgemini.visseModas.models.entities.Endereco;
 import br.com.capgemini.visseModas.models.entities.TipoCliente;
-import br.com.capgemini.visseModas.services.EnderecoService;
 import lombok.Getter;
 import org.springframework.data.domain.Page;
 
@@ -18,7 +16,7 @@ public class ClienteDTO {
     private String cpf;
     private String cnpj;
     private String tipoCliente;
-    private Long idEndereco;
+    private EnderecoDTO enderecoDTO;
 
     public ClienteDTO() {
     }
@@ -30,7 +28,8 @@ public class ClienteDTO {
         this.cpf = cliente.getCpf();
         this.cnpj = cliente.getCnpj();
         this.tipoCliente = cliente.getTipoCliente().name();
-        this.idEndereco = cliente.getEndereco().getId();
+
+        enderecoDTO = new EnderecoDTO(cliente.getEndereco());
     }
 
     //metodo que converte a Lista de Clientes para Lista de Clientes DTO
@@ -43,9 +42,7 @@ public class ClienteDTO {
     }
 
 
-    public Cliente converteDTOParaCliente(EnderecoService enderecoService) {
-
-        Endereco endereco = enderecoService.buscarPorId(idEndereco);
+    public Cliente converteDTOParaCliente() {
 
         Cliente cliente = new Cliente();
 
@@ -54,7 +51,7 @@ public class ClienteDTO {
         cliente.setTipoCliente(TipoCliente.valueOf(tipoCliente));
         cliente.setCpf(cpf);
         cliente.setCnpj(cnpj);
-        cliente.setEndereco(endereco);
+        cliente.setEndereco(enderecoDTO.dtoToEndereco());
 
         return cliente;
     }

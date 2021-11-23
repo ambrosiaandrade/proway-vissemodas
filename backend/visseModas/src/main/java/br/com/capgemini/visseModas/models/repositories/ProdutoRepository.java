@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
+    //buscar produto por status (ativos ou inativos)
     List<Produto> findByStatus(Boolean status);
 
 

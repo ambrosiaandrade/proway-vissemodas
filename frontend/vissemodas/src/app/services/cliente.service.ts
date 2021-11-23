@@ -36,7 +36,7 @@ export class ClienteService {
   }
 
   editCliente(id: any, cliente: Cliente): Observable<any> {
-    return this._http.post(`${this.url}/${id}`, cliente);
+    return this._http.put(`${this.url}/${id}`, cliente);
   }
 
 }
