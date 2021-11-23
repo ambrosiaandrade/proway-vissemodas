@@ -18,7 +18,7 @@ public class ProdutoForm {
     private String descricao;
     @NotBlank
     private String tamanho;
-    @NotBlank
+    
     private BigDecimal valorUnitario;
     @NotBlank
     private String categoria;
