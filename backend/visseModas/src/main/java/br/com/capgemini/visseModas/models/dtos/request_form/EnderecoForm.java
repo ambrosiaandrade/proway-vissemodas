@@ -18,7 +18,7 @@ public class EnderecoForm {
     private String bairro;
     @NotBlank(message = "O campo Logradouro é obrigatório")
     private String logradouro;
-    @NotBlank(message = "O campo Número é obrigatório")
+
     private Integer numero;
 
     public EnderecoForm() {

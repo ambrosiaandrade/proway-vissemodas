@@ -1,5 +1,6 @@
 package br.com.capgemini.visseModas.models.dtos.request_form;
 
+import br.com.capgemini.visseModas.models.dtos.response.ItemPedidoDTO;
 import br.com.capgemini.visseModas.models.entities.Cliente;
 import br.com.capgemini.visseModas.models.entities.Pedido;
 import br.com.capgemini.visseModas.services.ClienteService;
@@ -34,18 +35,17 @@ public class PedidoForm {
 
     }
 
-    //método que pega os dados do dto e converte para entidade
-    public Pedido formToPedido(ClienteService clienteService, ProdutoService produtoService, PedidoService pedidoService){
+    public Pedido convertePedidoFormParaPedido(ClienteService clienteService, ProdutoService produtoService, PedidoService pedidoService){
 
         Cliente cliente = clienteService.buscarPorId(idCliente);
-        ItemPedidoForm itemPedidoForm = new ItemPedidoForm();
+        ItemPedidoDTO itemPedidoDTO = new ItemPedidoDTO();
 
         Pedido pedido = new Pedido();
         pedido.setCliente(cliente);
         pedido.setPercentualDesconto(percentualDesconto);
         pedido.setValorTotal(valorTotal);
         pedido.setQuantidadeTotal(quantidadeTotal);
-        pedido.setListaItens(itemPedidoForm.converterListaItemPedidoDTOParaListaItemPedido(produtoService, pedido,listaItens));
+        pedido.setListaItens(itemPedidoDTO.converterListaItemPedidoDTOParaListaItemPedido(produtoService, pedido,listaItens));
 
         return pedido;
     }

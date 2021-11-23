@@ -1,6 +1,8 @@
 package br.com.capgemini.visseModas.controllers;
+import br.com.capgemini.visseModas.models.dtos.response.ClienteDTO;
 import br.com.capgemini.visseModas.models.dtos.response.PedidoDTO;
 import br.com.capgemini.visseModas.models.dtos.request_form.PedidoForm;
+import br.com.capgemini.visseModas.models.entities.Cliente;
 import br.com.capgemini.visseModas.models.repositories.ItemPedidoRepository;
 import br.com.capgemini.visseModas.services.ClienteService;
 import br.com.capgemini.visseModas.services.PedidoService;
@@ -32,36 +34,26 @@ public class PedidoController {
     @Autowired
     private ItemPedidoRepository itemPedidoRepository;
 
-//    @PostMapping("/addItem")
-//    public ResponseEntity<PedidoDTO> addItem(@RequestBody @Valid ItemPedidoForm itemPedidoForm, UriComponentsBuilder uriBuilder) {
-//
-//        ItemPedido itemPedido = itemPedidoForm.formToItemPedido(produtoService, pedidoService);
-//        pedidoService.adicionarItem(itemPedido);
-//
-//        Pedido pedido = pedidoService.buscarPorId(itemPedido.getPedido().getId());
-//
-//        URI uri = uriBuilder.path("/addItem").buildAndExpand(pedido.getId()).toUri();
-//        return ResponseEntity.created(uri).body(new PedidoDTO(pedido));
-//    }
-
     @PostMapping
     public ResponseEntity<PedidoDTO> salvar(@RequestBody @Valid PedidoForm form, UriComponentsBuilder uriBuilder) {
 
-        Pedido pedido = form.formToPedido(clienteService, produtoService, pedidoService);
+        Pedido pedido = form.convertePedidoFormParaPedido(clienteService, produtoService, pedidoService);
         pedidoService.salvar(pedido);
 
-        URI uri = uriBuilder.path("/clientes/{id}").buildAndExpand(pedido.getId()).toUri();
+        URI uri = uriBuilder.path("/pedidos/{id}").buildAndExpand(pedido.getId()).toUri();
         return ResponseEntity.created(uri).body(new PedidoDTO(pedido));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> remover (@PathVariable Long id) {
-        return pedidoService.inativar(id);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<PedidoDTO> detalhar(@PathVariable Long id) {
-        return pedidoService.detalhar(id);
+
+        Pedido pedido = pedidoService.detalhar(id);
+
+        if(pedido != null){
+            return ResponseEntity.ok(new PedidoDTO(pedido));
+        }
+
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping
@@ -73,5 +65,7 @@ public class PedidoController {
     public Page<PedidoDTO> listarTudoPaginacao(@PageableDefault(sort="data", direction = Sort.Direction.ASC, page=0, size = 8) Pageable paginacao) {
         return pedidoService.listarTudoDTOPaginacao(paginacao);
     }
+
+
 
 }
