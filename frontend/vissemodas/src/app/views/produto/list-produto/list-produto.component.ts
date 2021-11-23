@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemPedido } from 'src/app/models/itemPedido.model';
 import { Produto } from 'src/app/models/produto.model';
 import { ProdutoService } from 'src/app/services/produto.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-list-produto',
@@ -8,40 +10,83 @@ import { ProdutoService } from 'src/app/services/produto.service';
   styleUrls: ['./list-produto.component.css'],
 })
 export class ListProdutoComponent implements OnInit {
+  // O que é exibido ao usuário
   listaProdutos: Produto[] = [];
+  // O que o usuário adiciona ao carrinho
   carrinho: Produto[] = [];
 
-  ultimoIdProduto: number = 0;
+  // Modelo de um itemPedido para fazer a lista itensPedido
+  itemPedido: ItemPedido = {
+    produto: {
+      descricao: '',
+      tamanho: '',
+      valorUnitario: 0,
+      status: true,
+      imagem: '',
+      categoria: '',
+    },
+    quantidade: 0,
+    valorPorItem: 0,
+  };
 
-  constructor(private _service: ProdutoService) {}
+  // De fato a nossa lista de itens
+  itensPedido: ItemPedido[] = [];
+
+  constructor(
+    private _service: ProdutoService,
+    private _toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.listarProdutos();
   }
 
+  // Buscando os produtos do banco de dados
   listarProdutos() {
     return this._service.getProdutos().subscribe({
       next: (data) => {
-        //console.log(data);
+        // Alimentando os produtos do banco na nossa listaProdutos
         this.listaProdutos = data;
-        this.setUltimoIdProduto();
       },
       error: (e) => console.log(e),
     });
   }
 
+  // Método invocado quando o cliente clica no botão 'Adicionar ao carrinho'
   addToCart(produto: Produto) {
-    // this.carrinho.push(produto);
-    // console.log(this.carrinho);
-    //this._serviceItemPedido.addToItemPedido(produto);
+    console.log('addToCard', produto);
+    this._toastr.success('Adicionada ao carrinho', produto.descricao);
     this.carrinho.push(produto);
-    localStorage.setItem('list', JSON.stringify(this.carrinho));
+    this.setToLocalStorage(produto);
   }
 
-  // Atribuindo o id do último produto
-  setUltimoIdProduto() {
-    this.ultimoIdProduto = this.listaProdutos.length;
-    // console.log('Id último produto');
-    // console.log(this.ultimoIdProduto);
+  setToLocalStorage(produto: Produto) {
+    // Atribuindo produto ao itemPedido.produto
+    this.itemPedido.produto = produto;
+    this.itemPedido.quantidade = 1;
+    this.itemPedido.valorPorItem = produto.valorUnitario;
+
+    this.itensPedido.push(this.itemPedido);
+
+    // Limpando o ItemPedido
+    // que é usado para moldar e ser mandado à nossa lista itensPedido
+    this.cleanItemPedido();
+
+    localStorage.setItem('itensPedido', JSON.stringify(this.itensPedido));
+  }
+
+  cleanItemPedido() {
+    this.itemPedido = {
+      produto: {
+        descricao: '',
+        tamanho: '',
+        valorUnitario: 0,
+        status: true,
+        imagem: '',
+        categoria: '',
+      },
+      quantidade: 0,
+      valorPorItem: 0,
+    };
   }
 }
