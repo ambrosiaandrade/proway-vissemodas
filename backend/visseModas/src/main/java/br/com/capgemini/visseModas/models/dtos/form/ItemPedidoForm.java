@@ -1,29 +1,31 @@
 package br.com.capgemini.visseModas.models.dtos.form;
 
-
 import br.com.capgemini.visseModas.models.entities.ItemPedido;
 import br.com.capgemini.visseModas.models.entities.Pedido;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.services.ItemPedidoService;
-import br.com.capgemini.visseModas.services.PedidoService;
 import br.com.capgemini.visseModas.services.ProdutoService;
+import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.Min;
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Setter
+@Getter
 public class ItemPedidoForm {
 
     private Long idPedido;
     private Long idProduto;
+    @Min(1) //todo pesquisar
     private Integer quantidade;
-    private BigDecimal valorItens;
+    private BigDecimal valorTotalItem;
 
     public ItemPedidoForm() {
 
     }
-
-
 
     public ItemPedido formToItemPedido(ProdutoService produtoService, ItemPedidoService itemPedidoService) {
 
@@ -41,20 +43,31 @@ public class ItemPedidoForm {
 
 
 
-    public ItemPedido formToItemPedido(ProdutoService produtoService, PedidoService pedidoService) {
 
-        Produto produto = produtoService.buscarPorId(idProduto);
-        Pedido pedido = pedidoService.buscarPorId(idPedido);
+    public List<ItemPedido> converterListaItemPedidoDTOParaListaItemPedido(ProdutoService produtoService, Pedido pedido, List<ItemPedidoForm> lista) {
 
-        ItemPedido itemPedido = new ItemPedido();
 
-        itemPedido.setProduto(produto);
-        itemPedido.setPedido(pedido);
-        itemPedido.setQuantidade(quantidade);
-        //itemPedido.setValorPorItem(valorItens);
 
-        return itemPedido;
+        List<ItemPedido> listaItens = lista.stream()
+                .map(itemPedidoForm -> {
+
+                    ItemPedido itemPedido = new ItemPedido();
+
+                    itemPedido.setProduto(produtoService.buscarPorId(itemPedidoForm.getIdProduto()));
+                    itemPedido.setPedido(pedido);
+                    itemPedido.setQuantidade(itemPedidoForm.getQuantidade());
+                    itemPedido.setValorPorItem(itemPedidoForm.getValorTotalItem());
+                    return itemPedido;
+                }).collect(Collectors.toList());
+
+        return listaItens;
 
     }
 
-}
+    }
+
+
+
+
+
+

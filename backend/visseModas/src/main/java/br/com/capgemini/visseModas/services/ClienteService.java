@@ -47,6 +47,15 @@ public class ClienteService {
         return null;
     }
 
+    public Cliente buscarPorId(Long id) {
+        Optional<Cliente> clienteOptional = clienteRepository.findById(id);
+        if (clienteOptional.isPresent()) {
+            return clienteOptional.get();
+        }
+
+        return null;
+    }
+
     public ResponseEntity<ClienteDTO> detalhar(Long id) {
         Optional<Cliente> clienteOptional = clienteRepository.findById(id);
         if (clienteOptional.isPresent()) {

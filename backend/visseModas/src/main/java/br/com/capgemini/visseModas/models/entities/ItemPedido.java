@@ -1,6 +1,7 @@
 package br.com.capgemini.visseModas.models.entities;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -8,7 +9,7 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-
+@NoArgsConstructor
 @Entity
 public class ItemPedido {
 
@@ -24,9 +25,6 @@ public class ItemPedido {
 
     private Integer quantidade;
     private BigDecimal valorPorItem = BigDecimal.ZERO;
-
-    public ItemPedido() {
-    }
 
     public ItemPedido(int quantidade, Pedido pedido, Produto produto){
         this.quantidade = quantidade;

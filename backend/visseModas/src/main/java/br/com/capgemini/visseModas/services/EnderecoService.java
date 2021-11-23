@@ -25,16 +25,17 @@ public class EnderecoService {
         enderecoRepository.save(endereco);
     }
 
-    public ResponseEntity<EnderecoDTO> alterar(Long id, EnderecoDTO form) {
+    public Endereco alterar(Long id, EnderecoDTO dto) {
 
         Optional<Endereco> optional = enderecoRepository.findById(id);
+
         if (optional.isPresent()) {
-            Endereco endereco = form.atualizar(id, enderecoRepository);
+            Endereco endereco = dto.atualizar(id, enderecoRepository);
             enderecoRepository.save(endereco);
-            return ResponseEntity.ok(new EnderecoDTO(endereco));
+            return endereco;
         }
 
-        return ResponseEntity.notFound().build();
+        return null;
     }
 
 
