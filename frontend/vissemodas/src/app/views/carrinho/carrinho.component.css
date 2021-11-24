@@ -72,3 +72,10 @@ input[type="number"] {
 .card{
   width: 600px;
 }
+
+.desconto p{
+  font-size: 0.8rem !important;
+}
+.desconto{
+  margin: 0.5rem;
+}
