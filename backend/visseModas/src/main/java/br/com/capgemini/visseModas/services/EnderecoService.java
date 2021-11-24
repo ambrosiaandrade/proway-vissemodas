@@ -33,7 +33,6 @@ public class EnderecoService {
         return null;
     }
 
-
     public Endereco buscarPorId(Long id) {
         Optional<Endereco> optional = enderecoRepository.findById(id);
         if (optional.isPresent()) {
@@ -42,17 +41,6 @@ public class EnderecoService {
 
         return null;
     }
-
-
-    public ResponseEntity<EnderecoDTO> detalhar(Long id) {
-        Optional<Endereco> optional = enderecoRepository.findById(id);
-        if (optional.isPresent()) {
-            return ResponseEntity.ok(new EnderecoDTO(optional.get()));
-        }
-
-        return ResponseEntity.notFound().build();
-    }
-
 
     public List<EnderecoDTO> listarTudoDTO() {
         List<Endereco> listaEndereco = enderecoRepository.findAll();
