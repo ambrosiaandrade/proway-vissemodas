@@ -70,11 +70,12 @@ input[type="number"] {
   width: fit-content;
 }
 .card{
-  width: 600px;
+  width: 650px;
 }
 
-.desconto p{
+.desconto .valor-desconto{
   font-size: 0.8rem !important;
+  margin: 0.5rem;
 }
 .desconto{
   margin: 0.5rem;
