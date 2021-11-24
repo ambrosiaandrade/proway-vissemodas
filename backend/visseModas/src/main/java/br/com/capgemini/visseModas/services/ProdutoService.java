@@ -1,8 +1,6 @@
 package br.com.capgemini.visseModas.services;
 
 import br.com.capgemini.visseModas.models.dtos.response.ProdutoDTO;
-import br.com.capgemini.visseModas.models.dtos.update.ProdutoUpdate;
-import br.com.capgemini.visseModas.models.entities.Cliente;
 import br.com.capgemini.visseModas.models.entities.ItemPedido;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.models.repositories.ItemPedidoRepository;
