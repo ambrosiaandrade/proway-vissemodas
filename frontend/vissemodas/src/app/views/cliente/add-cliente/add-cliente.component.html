@@ -15,7 +15,11 @@
               [formGroup]="clienteForm"
               (ngSubmit)="addCliente()"
             >
-              <!-- NOME -->
+
+            <!-- CAMPO FANTASMA -->
+            <div style="display: none;"><input readonly formControlName="idEndereco" type="number" name="" id=""></div>
+              
+            <!-- NOME -->
               <div class="mt-3">
                 <div class="col-16">
                   <label class="form-label" for="inputNome">
@@ -58,19 +62,6 @@
                     id="inputTipoPessoa"
                   />
                 </div>
-                <!-- <div class="form-check">
-                  <label class="form-check-label padrao" for="inputJuridica">
-                    pessoa jurídica
-                  </label>
-                  <input
-                    #cnpj
-                    formControlName="cnpj"
-                    class="form-check-input"
-                    type="radio"
-                    id="inputJuridica"
-                    value="JURIDICA"
-                  />
-                </div> -->
               </div>
   
               <br />
@@ -88,13 +79,9 @@
                     placeholder="Digite os números do CPF"
                     mask="000.000.000-00"
                   />
-                  <!--
-                    TODO: fix the not exhibition of the bellow div
-                  -->
                   <div
                     class="text-danger"
                     *ngIf="
-                      clienteForm.get('cpf')?.hasError('required') &&
                       clienteForm.get('cpf')?.touched
                     "
                   >
@@ -116,7 +103,6 @@
                   <div
                     class="text-danger"
                     *ngIf="
-                      clienteForm.get('cnpj')?.hasError('required') &&
                       clienteForm.get('cnpj')?.touched
                     "
                   >

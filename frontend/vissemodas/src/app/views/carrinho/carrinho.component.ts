@@ -45,6 +45,7 @@ export class CarrinhoComponent implements OnInit {
   sessionCliente: Cliente = {
     nome: '',
     tipoCliente: '',
+    idEndereco: 0
   };
   // Boolean para verificar se já existe um cliente
   hasCliente: boolean = false;
@@ -73,6 +74,7 @@ export class CarrinhoComponent implements OnInit {
     this.buscarItemPedido();
     this.buscarCliente();
     this.cleanCount();
+    this.setCountValues();
   }
 
   buscarItemPedido() {
@@ -96,6 +98,7 @@ export class CarrinhoComponent implements OnInit {
       console.log('itensPedido', this.itensPedido);
     } else {
       this.listProdutos = [];
+      this.cleanCount();
     }
   }
 
@@ -106,10 +109,11 @@ export class CarrinhoComponent implements OnInit {
       this.sessionCliente = JSON.parse(localStorage.getItem('client') || '{}');
     } else {
       this.hasCliente = false;
-      this.botaoTexto = 'Selecionar cliente';
+      this.botaoTexto = 'Continuar';
       this.sessionCliente = {
         nome: '',
         tipoCliente: '',
+        idEndereco: 0
       };
     }
   }
@@ -122,7 +126,7 @@ export class CarrinhoComponent implements OnInit {
       (item) => item.produto.id !== id
     );
 
-    this.cleanCount();
+    this.setCountValues();
 
     // Retornando uma mensagem ao usuário
     this._toastr.error('Removido do carrinho', 'Produto');
@@ -138,11 +142,14 @@ export class CarrinhoComponent implements OnInit {
       }
     }
 
+    this.setCountValues();
+
     // Atribuindo a lista com a QTD alterada para o localStorage
     localStorage.setItem('itensPedido', JSON.stringify(this.itensPedido));
   }
 
   setCountValues() {
+    this.cleanCount();
     for (let i = 0; i < this.itensPedido.length; i++) {
       let currentItem = this.itensPedido[i];
       this.count_valorTotal +=

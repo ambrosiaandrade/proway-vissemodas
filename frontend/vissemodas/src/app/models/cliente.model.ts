@@ -5,7 +5,7 @@ export class Cliente {
   nome: string;
   status?: boolean;
   tipoCliente: string;
-  idEndereco?: number;
+  idEndereco: number;
 
   constructor(
     cpf: string,

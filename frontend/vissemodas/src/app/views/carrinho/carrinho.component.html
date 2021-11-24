@@ -2,10 +2,10 @@
   <div class="col-lg-6 offset-lg-3">
     <div class="card">
       <h5 class="title">Meu carrinho</h5>
-      <div class="card-body" *ngIf="itensPedido.length > 0">
+      <div class="" *ngIf="itensPedido.length > 0">
         <h6>PRODUTO</h6>
         <div
-          class="row align-items-center text-center mb-2"
+          class="row align-items-center text-center mb-2 mycontainer"
           *ngFor="let item of itensPedido"
         >
           <div class="col-lg-8 text-start">
@@ -32,7 +32,7 @@
               Excluir
             </button>
           </div>
-          <div class="col-2">
+          <div class="col-2 container-valor">
             <!-- valorUnitario -->
             <h6>Valor</h6>
             {{ item.valorPorItem * item.quantidade | currency: "BRL" }}
@@ -44,20 +44,26 @@
         TODO: Mostrar a qtd total e o valor total? E o desconto tbm?
       -->
 
-      <!--
-        TODO: implementar o método e fazer o route 
-      -->
-      <button
+      <div class="subtotal"*ngIf="itensPedido.length != 0">
+        <p> QUANTIDADE DE ITENS: <span> {{ count_qtdTotal }} </span></p>
+        <p> VALOR TOTAL: <span> {{ count_valorTotal | currency: "BRL" }} </span></p>
+        <button
         (click)="handleCompra()"
         id="btnFinalizarCompra"
         *ngIf="itensPedido.length > 0"
       >
         {{ botaoTexto }}
       </button>
+      </div>
+
+ 
+      </div>
+
+
 
       <div class="container" *ngIf="itensPedido.length == 0">
         <div class="card">
-          <div class="card-body text-center">
+          <div class="text-center">
             <h5>Não há produtos adicionados ao carrinho</h5>
             <button class="btn mt-5" routerLink="/" id="btnInicio">
               Início
@@ -67,4 +73,3 @@
       </div>
     </div>
   </div>
-</div>

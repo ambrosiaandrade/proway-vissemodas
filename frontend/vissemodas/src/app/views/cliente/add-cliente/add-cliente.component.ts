@@ -44,6 +44,8 @@ export class AddClienteComponent implements OnInit {
 
   ngOnInit(): void {
     this.isEditing();
+    // Atribuir o último ID do endereço
+    this.getLastEnderecoId();
   }
 
   // Verificando o tipo de cliente
@@ -73,6 +75,7 @@ export class AddClienteComponent implements OnInit {
   addCliente() {
     // Verificando qual o tipo de cliente
     let tipoDoCliente = this.clienteForm.get('tipoCliente')?.value;
+
     // Atribuindo alguns valores ao cliente
     let CLIENTE: Cliente = {
       nome: this.clienteForm.get('nome')?.value,
@@ -92,14 +95,18 @@ export class AddClienteComponent implements OnInit {
       // Atribuindo o restante dos valores de acordo com o tipo de cliente
     if (tipoDoCliente) {
       //  console.log('>>> CLIENTE FÍSICO');
-      CLIENTE.tipoCliente = 'FÍSICA';
+      CLIENTE.tipoCliente = 'FISICA';
       CLIENTE.cpf = this.clienteForm.get('cpf')?.value;
     } else {
       //  console.log('>>> CLIENTE JURÍDICO');
-      CLIENTE.tipoCliente = 'JURÍDICA';
+      CLIENTE.tipoCliente = 'JURIDICA';
       CLIENTE.cnpj = this.clienteForm.get('cnpj')?.value;
     }
   } 
+
+
+  console.log('idEndereco', this.idEndereco);
+  console.log('CLIENTE', CLIENTE);
   
   this._service.postCliente(CLIENTE).subscribe({
     next: (data) => {
@@ -108,6 +115,7 @@ export class AddClienteComponent implements OnInit {
       this._router.navigate(['']);
     },
     error: (e) => {
+      console.log('Erro no postCliente', e);
       this._toastr.error(e, 'Cliente');
     },
   });
@@ -128,6 +136,7 @@ export class AddClienteComponent implements OnInit {
             nome: data.nome,
             status: data.status,
             tipoCliente: data.tipoCliente,
+            idEndereco: data.idEndereco
           });
         },
         error: (e) => console.log(e),

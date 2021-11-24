@@ -13,7 +13,7 @@
             <!--
                           TODO: Ver se consegue fazer o switch
                         -->
-            <div class="form-group">
+            <div class="form-group" *ngIf="!isEditingProduct">
               <label>Tipo</label>
               <div class="form-check">
                 <label class="form-check-label padrao" for="inputAtivo">
@@ -148,8 +148,8 @@
                   >valor unitário</label
                 >
                 <!--
-                                  TODO: Ver se tem 2 casas decimais no input number
-                                -->
+                    TODO: Ver se tem 2 casas decimais no input number
+                  -->
                 <input
                   formControlName="valorUnitario"
                   type="number"
