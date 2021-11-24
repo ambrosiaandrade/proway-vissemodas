@@ -15,6 +15,9 @@ export class ListProdutoComponent implements OnInit {
   // O que o usuário adiciona ao carrinho
   carrinho: Produto[] = [];
 
+  pag: Number = 1;
+  contador: Number = 6;
+
   // Modelo de um itemPedido para fazer a lista itensPedido
   itemPedido: ItemPedido = {
     produto: {
@@ -32,10 +35,11 @@ export class ListProdutoComponent implements OnInit {
   // De fato a nossa lista de itens
   itensPedido: ItemPedido[] = [];
 
-  constructor(
-    private _service: ProdutoService,
-    private _toastr: ToastrService
-  ) {}
+  constructor(private _service: ProdutoService, private _toastr: ToastrService) {
+
+    console.log('Aplicação iniciada, carregando dados...');
+    this.listaProdutos = [];
+  }
 
   ngOnInit(): void {
     this.listarProdutos();

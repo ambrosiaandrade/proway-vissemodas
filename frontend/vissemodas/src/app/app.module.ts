@@ -23,6 +23,9 @@ import { FinalizadoComponent } from './views/finalizado/finalizado.component';
 import { AdminListProdutoComponent } from './views/produto/admin-list-produto/admin-list-produto.component';
 import { HistoryPedidoComponent } from './views/pedido/history-pedido/history-pedido.component';
 
+// Paginação
+import { NgxPaginationModule } from 'ngx-pagination';
+
 // Mask
 import { NgxMaskModule } from 'ngx-mask';
 import { CommonModule } from '@angular/common';
@@ -54,6 +57,7 @@ import { CommonModule } from '@angular/common';
     ToastrModule.forRoot(),
     HttpClientModule,
     NgxMaskModule.forRoot(),
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
