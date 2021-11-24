@@ -1,0 +1,8 @@
+.ativoInativo {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: #973e2e;
+}

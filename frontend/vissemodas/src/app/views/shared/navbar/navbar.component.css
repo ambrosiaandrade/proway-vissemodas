@@ -33,11 +33,16 @@ button {
   color: white;
 }
 
-img {
+/*img {
   font-size: 1.2em;
   height: 3em;
   margin-right: 10px;
   color: white;
+}*/
+
+#sacolinha{
+font-size: 1rem;
+margin-right: 20px;
 }
 
 #cadastrarCliente {
@@ -59,13 +64,32 @@ img {
   color: white !important;
   font-size: 1.2rem;
 }
+#dropdownMenuButton img{
+  width: 2.5rem;
+}
+
 .dropdown-item{
   color: #973e2e;
 
 }
+.dropdown-item:hover{
+  background-color: #ffd392 !important;
+  color: black;
+
+}
+
+
 .dropdown-menu{
   padding: 10px;
   background-color: #ffd392;
+}
+.dropdown{
+  margin-right: 20px;
+}
+
+.dropdown a{
+  background-color: transparent !important;
+
 }
 .navegacao{
   display: flex;
