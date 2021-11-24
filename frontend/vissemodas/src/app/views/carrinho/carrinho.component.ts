@@ -98,6 +98,7 @@ export class CarrinhoComponent implements OnInit {
       console.log('itensPedido', this.itensPedido);
     } else {
       this.listProdutos = [];
+      this.cleanCount();
     }
   }
 
@@ -125,7 +126,7 @@ export class CarrinhoComponent implements OnInit {
       (item) => item.produto.id !== id
     );
 
-    this.cleanCount();
+    this.setCountValues();
 
     // Retornando uma mensagem ao usuário
     this._toastr.error('Removido do carrinho', 'Produto');
@@ -141,7 +142,6 @@ export class CarrinhoComponent implements OnInit {
       }
     }
 
-    this.cleanCount();
     this.setCountValues();
 
     // Atribuindo a lista com a QTD alterada para o localStorage
@@ -149,6 +149,7 @@ export class CarrinhoComponent implements OnInit {
   }
 
   setCountValues() {
+    this.cleanCount();
     for (let i = 0; i < this.itensPedido.length; i++) {
       let currentItem = this.itensPedido[i];
       this.count_valorTotal +=
