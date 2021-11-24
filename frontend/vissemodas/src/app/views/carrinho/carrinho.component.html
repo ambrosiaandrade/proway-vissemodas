@@ -46,7 +46,10 @@
 
       <div class="subtotal"*ngIf="itensPedido.length != 0">
         <p> QUANTIDADE DE ITENS: <span> {{ count_qtdTotal }} </span></p>
-        <p> VALOR TOTAL: <span> {{ count_valorTotal | currency: "BRL" }} </span></p>
+        <p> SUBTOTAL: <span> {{ count_valorTotal  | currency: "BRL" }} </span></p>
+        <div  *ngIf="count_desconto == 0.2" class="desconto">
+        <p class="valor-desconto"> DESCONTO A SER APLICADO: <span> {{ count_valorTotal * count_desconto | currency: "BRL" }} </span></p>
+        <p> VALOR TOTAL: <span> {{ count_valorTotal - (count_valorTotal * count_desconto) | currency: "BRL" }} </span></p></div>
         <button
         (click)="handleCompra()"
         id="btnFinalizarCompra"

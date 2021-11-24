@@ -15,13 +15,13 @@ import { HomeComponent } from './views/home/home.component';
 import { NavbarComponent } from './views/shared/navbar/navbar.component';
 import { FooterComponent } from './views/shared/footer/footer.component';
 import { AddClienteComponent } from './views/cliente/add-cliente/add-cliente.component';
-import { ListClienteComponent } from './views/cliente/list-cliente/list-cliente.component';
+import { AdminListClienteComponent } from './views/cliente/admin-list-cliente/admin-list-cliente.component';
 import { ChooseClienteComponent } from './views/cliente/choose-cliente/choose-cliente.component';
 import { AddEnderecoComponent } from './views/endereco/add-endereco/add-endereco.component';
 import { CarrinhoComponent } from './views/carrinho/carrinho.component';
 import { FinalizadoComponent } from './views/finalizado/finalizado.component';
 import { AdminListProdutoComponent } from './views/produto/admin-list-produto/admin-list-produto.component';
-import { HistoryPedidoComponent } from './views/pedido/history-pedido/history-pedido.component';
+import { AdminListPedidoComponent } from './views/pedido/admin-list-pedido/admin-list-pedido.component';
 
 // Paginação
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -29,6 +29,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 // Mask
 import { NgxMaskModule } from 'ngx-mask';
 import { CommonModule } from '@angular/common';
+import { ListPedidosClienteComponent } from './views/pedido/list-pedidos-cliente/list-pedidos-cliente.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { CommonModule } from '@angular/common';
     AddProdutoComponent,
     ListProdutoComponent,
     AddClienteComponent,
-    ListClienteComponent,
+    AdminListClienteComponent,
     ChooseClienteComponent,
     HomeComponent,
     NavbarComponent,
@@ -45,7 +46,8 @@ import { CommonModule } from '@angular/common';
     CarrinhoComponent,
     FinalizadoComponent,
     AdminListProdutoComponent,
-    HistoryPedidoComponent,
+    AdminListPedidoComponent,
+    ListPedidosClienteComponent,
   ],
   imports: [
     BrowserModule,
