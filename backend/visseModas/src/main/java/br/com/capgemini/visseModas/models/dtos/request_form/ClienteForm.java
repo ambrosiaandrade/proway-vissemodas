@@ -20,7 +20,7 @@ public class ClienteForm {
     private String cnpj;
     @NotBlank(message = "O tipo do cliente é obrigatório.")
     private String tipoCliente;
-    @NotNull
+    @NotNull(message = "O endereço não pode ser nulo.")
     private Long idEndereco;
 
     public ClienteForm(){
