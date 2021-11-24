@@ -15,8 +15,8 @@ export class ListProdutoComponent implements OnInit {
   // O que o usuário adiciona ao carrinho
   carrinho: Produto[] = [];
 
-  pag: Number = 1;
-  contador: Number = 6;
+  paginaAtual : number = 1;
+  contador : number = 6;
 
   // Modelo de um itemPedido para fazer a lista itensPedido
   itemPedido: ItemPedido = {

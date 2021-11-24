@@ -28,3 +28,13 @@ img{
 h5{
     text-align: center;
 }
+
+th, td {
+    text-align: center;
+}
+
+.numerosPag {
+    color: #D26E56;
+    text-align: center;
+}
+
