@@ -34,13 +34,12 @@
                     placeholder="Nome completo"
                   />
                   <div
-                    class="text-danger"
                     *ngIf="
                       clienteForm.get('nome')?.hasError('required') &&
                       clienteForm.get('nome')?.touched
                     "
                   >
-                    <span>Campo obrigatório</span>
+                    <span class="text-danger">Campo obrigatório</span>
                   </div>
                 </div>
               </div>
@@ -80,12 +79,11 @@
                     mask="000.000.000-00"
                   />
                   <div
-                    class="text-danger"
                     *ngIf="
                       clienteForm.get('cpf')?.touched
                     "
                   >
-                    <span>Campo obrigatório </span>
+                    <span class="text-danger">Campo obrigatório </span>
                   </div>
                 </div>
                 <!-- CNPJ -->
@@ -101,12 +99,11 @@
                     mask="00.000.000/0000-00"
                   />
                   <div
-                    class="text-danger"
                     *ngIf="
                       clienteForm.get('cnpj')?.touched
                     "
                   >
-                    <span>Campo obrigatório</span>
+                    <span class="text-danger">Campo obrigatório</span>
                   </div>
                 </div>
               </div>
