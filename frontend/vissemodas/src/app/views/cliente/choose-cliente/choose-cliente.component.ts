@@ -102,7 +102,7 @@ export class ChooseClienteComponent implements OnInit {
     }
     console.log('mostrarCliente', this.mostrarCliente);
     if (this.hasCliente()){
-      let id = this.mostrarCliente.id!;
+      let id = this.mostrarCliente.enderecoDTO!.id!;
       this.buscarEnderecoCliente(id);
     }
   }

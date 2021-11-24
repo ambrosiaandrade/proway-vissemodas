@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @Getter
 public class ItemPedidoForm {
 
-    @NotNull
+    //@NotNull
     private Long idPedido;
     @NotNull
     private Long idProduto;

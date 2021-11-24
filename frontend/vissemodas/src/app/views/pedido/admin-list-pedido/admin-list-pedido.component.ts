@@ -19,7 +19,7 @@ export class AdminListPedidoComponent implements OnInit {
 
   buscarPedidos() {
     this._service.getPedidos().subscribe({
-      next: (data) => this.listPedidos = data,
+      next: (data) => {this.listPedidos = data; console.log(data)},
       error: (e) => console.log(e)
     });
   }

@@ -9,14 +9,14 @@
           *ngFor="let item of itensPedido"
         >
           <div class="col-lg-8 text-start">
-            <img [src]="item.produto.imagem" [alt]="item.produto.descricao" />
+            <img [src]="item.produto!.imagem!" [alt]="item.produto!.descricao!" />
             <!-- descricao -->
-            <span> {{ item.produto.descricao }}</span>
+            <span> {{ item.produto!.descricao! }}</span>
           </div>
           <div class="col-2">
             <h6>QTD</h6>
             <input
-              (change)="handleChangeQTD(qtd.value, item.produto.id)"
+              (change)="handleChangeQTD(qtd.value, item.produto!.id)"
               class="w-100"
               type="number"
               name="inputQtd"
@@ -27,7 +27,7 @@
             />
             <button
               class="btnExcluir"
-              (click)="removerItemPedido(item.produto.id)"
+              (click)="removerItemPedido(item.produto!.id)"
             >
               Excluir
             </button>
@@ -35,7 +35,7 @@
           <div class="col-2 container-valor">
             <!-- valorUnitario -->
             <h6>Valor</h6>
-            {{ item.valorPorItem * item.quantidade | currency: "BRL" }}
+            {{ item.valorTotalItem * item.quantidade | currency: "BRL" }}
           </div>
         </div>
       </div>
