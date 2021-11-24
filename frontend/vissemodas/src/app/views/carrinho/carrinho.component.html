@@ -44,9 +44,11 @@
         TODO: Mostrar a qtd total e o valor total? E o desconto tbm?
       -->
 
-      <!--
-        TODO: implementar o método e fazer o route 
-      -->
+      <div>
+        <h5> QUANTIDADE DE ITENS: <span> {{ count_qtdTotal }} </span></h5>
+        <h5> VALOR TOTAL: <span> {{ count_valorTotal | currency: "BRL" }} </span></h5>
+      </div>
+
       <button
         (click)="handleCompra()"
         id="btnFinalizarCompra"
