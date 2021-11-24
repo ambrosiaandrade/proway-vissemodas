@@ -61,8 +61,8 @@ export class AddEnderecoComponent implements OnInit {
     this.enderecoForm.patchValue({
       cep: dados.cep,
       logradouro: dados.logradouro,
-      cidade: dados.cidade,
-      estado: dados.estado,
+      cidade: dados.localidade,
+      estado: dados.uf,
       bairro: dados.bairro,
       numero: dados.numero,
     });
@@ -97,11 +97,12 @@ export class AddEnderecoComponent implements OnInit {
         error: (e) => console.log(e),
       });
     } else {
+      // Cadastrar endereço e redireciona para cadastrar cliente
       this._service.postEndereco(ENDERECO).subscribe({
         next: (data) => {
           console.log('Endereco cadastrado'); 
           this._toastr.success('Cadastrado com sucesso', 'Endereco');
-          this._router.navigate(['']);
+          this._router.navigate(['/add-cliente']);
         },
         error: (e) => console.log(e),
       });

@@ -11,6 +11,7 @@ import { FinalizadoComponent } from './views/finalizado/finalizado.component';
 import { AdminListProdutoComponent } from './views/produto/admin-list-produto/admin-list-produto.component';
 import { AdminListPedidoComponent } from './views/pedido/admin-list-pedido/admin-list-pedido.component';
 import { ChooseClienteComponent } from './views/cliente/choose-cliente/choose-cliente.component';
+import { ListPedidosClienteComponent } from './views/pedido/list-pedidos-cliente/list-pedidos-cliente.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'carrinho', component: CarrinhoComponent },
   { path: 'finalizado', component: FinalizadoComponent },
   { path: 'admin-list-pedido', component: AdminListPedidoComponent },
+  { path: 'list-pedidos-cliente', component: ListPedidosClienteComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
