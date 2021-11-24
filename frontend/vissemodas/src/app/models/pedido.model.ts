@@ -4,9 +4,7 @@ export class Pedido {
   id?: number;
   data?: Date;
   idCliente: number | undefined;
-  idEndereco: number | undefined;
   listaItens: ItemPedido[];
-  situacao: string;
   valorTotal: number;
   quantidadeTotal: number;
   percentualDesconto: number;
@@ -14,17 +12,13 @@ export class Pedido {
 
   constructor(
     idCliente: number,
-    idEndereco: number,
     itensPedido: ItemPedido[],
-    situacao: string,
     valorTotal: number,
     quantidadeTotal: number,
     percentualDesconto: number
   ) {
     this.idCliente = idCliente;
-    this.idEndereco = idEndereco;
     this.listaItens = itensPedido;
-    this.situacao = situacao;
     this.valorTotal = valorTotal;
     this.quantidadeTotal = quantidadeTotal;
     this.percentualDesconto = percentualDesconto;

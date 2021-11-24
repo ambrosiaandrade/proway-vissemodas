@@ -53,9 +53,7 @@ export class CarrinhoComponent implements OnInit {
   // Moldando o pedido para enviar para o backend
   pedido: Pedido = {
     idCliente: 0,
-    idEndereco: 0,
     listaItens: [],
-    situacao: '',
     valorTotal: 0,
     quantidadeTotal: 0,
     percentualDesconto: 0,
@@ -116,6 +114,7 @@ export class CarrinhoComponent implements OnInit {
         idEndereco: 0
       };
     }
+    console.log('sessionCliente', this.sessionCliente);
   }
 
   removerItemPedido(id: any) {
@@ -173,7 +172,7 @@ export class CarrinhoComponent implements OnInit {
     this.setCountValues();
 
     this.pedido.listaItens = this.itensPedido;
-    this.pedido.situacao = 'ABERTO';
+    //this.pedido.situacao = 'ABERTO';
 
     this.pedido.quantidadeTotal = this.count_qtdTotal;
     this.pedido.percentualDesconto = this.count_desconto;
@@ -181,7 +180,7 @@ export class CarrinhoComponent implements OnInit {
       this.count_valorTotal - this.count_valorTotal * this.count_desconto;
 
     this.pedido.idCliente = this.sessionCliente.id;
-    this.pedido.idEndereco = this.sessionCliente.idEndereco;
+   //this.pedido.idEndereco = this.sessionCliente.enderecoDTO!.id;
 
     // todo: Enviar para o backend
     this._servicePedido.postPedido(this.pedido).subscribe({
