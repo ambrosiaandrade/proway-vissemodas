@@ -54,7 +54,7 @@ export class CarrinhoComponent implements OnInit {
   pedido: Pedido = {
     idCliente: 0,
     idEndereco: 0,
-    itensPedido: [],
+    listaItens: [],
     situacao: '',
     valorTotal: 0,
     quantidadeTotal: 0,
@@ -172,7 +172,7 @@ export class CarrinhoComponent implements OnInit {
   finalizarCompra() {
     this.setCountValues();
 
-    this.pedido.itensPedido = this.itensPedido;
+    this.pedido.listaItens = this.itensPedido;
     this.pedido.situacao = 'ABERTO';
 
     this.pedido.quantidadeTotal = this.count_qtdTotal;
