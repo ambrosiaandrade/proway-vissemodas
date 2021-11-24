@@ -43,7 +43,7 @@ export class AddClienteComponent implements OnInit {
       cnpj: [''],
       nome: ['', Validators.required],
       status: ['', Validators.required],
-      tipoCliente: ['', Validators.required],
+      tipoCliente: [false, Validators.required],
       idEndereco: ['']
     });
     this.id = this._aRouter.snapshot.paramMap.get('id');
@@ -106,23 +106,24 @@ export class AddClienteComponent implements OnInit {
         this.CLIENTE.tipoCliente = 'JURIDICA';
         this.CLIENTE.cnpj = this.clienteForm.get('cnpj')?.value;
       }
-  } 
 
+      this._service.postCliente(this.CLIENTE).subscribe({
+        next: (data) => {
+          console.log('Cliente cadastrado');
+          this._toastr.success('Cadastrado com sucesso', 'Cliente');
+          this._router.navigate(['']);
+        },
+        error: (e) => {
+          console.log('Erro no postCliente', e);
+          this._toastr.error(e, 'Cliente');
+        },
+      });
+
+  } 
 
   console.log('idEndereco', this.idEndereco);
   console.log('CLIENTE', this.CLIENTE);
   
-  this._service.postCliente(this.CLIENTE).subscribe({
-    next: (data) => {
-      console.log('Cliente cadastrado');
-      this._toastr.success('Cadastrado com sucesso', 'Cliente');
-      this._router.navigate(['']);
-    },
-    error: (e) => {
-      console.log('Erro no postCliente', e);
-      this._toastr.error(e, 'Cliente');
-    },
-  });
 }
     
 
