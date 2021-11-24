@@ -2,9 +2,9 @@ import { ItemPedido } from './itemPedido.model';
 
 export class Pedido {
   id?: number;
-  data: Date;
-  idCliente: number;
-  idEndereco: number;
+  data?: Date;
+  idCliente: number | undefined;
+  idEndereco: number | undefined;
   itensPedido: ItemPedido[];
   situacao: string;
   valorTotal: number;
@@ -12,7 +12,6 @@ export class Pedido {
   percentualDesconto: number;
 
   constructor(
-    data: Date,
     idCliente: number,
     idEndereco: number,
     itensPedido: ItemPedido[],
@@ -21,7 +20,6 @@ export class Pedido {
     quantidadeTotal: number,
     percentualDesconto: number
   ) {
-    this.data = data;
     this.idCliente = idCliente;
     this.idEndereco = idEndereco;
     this.itensPedido = itensPedido;

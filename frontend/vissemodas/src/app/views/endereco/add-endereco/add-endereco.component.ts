@@ -1,7 +1,7 @@
 import { BinaryOperator } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Endereco } from 'src/app/models/endereco.model';
 import { ConsultaCepService } from 'src/app/services/consulta-cep.service';
@@ -15,12 +15,20 @@ import { EnderecoService } from 'src/app/services/endereco.service';
 export class AddEnderecoComponent implements OnInit {
   enderecoForm: FormGroup;
 
+  listEnderecos: Endereco[] = [];
+
+  title: string = 'Cadastrar';
+  btn_text: string = "Cadastrar";
+  id: any;
+
   constructor(
     private _fb: FormBuilder,
     private CepService: ConsultaCepService,
     private _service: EnderecoService,
     private _toastr: ToastrService,
-    private _router: Router
+    private _router: Router,
+    private _aRouter: ActivatedRoute,
+    private _serviceEndereco: EnderecoService,
   ) {
     this.enderecoForm = _fb.group({
       cep: ['', Validators.required],
@@ -30,17 +38,33 @@ export class AddEnderecoComponent implements OnInit {
       bairro: ['', Validators.required],
       numero: ['', Validators.required],
     });
+    this.id = this._aRouter.snapshot.paramMap.get('id');
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isEditing();
+  }
+
+  // Fazendo o edit vir já preenchido com o endereço do ID
+  getLastEnderecoId(): void {
+    this._serviceEndereco.getEnderecos().subscribe({
+      next: (data) => {
+        this.listEnderecos = data;
+        this.id = this.listEnderecos.length;
+      },
+      error: (e) => console.log(e),
+    });
+  }
 
   populaFormEndereco(dados: any) {
     console.log(dados);
     this.enderecoForm.patchValue({
+      cep: dados.cep,
       logradouro: dados.logradouro,
-      cidade: dados.localidade,
-      estado: dados.uf,
+      cidade: dados.cidade,
+      estado: dados.estado,
       bairro: dados.bairro,
+      numero: dados.numero,
     });
   }
   consultaCEP() {
@@ -53,6 +77,7 @@ export class AddEnderecoComponent implements OnInit {
   }
 
   addEndereco() {
+    console.log(this.enderecoForm.value);
     const ENDERECO: Endereco = {
       cep: this.enderecoForm.get('cep')?.value,
       logradouro: this.enderecoForm.get('logradouro')?.value,
@@ -61,13 +86,47 @@ export class AddEnderecoComponent implements OnInit {
       bairro: this.enderecoForm.get('bairro')?.value,
       numero: this.enderecoForm.get('numero')?.value,
     };
-    this._service.postEndereco(ENDERECO).subscribe({
-      next: (data: any) => {
-        console.log('Endereço cadastrado');
-        this._toastr.success('Cadastrado com sucesso', 'Endereço');
-        this._router.navigate(['/add-cliente']);
-      },
-      error: (e) => console.log(e),
-    });
+
+    if (this.id !== null) {
+      // Editar endereço do cliente
+      this._service.putEndereco(this.id, ENDERECO).subscribe({
+        next: (data) => {
+          this._toastr.info('Editado com sucesso', 'Endereco');
+          this._router.navigate(['/list-cliente']);
+        },
+        error: (e) => console.log(e),
+      });
+    } else {
+      this._service.postEndereco(ENDERECO).subscribe({
+        next: (data: any) => {
+          console.log('Endereço cadastrado');
+          this._toastr.success('Cadastrado com sucesso', 'Endereço');
+          this._router.navigate(['/add-cliente']);
+        },
+        error: (e) => console.log(e),
+      });
+    }
   }
+
+  isEditing() {
+    if (this.id !== null) {
+      this.title = 'Editar';
+      this.btn_text = 'Editar';
+
+      this._service.getOneEndereco(this.id).subscribe({
+        next: (data) => {
+          this.enderecoForm.patchValue({
+            cep: data.cep,
+            logradouro: data.logradouro,
+            cidade: data.cidade,
+            estado: data.estado,
+            bairro: data.bairro,
+            numero: data.numero,
+          });
+        },
+        error: (e) => console.log(e),
+      });
+    }
+  }
+
 }

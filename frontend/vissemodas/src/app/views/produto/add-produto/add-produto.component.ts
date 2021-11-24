@@ -41,6 +41,9 @@ export class AddProdutoComponent implements OnInit {
   }
 
   // ../../../../assets/produtos/
+  // assets/produtos/calca-1.png
+
+  // TODO: adicionar o caminho para cadastrar somente 'calca-1', 'calca-2'
 
   addProduto() {
     console.log(this.produtoForm.value);
@@ -49,7 +52,8 @@ export class AddProdutoComponent implements OnInit {
       tamanho: this.produtoForm.get('tamanho')?.value,
       valorUnitario: this.produtoForm.get('valorUnitario')?.value,
       status: this.produtoForm.get('status')?.value,
-      imagem: this.produtoForm.get('imagem')?.value,
+      imagem:
+        'assets/produtos/' + this.produtoForm.get('imagem')?.value + 'png',
       categoria: this.produtoForm.get('categoria')?.value,
     };
 
@@ -65,7 +69,7 @@ export class AddProdutoComponent implements OnInit {
     } else {
       this._service.postProduto(PRODUTO).subscribe({
         next: (data) => {
-          console.log('Produto cadastrado');
+          console.log('Produto cadastrado'); 
           this._toastr.success('Cadastrado com sucesso', 'Produto');
           this._router.navigate(['']);
         },
