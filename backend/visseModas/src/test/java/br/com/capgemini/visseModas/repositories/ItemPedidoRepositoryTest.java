@@ -1,23 +1,23 @@
-//package br.com.capgemini.visseModas.repositories;
-//
-//import br.com.capgemini.visseModas.models.entities.Produto;
-//import br.com.capgemini.visseModas.models.repositories.ItemPedidoRepository;
-//import org.junit.Test;
-//import org.junit.jupiter.api.Assertions;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-//
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//import java.util.List;
-//
-//public class ItemPedidoRepositoryTest {
-//
-//    @Autowired
-//    private ItemPedidoRepository itemPedidoRepository;
-//    @Autowired
-//    private TestEntityManager em;
-//
+package br.com.capgemini.visseModas.repositories;
+
+import br.com.capgemini.visseModas.models.entities.Produto;
+import br.com.capgemini.visseModas.models.repositories.ItemPedidoRepository;
+import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class ItemPedidoRepositoryTest {
+
+    @Autowired
+    private ItemPedidoRepository itemPedidoRepository;
+    @Autowired
+    private TestEntityManager em;
+
 //    @Test
 //    public void deveriaRetornarSomenteProdutosAtivos(){
 //
@@ -66,22 +66,22 @@
 //    }
 //
 //
+
+
+
+}
+
+
+
+
+
+
+
+//    @Test
+//    public void DeveriaRetonarTodosProdutos(){
+//        String nomeCliente = "Maria";
+//        Optional optional = clienteRepository.findByNome(nomeCliente);
 //
+//        Assert.assertFalse(optional.isPresent()); //vê se vem o nome nullo, porque não existe no banco.
 //
-//
-//}
-//
-//
-//
-//
-//
-//
-//
-////    @Test
-////    public void DeveriaRetonarTodosProdutos(){
-////        String nomeCliente = "Maria";
-////        Optional optional = clienteRepository.findByNome(nomeCliente);
-////
-////        Assert.assertFalse(optional.isPresent()); //vê se vem o nome nullo, porque não existe no banco.
-////
-////    }
+//    }

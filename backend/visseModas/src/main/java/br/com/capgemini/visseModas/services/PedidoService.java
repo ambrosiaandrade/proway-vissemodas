@@ -49,17 +49,17 @@ public class PedidoService {
     }
 
     //add itens na lista de pedidos
-    public List<ItemPedido> adicionarItem(ItemPedido item){
-
-        item.getValorPorItem();
+    public List<ItemPedido> adicionarItem(Pedido pedido, ItemPedido item){
 
         if(item.getProduto().getStatus() == true){
+            item.setPedido(pedido);
             item.getPedido().getListaItens().add(item);
             item.getPedido().getValorTotal().add(item.getValorPorItem());
         }
 
-        return item.getPedido().getListaItens();
+        return pedido.getListaItens();
     }
+
 
     //remove itens da lista de pedidos
     public List<ItemPedido> removerItem(ItemPedido item){
@@ -68,6 +68,7 @@ public class PedidoService {
 
         return item.getPedido().getListaItens();
     }
+
 
     //calcula desconto
     public BigDecimal calcularDesconto(Pedido pedido, BigDecimal percentualDesconto){

@@ -1,7 +1,5 @@
 package br.com.capgemini.visseModas.controllers;
 
-import br.com.capgemini.visseModas.models.dtos.response.ClienteDTO;
-import br.com.capgemini.visseModas.models.entities.Cliente;
 import br.com.capgemini.visseModas.services.EnderecoService;
 import br.com.capgemini.visseModas.models.dtos.request_form.EnderecoForm;
 import br.com.capgemini.visseModas.models.dtos.response.EnderecoDTO;
@@ -25,7 +23,7 @@ public class EnderecoController {
     @PostMapping
     public ResponseEntity<EnderecoDTO> salvar(@RequestBody @Valid EnderecoForm enderecoForm, UriComponentsBuilder uriBuilder) {
 
-        Endereco endereco = enderecoForm.dtoToEndereco();
+        Endereco endereco = enderecoForm.converteEnderecoDTOParaEndereco();
         service.salvar(endereco);
 
         URI uri = uriBuilder.path("/enderecos/{id}").buildAndExpand(endereco.getId()).toUri();

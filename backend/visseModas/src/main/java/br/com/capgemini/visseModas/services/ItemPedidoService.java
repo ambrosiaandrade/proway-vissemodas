@@ -1,19 +1,15 @@
 package br.com.capgemini.visseModas.services;
 
 import br.com.capgemini.visseModas.models.dtos.response.ItemPedidoDTO;
-import br.com.capgemini.visseModas.models.entities.Cliente;
 import br.com.capgemini.visseModas.models.entities.ItemPedido;
-import br.com.capgemini.visseModas.models.entities.Pedido;
 import br.com.capgemini.visseModas.models.entities.Produto;
 import br.com.capgemini.visseModas.models.repositories.ItemPedidoRepository;
 import br.com.capgemini.visseModas.models.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ItemPedidoService {
@@ -22,6 +18,14 @@ public class ItemPedidoService {
     private ItemPedidoRepository itemPedidoRepository;
     @Autowired
     private ProdutoRepository produtoRepository;
+
+    public ItemPedidoService(ItemPedidoRepository itemPedidoRepository) {
+    }
+
+    public ItemPedido salvar(ItemPedido itemPedido){
+        return itemPedidoRepository.save(itemPedido);
+    }
+
 
     //atualiza valor do item
     public BigDecimal calcularValorPorItem(ItemPedido itemPedido){
@@ -34,41 +38,7 @@ public class ItemPedidoService {
         return itemPedido.getValorPorItem();
     }
 
-    //add itens na lista de pedidos
-    public List<ItemPedido> adicionarItem(Pedido pedido, ItemPedido item){
-
-        if(item.getProduto().getStatus() == true){
-            item.setPedido(pedido);
-            item.getPedido().getListaItens().add(item);
-            item.getPedido().getValorTotal().add(item.getValorPorItem());
-        }
-
-        return pedido.getListaItens();
-    }
-
-    //remove itens da lista de pedidos
-    public List<ItemPedido> removerItem(ItemPedido item){
-        item.getPedido().getValorTotal().subtract(item.getValorPorItem());
-        item.getPedido().getListaItens().remove(item);
-
-        return item.getPedido().getListaItens();
-    }
-
-    public ItemPedido salvar(ItemPedido itemPedido){
-       return itemPedidoRepository.save(itemPedido);
-    }
-
-    public ItemPedido detalhar(Long id){
-
-        Optional<ItemPedido> itemPedidoOptional = itemPedidoRepository.findById(id);
-        if (itemPedidoOptional.isPresent()) {
-            return itemPedidoOptional.get();
-        }
-
-        return null;
-    }
-
-    public List<ItemPedidoDTO> listarTudoDTO(Long idPedido){
+    public List<ItemPedidoDTO> listarTudoDTOPorPedido(Long idPedido){
         List<ItemPedido> listaItemPedido = itemPedidoRepository.findByPedidoId(idPedido);
         return ItemPedidoDTO.converteListaItemPedidoParaListaItemPedidoDTO(listaItemPedido);
     }
