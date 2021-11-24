@@ -88,7 +88,7 @@ export class AddEnderecoComponent implements OnInit {
     };
 
     if (this.id !== null) {
-      // Editar endereço do cliente
+      // Atualizar
       this._service.putEndereco(this.id, ENDERECO).subscribe({
         next: (data) => {
           this._toastr.info('Editado com sucesso', 'Endereco');
@@ -98,10 +98,10 @@ export class AddEnderecoComponent implements OnInit {
       });
     } else {
       this._service.postEndereco(ENDERECO).subscribe({
-        next: (data: any) => {
-          console.log('Endereço cadastrado');
-          this._toastr.success('Cadastrado com sucesso', 'Endereço');
-          this._router.navigate(['/add-cliente']);
+        next: (data) => {
+          console.log('Endereco cadastrado'); 
+          this._toastr.success('Cadastrado com sucesso', 'Endereco');
+          this._router.navigate(['']);
         },
         error: (e) => console.log(e),
       });
