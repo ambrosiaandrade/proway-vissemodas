@@ -20,7 +20,7 @@ public class ProdutoForm {
     private BigDecimal valorUnitario;
     @NotBlank(message = "O campo Categoria é obrigatório")
     private String categoria;
-    @NotBlank
+
     private String imagem;
 
 

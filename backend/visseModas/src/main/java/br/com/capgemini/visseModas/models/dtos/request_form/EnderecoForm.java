@@ -19,7 +19,7 @@ public class EnderecoForm {
     @NotBlank(message = "O campo Logradouro é obrigatório")
     private String logradouro;
 
-    private Integer numero;
+    private Integer numero=0;
 
     public EnderecoForm() {
     }

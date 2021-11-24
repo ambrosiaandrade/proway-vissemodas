@@ -16,6 +16,7 @@ export class AddProdutoComponent implements OnInit {
   title: string = 'Cadastrar';
   btn_text: string = 'Cadastrar';
   id: any;
+  isEditingProduct: boolean = false;
 
   constructor(
     private _fb: FormBuilder,
@@ -34,13 +35,13 @@ export class AddProdutoComponent implements OnInit {
       categoria: ['', Validators.required],
     });
     this.id = this._aRouter.snapshot.paramMap.get('id');
+    if(this.id !== null) this.isEditingProduct = true;
   }
 
   ngOnInit(): void {
     this.isEditing();
+    //console.log('Edição?',this.isEditingProduct);
   }
-
-  // ../../../../assets/produtos/
 
   addProduto() {
     console.log(this.produtoForm.value);
@@ -49,7 +50,8 @@ export class AddProdutoComponent implements OnInit {
       tamanho: this.produtoForm.get('tamanho')?.value,
       valorUnitario: this.produtoForm.get('valorUnitario')?.value,
       status: this.produtoForm.get('status')?.value,
-      imagem: this.produtoForm.get('imagem')?.value,
+      imagem:
+        'assets/produtos/' + this.produtoForm.get('imagem')?.value + '.png',
       categoria: this.produtoForm.get('categoria')?.value,
     };
 
@@ -65,7 +67,7 @@ export class AddProdutoComponent implements OnInit {
     } else {
       this._service.postProduto(PRODUTO).subscribe({
         next: (data) => {
-          console.log('Produto cadastrado');
+          console.log('Produto cadastrado'); 
           this._toastr.success('Cadastrado com sucesso', 'Produto');
           this._router.navigate(['']);
         },
@@ -77,7 +79,7 @@ export class AddProdutoComponent implements OnInit {
   isEditing() {
     if (this.id !== null) {
       this.title = 'Editar';
-      this.btn_text = 'Editar';
+      this.btn_text = 'Editar';     
 
       this._service.getOneProduto(this.id).subscribe({
         next: (data) => {
