@@ -1,3 +1,5 @@
+import { Endereco } from "./endereco.model";
+
 export class Cliente {
   id?: number;
   cpf?: string;
@@ -6,6 +8,7 @@ export class Cliente {
   status?: boolean;
   tipoCliente: string;
   idEndereco: number;
+  enderecoDTO?: Endereco;
 
   constructor(
     cpf: string,
