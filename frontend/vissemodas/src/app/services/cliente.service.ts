@@ -24,7 +24,7 @@ export class ClienteService {
 
   handleError(error: any) {
     // return throwError(error.message || 'Server error');
-    return throwError(error.error.errors[0].defaultMessage);
+    return throwError(error.error.errors[0].defaultMessage || 'Server error');
   }
 
   deleteCliente(id: any): Observable<any> {
