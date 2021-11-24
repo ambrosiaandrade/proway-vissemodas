@@ -31,7 +31,8 @@ export class CarrinhoComponent implements OnInit {
       categoria: '',
     },
     quantidade: 0,
-    valorPorItem: 0,
+    valorTotalItem: 0,
+    idProduto: 0
   };
 
   // De fato a nossa lista de itens
@@ -84,9 +85,11 @@ export class CarrinhoComponent implements OnInit {
       // Atribuindo ao itensPedido o produto
       for (let i = 0; i < this.listProdutos.length; i++) {
         let currentProduto = this.listProdutos[i];
+        console.log('currentProduto', currentProduto);
         this.itemPedido.produto = currentProduto;
+        this.itemPedido.idProduto = currentProduto.id!;
         this.itemPedido.quantidade = 1;
-        this.itemPedido.valorPorItem = currentProduto.valorUnitario;
+        this.itemPedido.valorTotalItem = currentProduto.valorUnitario * this.itemPedido.quantidade;
 
         this.itensPedido.push(this.itemPedido);
       }
@@ -122,7 +125,7 @@ export class CarrinhoComponent implements OnInit {
     // neste caso, ser diferente do id passado por parâmetro.
     // Logo, retorna tudo exceto o que tiver esse id
     this.itensPedido = this.itensPedido.filter(
-      (item) => item.produto.id !== id
+      (item) => item.produto!.id !== id
     );
 
     this.setCountValues();
@@ -136,7 +139,7 @@ export class CarrinhoComponent implements OnInit {
 
   handleChangeQTD(qtd: string, id: any) {
     for (let i = 0; i < this.itensPedido.length; i++) {
-      if (this.itensPedido[i].produto.id == id) {
+      if (this.itensPedido[i].produto!.id == id) {
         this.itensPedido[i].quantidade = parseInt(qtd);
       }
     }
@@ -152,7 +155,7 @@ export class CarrinhoComponent implements OnInit {
     for (let i = 0; i < this.itensPedido.length; i++) {
       let currentItem = this.itensPedido[i];
       this.count_valorTotal +=
-        currentItem.quantidade * currentItem.valorPorItem;
+        currentItem.quantidade * currentItem.valorTotalItem;
       this.count_qtdTotal += currentItem.quantidade;
     }
 
@@ -182,7 +185,10 @@ export class CarrinhoComponent implements OnInit {
     this.pedido.idCliente = this.sessionCliente.id;
    //this.pedido.idEndereco = this.sessionCliente.enderecoDTO!.id;
 
-    // todo: Enviar para o backend
+    // TODO: enviar a item-pedido primeiro
+
+
+
     this._servicePedido.postPedido(this.pedido).subscribe({
       next: (data) => console.log(data),
       error: (e) => console.log(e),

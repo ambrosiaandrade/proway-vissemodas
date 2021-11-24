@@ -2,14 +2,15 @@ import { Produto } from './produto.model';
 
 export class ItemPedido {
   id?: number;
-  produto: Produto;
-  pedido?: number;
+  idProduto: number;
+  idPedido?: number;
+  produto?: Produto;
   quantidade: number;
-  valorPorItem: number;
+  valorTotalItem: number;
 
-  constructor(produto: Produto, quantidade: number, valorPorItem: number) {
-    this.produto = produto;
+  constructor(idProduto: number, quantidade: number, valorTotalItem: number) {
+    this.idProduto = idProduto;
     this.quantidade = quantidade;
-    this.valorPorItem = valorPorItem;
+    this.valorTotalItem = valorTotalItem;
   }
 }
