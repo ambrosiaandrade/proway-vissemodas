@@ -61,8 +61,8 @@ export class AddEnderecoComponent implements OnInit {
     this.enderecoForm.patchValue({
       cep: dados.cep,
       logradouro: dados.logradouro,
-      cidade: dados.cidade,
-      estado: dados.estado,
+      cidade: dados.localidade,
+      estado: dados.uf,
       bairro: dados.bairro,
       numero: dados.numero,
     });
