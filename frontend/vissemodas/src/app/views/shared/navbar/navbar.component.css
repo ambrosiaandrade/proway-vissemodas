@@ -55,6 +55,24 @@ img {
   color: white;
 }
 
+#dropdownMenuButton{
+  color: white !important;
+  font-size: 1.2rem;
+}
+.dropdown-item{
+  color: #973e2e;
+
+}
+.dropdown-menu{
+  padding: 10px;
+  background-color: #ffd392;
+}
+.navegacao{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* Responsividade */
 
 @media only screen and (max-width: 799px) {
