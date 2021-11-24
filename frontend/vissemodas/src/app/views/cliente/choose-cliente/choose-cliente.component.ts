@@ -66,6 +66,10 @@ export class ChooseClienteComponent implements OnInit {
       next: (data) => {
         this.listClientes = data;
         console.log(data);
+        if(this.listClientes.length == 0){
+          console.log('Não há registro de cliente no banco de dados. \nRedirecionando para cadastro.');
+          this._router.navigate(['/add-endereco']);
+        }
       },
       error: (e) => console.log(e),
     });
