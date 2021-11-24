@@ -11,7 +11,7 @@ export class EnderecoService {
 
   constructor(private _http: HttpClient) {}
 
-  getOneEndereco(id: any): Observable<any> {
+  getOneEndereco(id: number): Observable<any> {
     return this._http.get(`${this.url}/${id}`);
   }
 
