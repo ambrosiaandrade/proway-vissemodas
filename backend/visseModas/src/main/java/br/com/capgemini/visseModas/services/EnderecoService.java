@@ -4,7 +4,6 @@ import br.com.capgemini.visseModas.models.dtos.response.EnderecoDTO;
 import br.com.capgemini.visseModas.models.entities.Endereco;
 import br.com.capgemini.visseModas.models.repositories.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

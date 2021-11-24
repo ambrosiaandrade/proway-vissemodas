@@ -20,7 +20,7 @@ public class ItemPedidoForm {
     private Long idPedido;
     @NotNull
     private Long idProduto;
-    @Min(1) //todo pesquisar
+    @Min(1)
     private Integer quantidade;
     @Digits(integer=9, fraction=2)
     private BigDecimal valorTotalItem;
@@ -44,23 +44,6 @@ public class ItemPedidoForm {
 
     }
 
-//    public List<ItemPedido> converterListaItemPedidoDTOParaListaItemPedido(ProdutoService produtoService, Pedido pedido, List<ItemPedidoForm> lista) {
-//
-//        List<ItemPedido> listaItens = lista.stream()
-//                .map(itemPedidoForm -> {
-//
-//                    ItemPedido itemPedido = new ItemPedido();
-//
-//                    itemPedido.setProduto(produtoService.buscarPorId(itemPedidoForm.getIdProduto()));
-//                    itemPedido.setPedido(pedido);
-//                    itemPedido.setQuantidade(itemPedidoForm.getQuantidade());
-//                    itemPedido.setValorPorItem(itemPedidoForm.getValorTotalItem());
-//                    return itemPedido;
-//                }).collect(Collectors.toList());
-//
-//        return listaItens;
-//
-//    }
 
     }
 
