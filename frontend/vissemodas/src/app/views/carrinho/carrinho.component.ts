@@ -74,6 +74,7 @@ export class CarrinhoComponent implements OnInit {
     this.buscarItemPedido();
     this.buscarCliente();
     this.cleanCount();
+    this.setCountValues();
   }
 
   buscarItemPedido() {
@@ -139,6 +140,9 @@ export class CarrinhoComponent implements OnInit {
         this.itensPedido[i].quantidade = parseInt(qtd);
       }
     }
+
+    this.cleanCount();
+    this.setCountValues();
 
     // Atribuindo a lista com a QTD alterada para o localStorage
     localStorage.setItem('itensPedido', JSON.stringify(this.itensPedido));

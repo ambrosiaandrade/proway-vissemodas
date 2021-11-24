@@ -16,6 +16,7 @@ export class AddProdutoComponent implements OnInit {
   title: string = 'Cadastrar';
   btn_text: string = 'Cadastrar';
   id: any;
+  isEditingProduct: boolean = false;
 
   constructor(
     private _fb: FormBuilder,
@@ -34,16 +35,13 @@ export class AddProdutoComponent implements OnInit {
       categoria: ['', Validators.required],
     });
     this.id = this._aRouter.snapshot.paramMap.get('id');
+    if(this.id !== null) this.isEditingProduct = true;
   }
 
   ngOnInit(): void {
     this.isEditing();
+    //console.log('Edição?',this.isEditingProduct);
   }
-
-  // ../../../../assets/produtos/
-  // assets/produtos/calca-1.png
-
-  // TODO: adicionar o caminho para cadastrar somente 'calca-1', 'calca-2'
 
   addProduto() {
     console.log(this.produtoForm.value);
@@ -53,7 +51,7 @@ export class AddProdutoComponent implements OnInit {
       valorUnitario: this.produtoForm.get('valorUnitario')?.value,
       status: this.produtoForm.get('status')?.value,
       imagem:
-        'assets/produtos/' + this.produtoForm.get('imagem')?.value + 'png',
+        'assets/produtos/' + this.produtoForm.get('imagem')?.value + '.png',
       categoria: this.produtoForm.get('categoria')?.value,
     };
 
@@ -81,7 +79,7 @@ export class AddProdutoComponent implements OnInit {
   isEditing() {
     if (this.id !== null) {
       this.title = 'Editar';
-      this.btn_text = 'Editar';
+      this.btn_text = 'Editar';     
 
       this._service.getOneProduto(this.id).subscribe({
         next: (data) => {
