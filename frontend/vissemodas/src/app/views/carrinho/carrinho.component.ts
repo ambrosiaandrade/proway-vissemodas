@@ -62,6 +62,10 @@ export class CarrinhoComponent implements OnInit {
 
   // Texto do botão, 'finalizar' ou 'escolher cliente'
   botaoTexto: String = 'Finalizar';
+  // Texto título principal, 'meu carrinho' ou carrinho de 'fulano'
+  tituloTexto: String = "Meu carrinho";
+
+  total: String = "Total"
 
   constructor(
     private _router: Router,
@@ -107,6 +111,7 @@ export class CarrinhoComponent implements OnInit {
     if (localStorage.getItem('client')) {
       this.hasCliente = true;
       this.botaoTexto = 'Finalizar';
+      this.tituloTexto = `Carrinho de ${JSON.parse(localStorage.getItem('client') || '{}').nome.split(' ')[0]}`;
       this.sessionCliente = JSON.parse(localStorage.getItem('client') || '{}');
     } else {
       this.hasCliente = false;
@@ -162,6 +167,11 @@ export class CarrinhoComponent implements OnInit {
     // Desconto de 20% se a compra for maior ou igual a 500 reais
     if (this.count_valorTotal >= 500) {
       this.count_desconto = 0.2;
+      this.total = "Subtotal"
+    }
+    else{
+        this.total = "Total"
+      
     }
   }
 
