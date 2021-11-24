@@ -32,7 +32,7 @@ export class ChooseClienteComponent implements OnInit {
     numero: 0,
   };
 
-  tipoCliente: boolean = true;
+  tipoCliente: boolean = false;
   botaoTexto: string = 'Buscar';
 
   constructor(
@@ -71,7 +71,7 @@ export class ChooseClienteComponent implements OnInit {
     });
   }
 
-  buscarEnderecoCliente(id: number | undefined) {
+  buscarEnderecoCliente(id: number) {
     this._serviceEndereco.getOneEndereco(id).subscribe({
       next: (data) => (this.enderecoCliente = data),
       error: (e) => console.log(e),
@@ -87,7 +87,6 @@ export class ChooseClienteComponent implements OnInit {
         );
         if (documento == documentoSemPontuacao) {
           this.mostrarCliente = this.listClientes[i];
-          console.log(this.mostrarCliente);
         }
       }
     } else {
@@ -98,18 +97,19 @@ export class ChooseClienteComponent implements OnInit {
         );
         if (documento == documentoSemPontuacao) {
           this.mostrarCliente = this.listClientes[i];
-          console.log(this.mostrarCliente);
         }
       }
     }
-
     console.log('mostrarCliente', this.mostrarCliente);
+    if (this.hasCliente()){
+      let id = this.mostrarCliente.id!;
+      this.buscarEnderecoCliente(id);
+    }
   }
 
   hasCliente(): boolean {
     if (this.mostrarCliente.nome.length > 0) {
       this.botaoTexto = 'Continuar compra';
-      this.buscarEnderecoCliente(this.mostrarCliente.idEndereco);
       return true;
     } else {
       return false;
