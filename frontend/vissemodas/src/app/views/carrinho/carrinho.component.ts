@@ -45,6 +45,7 @@ export class CarrinhoComponent implements OnInit {
   sessionCliente: Cliente = {
     nome: '',
     tipoCliente: '',
+    idEndereco: 0
   };
   // Boolean para verificar se já existe um cliente
   hasCliente: boolean = false;
@@ -110,6 +111,7 @@ export class CarrinhoComponent implements OnInit {
       this.sessionCliente = {
         nome: '',
         tipoCliente: '',
+        idEndereco: 0
       };
     }
   }
