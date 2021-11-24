@@ -45,17 +45,18 @@
       -->
 
       <div class="subtotal"*ngIf="itensPedido.length != 0">
-        <h5> QUANTIDADE DE ITENS: <span> {{ count_qtdTotal }} </span></h5>
-        <h5> VALOR TOTAL: <span> {{ count_valorTotal | currency: "BRL" }} </span></h5>
-      </div>
-
-      <button
+        <p> QUANTIDADE DE ITENS: <span> {{ count_qtdTotal }} </span></p>
+        <p> VALOR TOTAL: <span> {{ count_valorTotal | currency: "BRL" }} </span></p>
+        <button
         (click)="handleCompra()"
         id="btnFinalizarCompra"
         *ngIf="itensPedido.length > 0"
       >
         {{ botaoTexto }}
-      </button> 
+      </button>
+      </div>
+
+ 
       </div>
 
 
@@ -72,4 +73,3 @@
       </div>
     </div>
   </div>
-</div>
