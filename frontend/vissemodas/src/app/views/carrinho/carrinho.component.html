@@ -44,10 +44,12 @@
         TODO: Mostrar a qtd total e o valor total? E o desconto tbm?
       -->
 
-      <div class="subtotal">
-        <p> QUANTIDADE DE ITENS: <span> {{ count_qtdTotal }} </span></p>
-        <p> VALOR TOTAL: <span> {{ count_valorTotal | currency: "BRL" }} </span></p>
-        <button
+      <div class="subtotal"*ngIf="itensPedido.length != 0">
+        <h5> QUANTIDADE DE ITENS: <span> {{ count_qtdTotal }} </span></h5>
+        <h5> VALOR TOTAL: <span> {{ count_valorTotal | currency: "BRL" }} </span></h5>
+      </div>
+
+      <button
         (click)="handleCompra()"
         id="btnFinalizarCompra"
         *ngIf="itensPedido.length > 0"
