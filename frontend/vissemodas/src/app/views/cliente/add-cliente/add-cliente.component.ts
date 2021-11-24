@@ -15,12 +15,19 @@ import { EnderecoService } from 'src/app/services/endereco.service';
 export class AddClienteComponent implements OnInit {
   clienteForm: FormGroup;
 
-  idEndereco: number = 0;
+  idEndereco!: number;
   listEnderecos: Endereco[] = [];
 
   title: string = 'Fazer';
   btn_text: string = 'Cadastrar';
   id: any;
+
+  // Atribuindo alguns valores ao cliente
+  CLIENTE: Cliente = {
+    nome: '',
+    tipoCliente: '',
+    idEndereco: 0
+  };
 
   constructor(
     private _fb: FormBuilder,
@@ -76,16 +83,12 @@ export class AddClienteComponent implements OnInit {
     // Verificando qual o tipo de cliente
     let tipoDoCliente = this.clienteForm.get('tipoCliente')?.value;
 
-    // Atribuindo alguns valores ao cliente
-    let CLIENTE: Cliente = {
-      nome: this.clienteForm.get('nome')?.value,
-      tipoCliente: '',
-      idEndereco: 0
-    };
+    this.CLIENTE.nome = this.clienteForm.get('nome')?.value;
+    this.CLIENTE.idEndereco = this.idEndereco;
 
     if ( this.id !== null ) { 
       // Atualizar cliente
-      this._service.editCliente(this.id, CLIENTE).subscribe({
+      this._service.editCliente(this.id, this.CLIENTE).subscribe({
         next: (data) => {
           this._toastr.info('Editado com sucesso', 'Cliente');
           this._router.navigate(['/list-cliente']);
@@ -94,22 +97,22 @@ export class AddClienteComponent implements OnInit {
       });
     } else {
       // Atribuindo o restante dos valores de acordo com o tipo de cliente
-    if (tipoDoCliente) {
-      //  console.log('>>> CLIENTE FÍSICO');
-      CLIENTE.tipoCliente = 'FISICA';
-      CLIENTE.cpf = this.clienteForm.get('cpf')?.value;
-    } else {
-      //  console.log('>>> CLIENTE JURÍDICO');
-      CLIENTE.tipoCliente = 'JURIDICA';
-      CLIENTE.cnpj = this.clienteForm.get('cnpj')?.value;
-    }
+      if (tipoDoCliente) {
+        //  console.log('>>> CLIENTE FÍSICO');
+        this.CLIENTE.tipoCliente = 'FISICA';
+        this.CLIENTE.cpf = this.clienteForm.get('cpf')?.value;
+      } else {
+        //  console.log('>>> CLIENTE JURÍDICO');
+        this.CLIENTE.tipoCliente = 'JURIDICA';
+        this.CLIENTE.cnpj = this.clienteForm.get('cnpj')?.value;
+      }
   } 
 
 
   console.log('idEndereco', this.idEndereco);
-  console.log('CLIENTE', CLIENTE);
+  console.log('CLIENTE', this.CLIENTE);
   
-  this._service.postCliente(CLIENTE).subscribe({
+  this._service.postCliente(this.CLIENTE).subscribe({
     next: (data) => {
       console.log('Cliente cadastrado');
       this._toastr.success('Cadastrado com sucesso', 'Cliente');
@@ -136,8 +139,7 @@ export class AddClienteComponent implements OnInit {
             cnpj: data.cnpj,
             nome: data.nome,
             status: data.status,
-            tipoCliente: data.tipoCliente,
-            idEndereco: data.idEndereco
+            tipoCliente: data.tipoCliente
           });
         },
         error: (e) => console.log(e),
