@@ -38,3 +38,17 @@ th, td {
     text-align: center;
 }
 
+#sacolinha{
+    padding: 0.4rem;
+    border-radius: 1rem;
+    position: fixed;
+    top: 90%;
+    right: 5rem;
+    transform: translateY(-50%);
+
+}
+
+#sacolinha img{
+    height: 3.5rem;
+}
+

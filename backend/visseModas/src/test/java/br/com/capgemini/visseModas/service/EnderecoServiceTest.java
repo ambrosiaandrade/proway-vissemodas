@@ -43,7 +43,7 @@ public class EnderecoServiceTest {
     }
 
     @Test
-    public void deveriaRetornarEndereco(){
+    public void deveriaRetornarEnderecoPorId(){
 
         Endereco endereco = new Endereco();
         endereco.setBairro("Ipiranga");
@@ -63,7 +63,7 @@ public class EnderecoServiceTest {
     }
 
     @Test
-    public void naoDeveriaRetornarEndereco(){
+    public void naoDeveriaRetornarEnderecoPorId(){
 
         Endereco endereco = new Endereco();
         endereco.setBairro("Ipiranga");
@@ -73,6 +73,11 @@ public class EnderecoServiceTest {
         Optional<Endereco> enderecoOptional = enderecoRepository.findById(idInvalido);
         Assert.assertFalse(enderecoOptional.isPresent());
 
+
+    }
+
+    @Test
+    public void deveriaAlterarEnderecoPorId(){
 
     }
 

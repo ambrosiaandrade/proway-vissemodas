@@ -29,7 +29,8 @@ export class ListProdutoComponent implements OnInit {
       categoria: '',
     },
     quantidade: 0,
-    valorPorItem: 0,
+    valorTotalItem: 0,
+    idProduto: 0
   };
 
   // De fato a nossa lista de itens
@@ -68,7 +69,8 @@ export class ListProdutoComponent implements OnInit {
     // Atribuindo produto ao itemPedido.produto
     this.itemPedido.produto = produto;
     this.itemPedido.quantidade = 1;
-    this.itemPedido.valorPorItem = produto.valorUnitario;
+    this.itemPedido.idProduto = produto.id!;
+    this.itemPedido.valorTotalItem = produto.valorUnitario;
 
     this.itensPedido.push(this.itemPedido);
 
@@ -90,7 +92,8 @@ export class ListProdutoComponent implements OnInit {
         categoria: '',
       },
       quantidade: 0,
-      valorPorItem: 0,
+      valorTotalItem: 0,
+      idProduto: 0
     };
   }
 }
