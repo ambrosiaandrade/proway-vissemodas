@@ -44,13 +44,31 @@ input[type="number"] {
 #btnFinalizarCompra {
   width: 12em;
   border-radius: 0.5em;
-  position: fixed;
-  bottom: 10rem;
-  right: 10rem;
-  z-index: 9999;
+
 }
 
 #btnInicio {
   width: 12em;
   border-radius: 0.8em;
+}
+
+.subtotal{
+  text-align: end;
+  padding: 2rem;
+}
+.subtotal p{
+  margin: 0;
+  font-size: 1.1rem;
+
+}
+
+.subtotal button{
+  margin-top: 1.5rem;
+}
+
+.container-valor{
+  width: fit-content;
+}
+.card{
+  width: 600px;
 }

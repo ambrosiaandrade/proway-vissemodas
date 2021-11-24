@@ -108,7 +108,7 @@ export class CarrinhoComponent implements OnInit {
       this.sessionCliente = JSON.parse(localStorage.getItem('client') || '{}');
     } else {
       this.hasCliente = false;
-      this.botaoTexto = 'Selecionar cliente';
+      this.botaoTexto = 'Continuar';
       this.sessionCliente = {
         nome: '',
         tipoCliente: '',
