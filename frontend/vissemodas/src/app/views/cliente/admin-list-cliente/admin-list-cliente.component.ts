@@ -21,6 +21,7 @@ export class AdminListClienteComponent implements OnInit {
     return this._service.getClientes().subscribe({
       next: (data) => {
         this.listaClientes = data;
+        console.log('listaClientes', data);
       },
       error: (e) => console.log(e),
     });
