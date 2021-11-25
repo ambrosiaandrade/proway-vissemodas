@@ -4,13 +4,13 @@ use vissemodas;
 
 -- Endereços
 insert into endereco (cep, estado, cidade, bairro, logradouro, numero) values
-('97032-040', 'PE', 'Recife',  'Boa Viagem', 'Rua Bernardo Cohem', 21),
-('27977-580', 'RJ', 'Macaé',  'Cabiúnas', 'Rua Fonseca', 154),
-('51021-040', 'RS', 'Santa Maria', 'Tancredo Neves', 'Av. Eng. Domingos Ferreira', 18);
+('97032040', 'PE', 'Recife',  'Boa Viagem', 'Rua Bernardo Cohem', 21),
+('27977580', 'RJ', 'Macaé',  'Cabiúnas', 'Rua Fonseca', 154),
+('51021040', 'RS', 'Santa Maria', 'Tancredo Neves', 'Av. Eng. Domingos Ferreira', 18);
 
 insert into endereco (cep, estado, cidade, bairro, logradouro, numero) values
-('76629-970', 'GO', 'Goiás',  'Setor Central', 'Praça Doutor Brasil Caiado', 46),
-('77019-128', 'TO', 'Palmas', 'Plano Diretor Sul', 'Quadra 1105 Sul Alameda', 19);
+('76629970', 'GO', 'Goiás',  'Setor Central', 'Praça Doutor Brasil Caiado', 46),
+('77019128', 'TO', 'Palmas', 'Plano Diretor Sul', 'Quadra 1105 Sul Alameda', 19);
 
 SELECT * FROM endereco;
 SELECT * FROM cliente;

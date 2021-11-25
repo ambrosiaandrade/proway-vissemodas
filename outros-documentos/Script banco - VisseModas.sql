@@ -42,7 +42,7 @@ CREATE TABLE pedido (
 	situacao varchar(7),
 	valor_total decimal(19,2),
 	quantidade_total int,
-	percentual_desconto Double(3,2),
+	percentual_desconto Double(5,2),
 	primary key (id)
 );
 

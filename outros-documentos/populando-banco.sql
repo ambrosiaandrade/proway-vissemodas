@@ -55,24 +55,24 @@ from endereco AS ende
 
 -- CLIENTES
 INSERT INTO
-	cliente (cpf, cnpj, nome, tipo_cliente, endereco)
+	cliente (cpf, cnpj, nome, tipo_cliente, endereco_id)
 values
-	('702.377.314-28',null,'Rebeca Lira','FISICA',1);
+	('70237731428',null,'Rebeca Lira','FISICA',1);
 
 INSERT INTO
-	cliente (cpf, cnpj, nome, tipo_cliente, endereco)
+	cliente (cpf, cnpj, nome, tipo_cliente, endereco_id)
 values
-	(	'132.548.944-13',null,'Yuri Ferreira','FISICA',2);
+	(	'13254894413',null,'Yuri Ferreira','FISICA',2);
 
 INSERT INTO
-	cliente (cpf, cnpj, nome, tipo_cliente, endereco)
+	cliente (cpf, cnpj, nome, tipo_cliente, endereco_id)
 values
-	(null,'00.802.269/0001-91','Rivenstorm','JURIDICA',3);
+	(null,'00802269000191','Rivenstorm','JURIDICA',3);
 
 INSERT INTO
-	cliente (cpf, cnpj, nome, tipo_cliente, endereco)
+	cliente (cpf, cnpj, nome, tipo_cliente, endereco_id)
 values
-	(null,'89.607.746/0001-71','Dynaworth','JURIDICA',4);
+	(null,'89607746000171','Dynaworth','JURIDICA',4);
 
 -- PRODUTOS
 INSERT INTO
@@ -108,21 +108,15 @@ values
 
 -- PEDIDOS
 INSERT INTO
-	pedido (cliente_id,endereco_entrega_id,situacao,valor_total,quantidade_total,percentual_desconto)
+	pedido (cliente_id,situacao,valor_total,quantidade_total,percentual_desconto)
 values
-	(1, 2, 'FINALIZADO', 259.90, 3, 30.00),
-	(2, 1, 'A CAMINHO', 400.00, 7, 15.00);
-
--- ENDEREÇOS
-INSERT INTO
-	endereco (cliente_id, cep, cidade, bairro, logradouro)
-values
-	(1,'51021-020','Recife','Boa Viagem','Av. Conselheiro Aguiar'),
-	(2,'51021-040','Recife','Boa Viagem','Av. Eng. Domingos Ferreira');
+	(1, 'FECHADO', 259.90, 3, 30.00),
+	(2, 'ABERTO', 400.00, 7, 15.00);
 
 -- ITENS PEDIDOS
 INSERT INTO
-	item_pedido (produto_id, pedido_id, quantidade, valor_total)
+	item_pedido (produto_id, pedido_id, quantidade, valor_por_item)
 values
 	(1, 1, 5, 259.90),
 	(2, 2, 3, 400.00);
+	
