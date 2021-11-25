@@ -19,6 +19,10 @@ export class ProdutoService {
     return this._http.get(this.url);
   }
 
+  getTodosProdutos(): Observable<any> {
+    return this._http.get(`${this.url}/todos`);
+  }
+
   postProduto(produto: Produto): Observable<any> {
     return this._http.post(this.url, produto);
   }
