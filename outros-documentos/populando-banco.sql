@@ -30,7 +30,7 @@ INSERT INTO
 	produto(descricao,tamanho,valor_unitario,categoria,imagem,status)
 values
 	('bolsa dia a dia preta','único',130.00,'bolsas','assets/produtos/bolsa-1.jpg',1),
-	('bolsa rosa choque','único',140.00,'bolsas','assets/produtos/bolsa-2.jpg',	1),
+	('bolsa rosa choque','único',140.00,'bolsas','assets/produtos/bolsa-2.jpg',	1);
 
 -- Ativando os produtos
 update produto set status=1 where id in(1,2,3,4,5,6,7,8,9,10,11,12);
