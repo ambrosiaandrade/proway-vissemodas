@@ -14,10 +14,9 @@
           <br />
           <p>Produtos comprados: </p>
           <div class="produtos-container">
-              <div class="lista-produtos" *ngFor="let produto of p.listaItens"> 
-                  <img src={{selecionarProduto(produto.idProduto)[0].imagem}} alt={{selecionarProduto(produto.idProduto)[0].descricao}} />
-                  <p>{{selecionarProduto(produto.idProduto)[0].descricao}}</p>
-                </div>
+              <ul class="lista-produtos" *ngFor="let produto of p.listaItens"> 
+                  <li>{{selecionarProduto(produto.idProduto)[0].descricao}}</li>
+              </ul>
             </div>
           <!-- <p class="card-text">situação: <span>{{ p.situacao }}</span></p> -->
         </div>

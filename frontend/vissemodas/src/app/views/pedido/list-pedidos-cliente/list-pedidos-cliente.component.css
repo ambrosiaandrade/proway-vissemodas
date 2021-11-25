@@ -4,18 +4,15 @@
 }
 .lista-produtos{
     box-sizing: border-box;
-    width: 120px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    text-align: center;
-    border: 3px #973e2e solid;
     margin: 5px;
     border-radius: 10px;
+    width: 100%
 }
-.lista-produtos p{
+.lista-produtos li{
     font-size: small;
+    list-style-type: none;
+    color: #973e2e;
 }
 
 .produtos-container{
