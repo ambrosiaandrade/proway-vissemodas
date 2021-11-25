@@ -49,10 +49,9 @@ public class ProdutoController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletar(@PathVariable Long id, UriComponentsBuilder uriBuilder) {
 
-        ResponseEntity resposta = service.deletar(id); //chamar o deletar e decidir no service se deleta ou nao
-        HttpStatus status = resposta.getStatusCode();
+        Boolean resposta = service.deletar(id); //chamar o deletar e decidir no service se deleta ou nao
 
-        if(status == HttpStatus.BAD_REQUEST){
+        if(resposta == false){
 
             Produto produto = service.buscarPorId(id);
 

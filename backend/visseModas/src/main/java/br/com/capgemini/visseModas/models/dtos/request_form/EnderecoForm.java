@@ -24,7 +24,7 @@ public class EnderecoForm {
     public EnderecoForm() {
     }
 
-    public Endereco dtoToEndereco() {
+    public Endereco converteEnderecoDTOParaEndereco() {
 
         Endereco endereco = new Endereco();
 

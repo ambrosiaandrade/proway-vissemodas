@@ -1,1 +1,26 @@
-<p>list-pedidos-cliente works!</p>
+<div class="container m-5">
+    <h3>Meus pedidos</h3>
+    <div class="cards">
+      <div *ngFor="let p of listaFiltrada">
+        <div class="card pedido" >
+          <h5 class="card-title"></h5>
+          <div class="initial-info">
+              <p class="card-text">número do pedido: <span>{{ p.id }}</span></p>
+              <p class="card-text">data da compra: <span>{{ p.data | date: 'dd/MM/yyyy' }}</span></p>
+          </div>
+          <p class="card-text">cliente: <span>{{ p.nomeCliente }}</span></p>
+          <p class="card-text">valor pago: <span>{{ p.valorTotal | currency: 'BRL' }}</span></p>
+          <p class="card-text">desconto aplicado: <span>{{ p.percentualDesconto * 100 }}%</span></p>
+          <br />
+          <p>Produtos comprados: </p>
+          <div class="produtos-container">
+              <div class="lista-produtos" *ngFor="let produto of p.listaItens"> 
+                  <img src={{selecionarProduto(produto.idProduto)[0].imagem}} alt={{selecionarProduto(produto.idProduto)[0].descricao}} />
+                  <p>{{selecionarProduto(produto.idProduto)[0].descricao}}</p>
+                </div>
+            </div>
+          <!-- <p class="card-text">situação: <span>{{ p.situacao }}</span></p> -->
+        </div>
+      </div>
+    </div>
+  </div>
