@@ -86,7 +86,7 @@ public class ProdutoController {
     }
 
     @GetMapping("pageable")
-    public Page<ProdutoDTO> listarTudoPaginacao(@PageableDefault(sort="descricao", direction = Sort.Direction.ASC, page=0, size = 8) Pageable paginacao) {
+    public Page<ProdutoDTO> listarTudoPaginacao(@PageableDefault(sort="descricao", direction = Sort.Direction.ASC, page=0, size = 6) Pageable paginacao) {
         return service.listarTudoDTOPaginacao(paginacao);
     }
 

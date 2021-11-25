@@ -78,6 +78,14 @@
             <!-- BOTÕES -->
             <div class="mt-5 mb-3">
               <button routerLink="" class="btn btn-secondary">Voltar</button>
+
+              <!-- Pedidos do cliente -->
+              <div *ngIf="aux == 0 && hasCliente()">
+                <button class="btn btn-secondary float-center"
+                  routerLink="/list-pedidos-cliente"
+                >Meus pedidos</button>
+              </div>
+
               <button
                 type="submit"
                 value="buscarClientesPorId"

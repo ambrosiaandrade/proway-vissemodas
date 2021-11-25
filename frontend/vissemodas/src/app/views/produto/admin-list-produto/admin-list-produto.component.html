@@ -24,7 +24,7 @@
             <td>{{ produto.valorUnitario | currency: "BRL" }}</td>
             <td>{{ produto.categoria }}</td>
             <td class="ativoInativo" (click)="desativarProduto(produto.id)">
-              <!-- {{ produto.status == true ? "Ativo" : "Inativo" }} -->
+              {{ produto.status == true ? "Ativo" : "Inativo" }}
             </td>
           </tr>
         </tbody>

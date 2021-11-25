@@ -43,7 +43,7 @@ export class AddClienteComponent implements OnInit {
       cnpj: [''],
       nome: ['', Validators.required],
       status: ['', Validators.required],
-      tipoCliente: [false, Validators.required],
+      tipoCliente: ['', Validators.required],
       idEndereco: ['']
     });
     this.id = this._aRouter.snapshot.paramMap.get('id');
@@ -63,8 +63,10 @@ export class AddClienteComponent implements OnInit {
   handleTipoCliente(value: boolean) {
     if (value) {
       this.clienteForm.controls.cnpj.setValue('');
+      this.clienteForm.controls.tipoCliente.setValue('FISICA');
     } else {
       this.clienteForm.controls.cpf.setValue('');
+      this.clienteForm.controls.tipoCliente.setValue('JURIDICA');
     }
   }
 

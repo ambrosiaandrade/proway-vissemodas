@@ -10,6 +10,7 @@ import { Produto } from 'src/app/models/produto.model';
 export class HomeComponent implements OnInit {
 
   listProdutos: Produto[] = [];
+  produtosFiltrados: Produto[] = [];
 
   constructor(private _service: ProdutoService) {}
 
@@ -21,10 +22,19 @@ export class HomeComponent implements OnInit {
     this._service.getProdutos().subscribe({
       next: (data) => {
         this.listProdutos = data;
+        this.produtosFiltrados = data;
         console.log(data);
       },
       error: (e) => console.log(e),
     });
   }
 
+  filterProdutos(categoria: string){
+    for(let i = 0; i < this.produtosFiltrados.length; i++) {
+      console.log('categoria',categoria);
+      this.produtosFiltrados = this.produtosFiltrados.filter((item) => item.categoria == categoria);
+      console.log('produtosFiltrados', this.produtosFiltrados);
+    }    
+    this.produtosFiltrados = this.listProdutos;
+  }
 }
