@@ -76,11 +76,4 @@ public class EnderecoServiceTest {
 
     }
 
-    @Test
-    public void deveriaAlterarEnderecoPorId(){
-
-    }
-
-
-
 }

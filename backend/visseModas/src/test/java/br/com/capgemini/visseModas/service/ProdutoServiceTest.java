@@ -39,7 +39,7 @@ public class ProdutoServiceTest {
 
         Produto prod1 = em.persist(produto);
 
-        Assert.assertEquals(produto,prod1);
+        Assert.assertEquals(produto, prod1);
 
     }
 
@@ -57,46 +57,19 @@ public class ProdutoServiceTest {
 
         Produto prod1 = produtoRepository.getById(produtoSalvo.getId());
 
-        Assert.assertEquals(produto,prod1);
+        Assert.assertEquals(produto, prod1);
     }
 
     @Test
     public void naoDeveriaBuscarProdutoPorId() {
 
-        Produto produto =  new Produto();
+        Produto produto = new Produto();
         produto.setDescricao("Calças");
         Produto produtoSalvo = em.persist(produto);
-        Long idInvalido=35l;
+        Long idInvalido = 35l;
 
         Optional<Produto> produtoOptional = produtoRepository.findById(idInvalido);
         Assert.assertFalse(produtoOptional.isPresent());
-
-    }
-
-    @Test
-    public void deveriaAlterarProduto() {
-        //inicio da lógica para alterar
-        Produto produto = new Produto();
-        produto.setDescricao("Vestido Longo Turco");
-        produto.setTamanho("40");
-        produto.setValorUnitario(BigDecimal.valueOf(150.15));
-        produto.setCategoria("Vestidos");
-        produto.setImagem("C:");
-
-        Produto prod1 = em.persist(produto);
-
-//        Assert.assertEquals(produto,prod1);
-
-
-    }
-
-    @Test
-    public void deveriaDeletarProduto() {
-
-    }
-
-    @Test
-    public void deveriaInativarProduto() {
 
     }
 }
