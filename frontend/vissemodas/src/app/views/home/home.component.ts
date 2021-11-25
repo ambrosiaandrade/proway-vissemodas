@@ -35,6 +35,6 @@ export class HomeComponent implements OnInit {
       this.produtosFiltrados = this.produtosFiltrados.filter((item) => item.categoria == categoria);
       console.log('produtosFiltrados', this.produtosFiltrados);
     }    
-    this.produtosFiltrados = this.listProdutos;
+    this.produtosFiltrados = this.listProdutos; 
   }
 }
