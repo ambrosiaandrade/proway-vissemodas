@@ -29,6 +29,15 @@ h5{
     text-align: center;
 }
 
+th, td {
+    text-align: center;
+}
+
+.numerosPag {
+    color: #D26E56;
+    text-align: center;
+}
+
 #sacolinha{
     padding: 0.4rem;
     border-radius: 1rem;

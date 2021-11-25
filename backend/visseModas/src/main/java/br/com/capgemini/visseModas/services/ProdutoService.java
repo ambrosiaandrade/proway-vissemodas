@@ -40,8 +40,8 @@ public class ProdutoService {
         return null;
     }
 
-    //TODO Não deve ser possível excluir um produto se ele estiver associado a algum pedido
-    public ResponseEntity<Produto> deletar(Long idProduto) {
+    //Não deve ser possível excluir um produto se ele estiver associado a algum pedido
+    public Boolean deletar(Long idProduto) {
 
         //busca o produto pelo id
         Optional<Produto> optional = produtoRepository.findById(idProduto);
@@ -53,14 +53,13 @@ public class ProdutoService {
         //se não tiver vínculo a lista volta vazia e pode exluir o produto
         if(lista.isEmpty()){
             produtoRepository.delete(produto);
-            return ResponseEntity.ok().build();
+            return true;
         }
 
         //se a lista não tiver vazia, não pode excluir portanto o produto será inativado
         inativar(produto);
-        return ResponseEntity.badRequest().build();
+        return false;
     }
-
 
     public Produto buscarPorId(Long id) {
 
@@ -78,7 +77,6 @@ public class ProdutoService {
         return ProdutoDTO.converteListaProdutoParaListaProdutoDTO(listaProdutos);
     }
 
-    // Não deve ser possível adicionar um produto desativado em um pedido
     public List<ProdutoDTO> listarTudoAtivo(){
         List<Produto> listaProdutos = produtoRepository.findByStatus(true);
         return ProdutoDTO.converteListaProdutoParaListaProdutoDTO(listaProdutos);

@@ -38,7 +38,7 @@ public class ItemPedidoController {
 
     @GetMapping("/{idPedido}")
     public List<ItemPedidoDTO> listarItensPorPedido(@PathVariable Long idPedido) {
-        return itemPedidoService.listarTudoDTO(idPedido);
+        return itemPedidoService.listarTudoDTOPorPedido(idPedido);
     }
 
 }
