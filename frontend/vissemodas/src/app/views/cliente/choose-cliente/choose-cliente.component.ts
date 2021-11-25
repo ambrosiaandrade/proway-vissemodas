@@ -35,10 +35,12 @@ export class ChooseClienteComponent implements OnInit {
   tipoCliente: boolean = false;
   botaoTexto: string = 'Buscar';
 
+  aux: any;
+
   constructor(
     private _service: ClienteService,
     private _serviceEndereco: EnderecoService,
-    private _route: ActivatedRoute,
+    private _aRouter: ActivatedRoute,
     private _router: Router,
     private _fb: FormBuilder,
     private _toastr: ToastrService
@@ -47,10 +49,12 @@ export class ChooseClienteComponent implements OnInit {
       cpf: [''],
       cnpj: [''],
     });
+    this.aux = this._aRouter.snapshot.paramMap.get('aux');
   }
 
   ngOnInit(): void {
     this.buscarClientes();
+    console.log('aux', this.aux);
   }
 
   handleTipoCliente(value: boolean) {
