@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'add-endereco', component: AddEnderecoComponent },
   { path: 'edit-endereco/:id', component: AddEnderecoComponent }, // editar endereço (esse era o correto para fazer)
   { path: 'choose-cliente', component: ChooseClienteComponent },
+  { path: 'choose-cliente/:aux', component: ChooseClienteComponent },
   { path: 'carrinho', component: CarrinhoComponent },
   { path: 'finalizado', component: FinalizadoComponent },
   { path: 'admin-list-pedido', component: AdminListPedidoComponent },
