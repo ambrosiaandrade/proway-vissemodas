@@ -25,6 +25,9 @@
     background-color: #ffd392;
     padding: 2rem;
     border-radius: 2rem;
+    width: 550px !important;
+    margin: 1rem;
+
 }
 
 .initial-info{
@@ -34,4 +37,14 @@
 
 .card-text{
     margin: 0;
+}
+
+.cards{
+    display: flex;
+    justify-content: center;
+
+}
+
+h3, h6{
+    text-align: center;
 }

@@ -21,6 +21,7 @@ export class ListPedidosClienteComponent implements OnInit {
   listPedidos: Pedido[] = [];
   listaFiltrada: Pedido[] = []
   listaProdutos: Produto[] = []
+  tituloTexto: string = "Meus pedidos"
   
 
    // Cliente selecionado do 'choose-cliente'
@@ -53,6 +54,7 @@ export class ListPedidosClienteComponent implements OnInit {
       this.hasCliente = true;
       this.sessionCliente = JSON.parse(localStorage.getItem('client') || '{}');
       this.listaFiltrada = this.listPedidos.filter((item) => item.nomeCliente == this.sessionCliente.nome)
+      this.tituloTexto = `Pedidos de ${this.sessionCliente.nome.split(" ")[0]}`
     } else {
       this.hasCliente = false;
       this.sessionCliente = {
@@ -60,6 +62,7 @@ export class ListPedidosClienteComponent implements OnInit {
         tipoCliente: '',
         idEndereco: 0
       };
+      this.tituloTexto = "Meus pedidos"
     }
     console.log('sessionCliente', this.sessionCliente);
   }

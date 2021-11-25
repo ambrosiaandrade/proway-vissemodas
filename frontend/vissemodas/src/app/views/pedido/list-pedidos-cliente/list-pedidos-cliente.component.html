@@ -1,7 +1,7 @@
 <div class="container m-5">
-    <h3>Meus pedidos</h3>
-    <div class="cards">
-      <div *ngFor="let p of listaFiltrada">
+    <h3>{{tituloTexto}}</h3>
+    <h6 *ngIf="listaFiltrada.length > 0">Quantidade total de pedidos: {{listaFiltrada.length}}</h6>
+      <div class="cards" *ngFor="let p of listaFiltrada">
         <div class="card pedido" >
           <h5 class="card-title"></h5>
           <div class="initial-info">
@@ -20,6 +20,5 @@
             </div>
           <!-- <p class="card-text">situação: <span>{{ p.situacao }}</span></p> -->
         </div>
-      </div>
     </div>
   </div>
