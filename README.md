@@ -1,5 +1,3 @@
-# Em construção
-
 ## Visse Modas
 
 O Visse Modas é um sistema desenvolvido para compra, com o objetivo de automatizar a tarefa de cadastrar clientes, produtos e registrar pedidos.
