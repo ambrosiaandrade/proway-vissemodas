@@ -56,7 +56,7 @@ public class ClienteController {
     }
 
     @GetMapping("pageable")                     //setando uma ordenacao default, se não passar parametros
-    public Page<ClienteDTO> listarTudoPaginacao(@PageableDefault(sort="nome", direction = Sort.Direction.ASC, page=0, size = 10) Pageable paginacao) {
+    public Page<ClienteDTO> listarTudoPaginacao(@PageableDefault(sort="nome", direction = Sort.Direction.ASC, page=0, size = 6) Pageable paginacao) {
         return service.listarTudoDTOPaginacao(paginacao);
     }
 
