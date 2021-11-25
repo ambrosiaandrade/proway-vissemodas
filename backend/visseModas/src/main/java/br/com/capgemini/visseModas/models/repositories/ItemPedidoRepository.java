@@ -9,6 +9,7 @@ public interface ItemPedidoRepository extends JpaRepository<ItemPedido, Long> {
 
     //saber quais itens tem em um pedido
     List<ItemPedido>findByPedidoId(Long id);
+
     //saber quais itens tem produto buscado
     List<ItemPedido>findByProdutoId(Long idProduto);
 
