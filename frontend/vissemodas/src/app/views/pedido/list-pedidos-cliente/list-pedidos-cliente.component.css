@@ -1,0 +1,40 @@
+.lista-produtos img{
+    width: 114px;
+    border-radius: 10px;
+}
+.lista-produtos{
+    box-sizing: border-box;
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    border: 3px #973e2e solid;
+    margin: 5px;
+    border-radius: 10px;
+}
+.lista-produtos p{
+    font-size: small;
+}
+
+.produtos-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pedido{
+    background-color: #ffd392;
+    padding: 2rem;
+    border-radius: 2rem;
+}
+
+.initial-info{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-text{
+    margin: 0;
+}
