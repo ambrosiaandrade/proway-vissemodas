@@ -30,6 +30,8 @@ hs_err_pid*
 
 # Backend ------------------------------------------------------------------------------
 
+## applications.properties
+backend/visseModas/src/main/resources/application.properties
 ## IntelliJ IDEA
 backend/visseModas/.idea
 backend/visseModas/*.iws
