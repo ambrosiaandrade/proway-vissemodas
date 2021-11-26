@@ -16,7 +16,7 @@ CREATE TABLE cliente (
 CREATE TABLE endereco (
 	id bigint not null auto_increment,
 	bairro varchar(50),
-	cep varchar(8),
+	cep varchar(10),
 	cidade varchar(40),
 	estado varchar(20),
 	logradouro varchar(50),
