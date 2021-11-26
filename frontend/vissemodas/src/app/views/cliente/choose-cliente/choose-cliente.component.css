@@ -49,3 +49,21 @@ img.user {
   color: #973e2e !important;
   border-radius: 1em;
 }
+
+.botoes{
+  display: flex;
+  justify-content: space-between;
+}
+
+.botoes-2{
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-pedido{
+  margin-bottom: 10px;
+}
+
+.btn-voltar{
+  height: fit-content;
+}
