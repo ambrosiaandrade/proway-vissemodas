@@ -40,7 +40,7 @@ Depois de seguir os passos para rodar o projeto, acesse http://localhost:8080/sw
 - [Amanda Medeiros](https://www.linkedin.com/in/amanda-de-souza-medeiros-193a36b2/)
 - [Ambrósia Andrade](https://www.linkedin.com/in/ambrosiaandrade/)
 - [Luana Bezerra](https://www.linkedin.com/in/luana-bezerradev/)
-- [Maressa Oliveira](https://www.linkedin.com/in/maressa-vargas-de-oliveira-08a309129/)
+- [Maressa Oliveira](https://www.linkedin.com/in/maressavo/)
 - [Rebeca Lira](https://www.linkedin.com/in/rebeca-lira-a7a262b9/)
 - [Valquiria Matter ](https://www.linkedin.com/in/valquiria-matter-3988531a5/)
     
