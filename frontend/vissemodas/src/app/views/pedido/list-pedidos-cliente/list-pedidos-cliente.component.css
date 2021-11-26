@@ -48,3 +48,8 @@
 h3, h6{
     text-align: center;
 }
+
+.container{
+    min-height: calc(100vh - 348px);
+
+}

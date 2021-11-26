@@ -80,3 +80,8 @@ input[type="number"] {
 .desconto{
   margin: 0.5rem;
 }
+
+.container{
+  min-height: calc(100vh - 380px);
+
+}
