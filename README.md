@@ -37,7 +37,7 @@ Depois de seguir os passos para rodar o projeto, acesse http://localhost:8080/sw
 - JUnit
 
 ## Desenvolvedoras do projeto
-- [Amanda Medeiros](https://www.linkedin.com/in/amanda-de-souza-medeiros-193a36b2/)
+- [Amanda Medeiros](https://www.linkedin.com/in/medeirosamandas)
 - [Ambrósia Andrade](https://www.linkedin.com/in/ambrosiaandrade/)
 - [Luana Bezerra](https://www.linkedin.com/in/luana-bezerradev/)
 - [Maressa Oliveira](https://www.linkedin.com/in/maressavo/)
